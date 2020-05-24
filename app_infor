@@ -1,0 +1,3 @@
+# app.run(host=os.getenv('IP', "0.0.0.0"), port=int(os.getenv('PORT', "5000")), debug=False)
+
+python3 app.py runserver
