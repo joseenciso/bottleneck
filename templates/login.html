@@ -1,0 +1,21 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="spacer col-12"></div>
+
+<form class="form form-login" method="POST">
+    <div class="login-container">
+        <legend >Login</legend>
+        <label for="username">Username: </label>
+        <input type="text" name="username" id="username" placeholder="Username"/>
+        <br>
+        <label for="password">Password: </label>
+        <input type="password" name="password" id="password" placeholder="password">
+        <br>
+        <div class="submit-container">
+            <button class="submit submit-login btn btn-success">Lets go!</button>
+        </div>
+    </div>
+    
+</form>
+<div class="spacer col-12"></div>
+{% endblock %}

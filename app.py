@@ -1,5 +1,5 @@
 import os
-import json
+# import json
 from flask import Flask, render_template
 
 
@@ -11,9 +11,24 @@ def index():
     return render_template("index.html")
 
 
+@app.route('/review')
+def game_review():
+    return render_template("reviews.html")
+
+
 @app.route('/post')
-def post():
+def post_game_review():
     return render_template("post.html")
+
+
+@app.route('/login')
+def login():
+    return render_template("login.html")
+
+
+@app.route('/contact_us')
+def contact_us():
+    return render_template("contactus.html")
 
 
 if __name__ == "__main__":

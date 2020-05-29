@@ -1,3 +1,345 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&family=Roboto&display=swap');
+
+
+/************************************
+font-family: 'Noto Sans', sans-serif;
+font-family: 'Roboto', sans-serif;
+************************************/
+.noto{ font-family: 'Noto Sans', sans-serif; }
+
+.roboto{
+    font-family: 'Roboto', sans-serif;
+}
+
 body {
-    background-image: url("../img/background_00.jpg");
+    background: url("../img/background-01.jpg");
+    font-family: 'Noto Sans', sans-serif;
+    
+}
+
+header{
+    z-index: 1;
+}
+
+article{
+    /*margin-top: 2.5%;
+    */margin-bottom: 2.5%;
+}
+
+nav{
+    background-color: rgba(242, 242, 242, .7);
+}
+
+/*
+main,
+.container{
+    border: red 5px solid;
+}*/
+
+.main-container{
+    /*background-color: rgba(242, 242, 242, .7);*/
+    
+/*    height: 100vh;
+*/}
+
+.container{
+    color: #5d5a5a;
+}
+
+/*****************************************/
+/** Reviews **/
+/*****************************************/
+
+.navbar-brand{
+    font-size: 2.5rem;
+}
+
+.nav-item a{
+    font-size: 1.8rem;
+}
+/*****************************************/
+/** Reviews **/
+/*****************************************/
+
+
+.author-container{
+    padding-top: 1.5rem;
+}
+
+.author-photo{
+    width: 65px;
+    border-radius: 50%;
+}
+
+.game-header{
+    position: static;
+}
+
+.social-networks {
+    height: 85px;
+}
+
+.social-networks i{
+    background-color: white;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    margin-left: auto;
+}
+
+.fa-facebook-f{
+    padding-top: 4px;
+    color:#3B5998;
+}
+
+.fa-twitter{
+    padding-top: 4px;
+    color: #1DA1F2;
+}
+
+.game-cover{
+    height: 500px;
+    background-image: url("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fgameswithtoasty.files.wordpress.com%2F2019%2F01%2Fnintendo-switch-super-smash-bros-ultimate-dlc-characters-leaked-surprising-nintendo-direct-1.jpg%3Fw%3D1200&f=1&nofb=1");
+    background-size: cover;
+    background-position: center center;
+}
+
+.title-background{
+    background-color: rgba(174, 167, 167, .8);
+
+    position: absolute;
+    bottom: 0;
+
+    height: 120px;
+    width: 100%;
+}
+
+.title-container{
+    padding-top: 1rem;
+    height: 120px;
+}
+
+
+.progress-circle{
+    margin: 0;
+}
+
+.score{
+    font-size: 3rem;
+}
+
+.pegi-size{
+    height: 100px;
+}
+
+.pegi-container .square-img,
+.gallery .square-img{
+    height: 200px;
+    width: 200px;
+
+    display: inline-block;
+
+    /*background-color: yellow;*/
+
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center center;
+}
+
+.pegi3{
+    background-image: url("https://pegi.info/sites/default/files/styles/medium/public/2017-03/2000px-PEGI_3.svg_.png?itok=v29cXS0R");
+}
+
+.pegi7{
+    background-image: url("https://pegi.info/sites/default/files/styles/medium/public/2017-03/pegi7.png?itok=eI0Gk8v4");
+}
+
+.pegi12{
+    background-image: url("https://pegi.info/sites/default/files/styles/medium/public/2017-03/PEGI_12.png?itok=YbTznZS9")
+}
+
+.pegi16{
+    background-image: url("https://pegi.info/sites/default/files/styles/medium/public/2017-03/pegi16.png?itok=GyBvYeoU")
+}
+.pegi18{
+    background-image: url("https://pegi.info/sites/default/files/styles/medium/public/2017-03/pegi18.png?itok=2iF_eHO6")
+}
+
+.pegi-container .square-img{
+    height: 100px;
+    width: 100px;
+
+}
+
+.pegi-violence{
+    background-image: url("https://pegi.info/sites/default/files/inline-images/violence-black-EN.jpg");
+}
+
+.pegi-language{
+    background-image: url("https://pegi.info/sites/default/files/inline-images/bad-language-black-EN.jpg");
+}
+
+.pegi-fear{
+    background-image: url("https://pegi.info/sites/default/files/inline-images/fear-black-EN.jpg");
+}
+
+.pegi-gambling{
+    background-image: url("https://pegi.info/sites/default/files/inline-images/gambling-black-EN.jpg")
+}
+
+.pegi-sex{
+    background-image: url("https://pegi.info/sites/default/files/inline-images/sexual-content-black-EN.jpg");
+}
+
+.pegi-drugs{
+    background-image: url("https://pegi.info/sites/default/files/inline-images/drugs-black-EN.jpg");
+}
+
+.pegi-discrimination{
+    background-image: url("https://pegi.info/sites/default/files/inline-images/discrimination-black-EN.jpg");
+}
+
+.gallery .square-img{
+    height: 200px;
+    width: 200px;
+}
+
+.ciritc-row,
+.game-review{
+    padding-left: 5%;
+    padding-right: 5%; 
+}
+
+
+/*****************************************/
+/** Reviews **/
+/*****************************************/
+.contact-form legend{
+    color:beige;
+    font-size: 2rem;
+}
+
+.author-container .fa-facebook-f{
+    margin-left: auto; 
+}
+
+/*****************************************/
+/** Forms **/
+/*****************************************/
+hr{
+    background-color: white;
+}
+
+.post-heading{
+    margin-top: 3rem;
+}
+
+.form{
+    margin: 0 auto;
+    /*text-align: center;*/
+}
+
+.fieldset{
+    margin-top: 1rem;
+}
+
+.post-legend{
+    text-align: left;
+    margin-top: 1rem; 
+}
+
+.form-login{
+    width: 500px;
+}
+
+
+
+.send-botton{
+    margin: 2rem auto;
+}
+
+
+.spacer{
+    height: 150px;
+}
+
+
+
+/*****************************************/
+/** Forms Login **/
+/*****************************************/
+
+
+
+
+form label{
+    padding-left: 1rem;
+}
+
+.submit{
+    display: block;
+    margin: 1rem auto;
+
+}
+
+.form-post,
+.form-login{
+    border: white 1px solid;
+    padding: 1rem 3rem 1.5rem 3rem;
+    
+    border-radius: 10px;
+    background-color: rgba(242, 242, 242, .7);
+}
+
+.form-login{
+    width: 400px !important;
+}
+
+
+.login-container{
+    margin: 0 auto;
+}
+
+
+.submit-login{
+
+}
+
+
+/*****************************************/
+/** Form Post **/
+/*****************************************/
+.post-heading{
+    text-align: center;
+}
+
+.form-post{
+    width: 555px;
+    margin: 0 auto;
+}
+
+
+/*****************************************/
+/** Forms Login **/
+/*****************************************/
+/*
+@media (min-width: 576px) { ... }
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) { ... }
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) { ... }
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) { ... }
+/*****************************************/
+/*****************************************/
+
+@media screen and(min-width: 992px){
+    
+    form{
+        width: 600px;
+    }
 }
