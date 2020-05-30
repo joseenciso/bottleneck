@@ -3,67 +3,89 @@
 
 <h2 class="post-heading">Review Post</h2>
 <form class="form form-post">
-    <div class="">
+    <div class="row">
         <fieldset class="fieldset">
         
             <legend class="post-legend">Author's Section</legend>
-            <div class="author-section">
-                <label for="author">Athor's Name</label>
-                <input type="text" name="author" id="author">
+            <div class=" author-section">
+                <div class="col-12">
+                    <label for="author">Athor's Name</label>
+                </div>
+                <div class="col-12">
+                    <input type="text" name="author" id="author">
+                </div>
                 <br>
-                <label for="nickname">Author's Nickname</label>
-                <input type="text" name="nickname" id="nickname">
+                <div class="col-12">
+                    <input type="text" name="nickname" id="nickname">
+                </div>
                 <br>
-                <label for="authors-picture">Author's Picture</label>
-                <input type="file" name="authors-picture" id="authors-picture">
+
+                <div class="col-12"><label for="authors-picture">Author's Picture</label></div>
+                <div class="col-12"><input type="file" class="btn btn-info" name="authors-picture" id="authors-picture"></div>
+                
+                
             </div>
         </fieldset>
         <hr>
         <fieldset class="fieldset">
+            <div class="game-title-section">
             <legend class="post-legend">Game Section</legend>
-            <div class="game-title-sectino">           
-                <label for="game-title">Game Title</label>
-                <input type="text" name="game-title" id="game-title">
+                <div class="col-12"><label for="game-title">Game Title</label></div>
+                <div class="col-12"><input type="text" name="game-title" id="game-title"></div>
+                
                 <br>
-                <label for="release-date">Game Release</label>
-                <input type="date" name="release-date">
+                <div class="col-12"><label for="release-date">Game Release</label></div>
+                <div class="col-12"><input type="date" name="release-date"></div>
+                
                 <br>
-                <label for="game-cover">Cover Picture</label>
-                <input type="file" name="game-cover" id="game-cover">
+                <div class="col-12"><label for="game-cover">Cover Picture</label></div>
+                <div class="col-12"><input type="file" name="game-cover" id="game-cover"></div>
+                
             </div>
         </fieldset>
         <hr>
         <fieldset class="fieldset">
             <legend class="post-legend">Load 5 pictures for the post</legend>
             <p>Select five pictres for the review</p>
-            <div class="gallery-section">
-                <label for="Picture -1">Picture </label>
-                <input type="file" name="Picture -" id="Picture -1">
+            <div class="col-12"><label for="Picture -1">Picture </label></div>
+                <div class="col-12"><input type="file" name="Picture -" id="Picture -1"></div>
+                
+                
                 <br>
-                <label for="Picture -2">Picture  </label>
-                <input type="file" name="Picture -" id="Picture -2">
+                <div class="col-12"><label for="Picture -2">Picture  </label></div>
+                <div class="col-12"><input type="file" name="Picture -" id="Picture -2"></div>
+                
+                
                 <br>
-                <label for="Picture -3">Picture  </label>
-                <input type="file" name="Picture -" id="Picture -3">
+                <div class="col-12"><label for="Picture -3">Picture  </label></div>
+                <div class="col-12"><input type="file" name="Picture -" id="Picture -3"></div>
+                
+                
                 <br>
-                <label for="Picture -4">Picture  </label>
-                <input type="file" name="Picture -" id="Picture -4">
+                <div class="col-12"><label for="Picture -4">Picture  </label></div>
+                <div class="col-12"><input type="file" name="Picture -" id="Picture -4"></div>
+                
+                
                 <br>
-                <label for="Picture -5">Picture  </label>
-                <input type="file" name="Picture -" id="Picture -5">
-            </div>
+                <div class="col-12"><label for="Picture -5">Picture  </label></div>
+                <div class="col-12"><input type="file" name="Picture -" id="Picture -5"></div>
+                
         </fieldset>
 
         <fieldset class="fieldset">
-            <legend class="post-review">Review</legend>
-            <div class="review">
-                <textarea name="" id="" cols="55" rows="15">
-                
-                </textarea>
+            <div class="col-12">
+                <legend class="post-review">Review</legend>
+                <div class="review">
+                    <textarea name="review" id="review" ></textarea>
+                </div>
             </div>
+            
         </fieldset>
 
-        <input type="submit" value="Submit" class="submit btn btn-success">
+        <div class="col-12">
+            <input type="submit" value="Submit" class="submit btn btn-success">
+        </div>
+        
     </div>
 </form>
 

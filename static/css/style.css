@@ -1,19 +1,19 @@
+/*@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&family=Roboto&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans&family=Roboto&display=swap');
+*/
 
-
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap');
 /************************************
 font-family: 'Noto Sans', sans-serif;
 font-family: 'Roboto', sans-serif;
-************************************/
-.noto{ font-family: 'Noto Sans', sans-serif; }
 
-.roboto{
-    font-family: 'Roboto', sans-serif;
-}
+font-family: 'Noto Sans', sans-serif;
+font-family: 'Roboto', sans-serif;
+************************************/
 
 body {
     background: url("../img/background-01.jpg");
-    font-family: 'Noto Sans', sans-serif;
+    font-family: 'Bungee Shade', cursive;
     
 }
 
@@ -26,8 +26,8 @@ article{
     */margin-bottom: 2.5%;
 }
 
-nav{
-    background-color: rgba(242, 242, 242, .7);
+.navbar{
+    background-color: rgb(57,57,57);
 }
 
 /*
@@ -43,7 +43,7 @@ main,
 */}
 
 .container{
-    color: #5d5a5a;
+/*    color: #5d5a5a;*/
 }
 
 /*****************************************/
@@ -169,7 +169,6 @@ main,
 .pegi-container .square-img{
     height: 100px;
     width: 100px;
-
 }
 
 .pegi-violence{
@@ -225,7 +224,7 @@ main,
 }
 
 /*****************************************/
-/** Forms **/
+/** Form **/
 /*****************************************/
 hr{
     background-color: white;
@@ -253,29 +252,49 @@ hr{
     width: 500px;
 }
 
-
-
 .send-botton{
     margin: 2rem auto;
 }
-
 
 .spacer{
     height: 150px;
 }
 
 
+/*****************************************/
+/** Forms Post **/
+/*****************************************/
+
+.form-post{
+    width: 625px;
+    
+}
+
+
+.form-post label{
+    padding-left: 1rem;
+}
+
+.post-heading{
+    text-align: center;
+}
+
+
+
+textarea{
+    
+
+}
+
+.form-post input[type="text"]{
+    width: 100%;
+}
 
 /*****************************************/
 /** Forms Login **/
 /*****************************************/
 
 
-
-
-form label{
-    padding-left: 1rem;
-}
 
 .submit{
     display: block;
@@ -292,9 +311,11 @@ form label{
     background-color: rgba(242, 242, 242, .7);
 }
 
+/*
 .form-login{
     width: 400px !important;
 }
+*/
 
 
 .login-container{
@@ -307,22 +328,28 @@ form label{
 }
 
 
-/*****************************************/
-/** Form Post **/
-/*****************************************/
-.post-heading{
-    text-align: center;
-}
-
-.form-post{
-    width: 555px;
-    margin: 0 auto;
-}
 
 
 /*****************************************/
 /** Forms Login **/
 /*****************************************/
+.login{
+    text-align: center;
+}
+
+.form-login label{
+    padding-left: 10px;
+}
+
+.form-login input{
+    margin-bottom: 20px;
+}
+
+.form-login{
+    width: 390px;
+}
+
+
 /*
 @media (min-width: 576px) { ... }
 
@@ -337,9 +364,73 @@ form label{
 /*****************************************/
 /*****************************************/
 
-@media screen and(min-width: 992px){
+@media screen (min-width: 992px){
     
-    form{
-        width: 600px;
+
+
+
+
+    .form-login{
+        width: 305px;
+    }
+
+    .submit-login{
+        margin-top: 20px;
+    }
+
+    .login-input{
+        margin-left: 16px;
+    }
+}
+
+@media (min-width: 300px) and (max-width: 450px){
+    .col-12{
+        padding: 0 10px;
+    }
+
+    .post-legend,
+    fieldset p{
+        padding-left: 10px;
+    }
+
+    .form-post,
+    .form-login{
+        border: white 1px solid;
+        
+        
+        border-radius: 10px;
+        background-color: rgba(242, 242, 242, .7);
+    }
+
+    .form-post{
+        padding: 1rem;
+        width: 100%;
+        border-radius: 0;
+    }
+
+    .post-container{
+        margin: 0;
+        padding: 0;
+    }
+
+    .form-login{
+        width: 320px;
+    }
+
+    .login-input{
+        margin-left: auto;
+    }
+
+    .form-post label{
+        
+        padding-left: 0;
+    }
+
+    input[type="file"]{
+        padding: 5px;
+    }
+
+    textarea{
+        width: 334px;
     }
 }
