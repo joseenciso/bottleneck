@@ -2,19 +2,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans&family=Roboto&display=swap');
 */
 
-@import url('https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap'); */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 /************************************
 font-family: 'Noto Sans', sans-serif;
 font-family: 'Roboto', sans-serif;
 
 font-family: 'Noto Sans', sans-serif;
 font-family: 'Roboto', sans-serif;
+
+font-family: 'Bungee Shade', cursive;
 ************************************/
 
 body {
     background: url("../img/background-01.jpg");
-    font-family: 'Bungee Shade', cursive;
-    
+    font-family: 'Roboto', sans-serif;
+    color: black;
 }
 
 header{
@@ -30,11 +34,11 @@ article{
     background-color: rgb(57,57,57);
 }
 
-/*
+
 main,
 .container{
     border: red 5px solid;
-}*/
+}
 
 .main-container{
     /*background-color: rgba(242, 242, 242, .7);*/
@@ -80,7 +84,7 @@ main,
 }
 
 .social-networks i{
-    background-color: white;
+    /* background-color: white; */
     border-radius: 50%;
     width: 40px;
     height: 40px;
@@ -215,7 +219,7 @@ main,
 /** Reviews **/
 /*****************************************/
 .contact-form legend{
-    color:beige;
+    /* color: black; */
     font-size: 2rem;
 }
 
@@ -226,9 +230,9 @@ main,
 /*****************************************/
 /** Form **/
 /*****************************************/
-hr{
+/* hr{
     background-color: white;
-}
+} */
 
 .post-heading{
     margin-top: 3rem;
@@ -240,7 +244,8 @@ hr{
 }
 
 .fieldset{
-    margin-top: 1rem;
+    margin: 1rem auto;
+    width: 100%;
 }
 
 .post-legend{
@@ -282,8 +287,9 @@ hr{
 
 
 textarea{
-    
-
+    min-height: 300px;
+    height: 500px;
+    width: 100%;
 }
 
 .form-post input[type="text"]{
@@ -308,7 +314,8 @@ textarea{
     padding: 1rem 3rem 1.5rem 3rem;
     
     border-radius: 10px;
-    background-color: rgba(242, 242, 242, .7);
+    /* background-color: rgba(242, 242, 242, .7); */
+    background-color: rgb(241,244,247);
 }
 
 /*
@@ -393,14 +400,14 @@ textarea{
         padding-left: 10px;
     }
 
-    .form-post,
+    /* .form-post,
     .form-login{
         border: white 1px solid;
         
         
         border-radius: 10px;
         background-color: rgba(242, 242, 242, .7);
-    }
+    } */
 
     .form-post{
         padding: 1rem;
