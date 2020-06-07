@@ -1,3 +1,13 @@
 https://startbootstrap.com/snippets/thumbnail-gallery/
 
 https://www.cssscript.com/circular-progress-bar-plain-html-css/
+
+https://developer.okta.com/blog/2018/07/12/flask-tutorial-simple-user-registration-and-login
+
+pip install SQLAlchemy
+
+
+
+G is a global object
+g object makes easy to store data between functions without passing things around  
+g session or request contest

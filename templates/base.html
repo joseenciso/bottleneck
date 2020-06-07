@@ -11,27 +11,41 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/css-circular-prog-bar.css') }}">
 
-    <title>bottleneck</title>
+    <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
     <nav class="navbar navbar-expand-sm navbar-dark ">
         <div class="container ">
-            <a class="navbar-brand " href="#">Bottleneck</a>
+            <a class="navbar-brand " href="{{ url_for('index')}}">Bottleneck</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
             <div class="collapse navbar-collapse" id="navbarsExample03">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
+                    <li class="nav-item {% if request.path == '/review' %}active{% endif %}">
                         <a class="nav-link" href="{{ url_for('game_review') }}">Reviews<span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('post_game_review') }}">Post</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('login') }}">Login</a>
-                    </li>
+
+                    {% if not g.user %}
+                        <li class="nav-item {% if request.path == '/login' %}active{% endif %}">
+                            <a class="nav-link" href="{{ url_for('login') }}">Login</a>
+                        </li>
+                        <li class="nav-item {% if request.path == '/register' %}active{% endif %}">
+                            <a class="nav-link" href="#">Register</a>
+                        </li> 
+                    {% else %}
+                        <li class="nav-item {% if request.path == '/game_review' %}active{% endif %}">
+                            <a class="nav-link" href="{{ url_for('post_game_review') }}">Post</a>
+                        </li>
+                       <li class="nav-item {% if request.path == '/user' %}active{% endif %}">
+                            <a class="nav-link" href="{{ url_for('user') }}">{{g.user.username}}</a>
+                        </li> 
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
+                        </li>
+                    {% endif %}
+
                 </ul>
             </div>
         </div>

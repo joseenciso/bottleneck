@@ -1,21 +1,31 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %}
+{% block title %}Login{% endblock %}
+{% block content %}
 
-<div class="spacer col-12"></div>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
 
-<form class="form form-login" method="POST">
-    <div class="login-container">
-        <legend class="login">Login</legend>
-        <label for="username">Username: </label>
-        <input type="text" name="username" id="username" placeholder="Username" class="login-input"/>
-        <br>
-        <label for="password">Password: </label>
-        <input type="password" name="password" id="password" placeholder="password" class="login-input"/>
-        <br>
-        <div class="submit-container">
-            <button class="submit submit-login btn btn-success">Lets go!</button>
+    <div class="spacer col-12"></div>
+
+    <form class="form form-login" method="POST">
+        <div class="login-container">
+            <legend class="login">Login</legend>
+            <label for="username">Username: </label>
+            <input type="text" name="username" id="username" placeholder="Username" class="login-input"/>
+            <br>
+            <label for="password">Password: </label>
+            <input type="password" name="password" id="password" placeholder="password" class="login-input"/>
+            <br>
+            <div class="submit-container">
+                <button class="submit submit-login btn btn-success">Lets go!</button>
+            </div>
         </div>
-    </div>
-    
-</form>
-<div class="spacer col-12"></div>
+        
+    </form>
+    <div class="spacer col-12"></div>
 {% endblock %}
