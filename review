@@ -11,3 +11,13 @@ pip install SQLAlchemy
 G is a global object
 g object makes easy to store data between functions without passing things around  
 g session or request contest
+
+
+################################
+SQLAlchemy
+
+python3>>form app import db
+>>db.create_all()
+>>from app import User, Post
+>>user1 = User(username='jose', email='jose@gmaill.com', password='pass1')
+>>db.session.add(user1)

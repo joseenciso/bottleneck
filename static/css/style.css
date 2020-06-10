@@ -240,7 +240,13 @@ main,
 
 .form{
     margin: 0 auto;
-    /*text-align: center;*/
+
+    border: white 1px solid;
+    padding: 1rem 3rem 1.5rem 3rem;
+    
+    border-radius: 10px;
+    /* background-color: rgba(242, 242, 242, .7); */
+    background-color: rgb(241,244,247);
 }
 
 .fieldset{
@@ -251,10 +257,6 @@ main,
 .post-legend{
     text-align: left;
     margin-top: 1rem; 
-}
-
-.form-login{
-    width: 500px;
 }
 
 .send-botton{
@@ -300,7 +302,9 @@ textarea{
 /** Forms Login **/
 /*****************************************/
 
-
+.form-login{
+    width: 500px;
+}
 
 .submit{
     display: block;
@@ -308,15 +312,10 @@ textarea{
 
 }
 
-.form-post,
-.form-login{
-    border: white 1px solid;
-    padding: 1rem 3rem 1.5rem 3rem;
-    
-    border-radius: 10px;
-    /* background-color: rgba(242, 242, 242, .7); */
-    background-color: rgb(241,244,247);
-}
+/*.form-post,
+.form-login,
+.form-register*/
+
 
 /*
 .form-login{
