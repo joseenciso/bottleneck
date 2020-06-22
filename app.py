@@ -1,56 +1,62 @@
 import os
+import uuid
+from flask import (
+                Flask, render_template, redirect, url_for,
+                request, session, flash
+                )
+
 from flask_sqlalchemy import SQLAlchemy
-from datetime import datetime
-from flask import Flask, render_template, redirect, url_for, request, session, flash, g
-from datetime import timedelta
+from datetime import datetime, timedelta
+# from flask_login import (
+#                     LoginManager, UserMixin, login_required,
+#                     current_user, login_user
+#                     )
+
+from bson.objectid import ObjectId
+
+# from werkzeug.security import generate_password_hash, check_password_hash
+
+from flask_pymongo import PyMongo
+
+import bcrypt
 
 username = os.getenv('C9_USER')
 
-# Connnect to DB
-# connection = pymysql.connect(host='localhost', user=username, password='', db='review_post')
+# MONGO_URI = os.getenv('MONGO_URI')
+
 
 app = Flask(__name__)
 app.secret_key = "SECRET_KEY"
-# app.permanent_session_lifetime = timedelta(minutes=5)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///bootleneck.db'
-# Relative path for the current path
-db = SQLAlchemy(app)
+
+app.config["MONGO_URI"] = 'mongodb+srv://rootAccess:sP9eU2GAtnYugO53@posting-vndhj.mongodb.net/bottleneckdb?retryWrites=true&w=majority'
+app.config["MONGO_DBNAME"] = 'bottleneckdb'  # Optional setting
+
+# Creating a new instance of PyMongo
+mongo = PyMongo(app)
+
+DBS_NAME = "bottleneckdb"
+COLECCTION_NAME = "posts"
 
 
-class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    username = db.Column(db.String(20), unique=True, nullable=False)
-    email = db.Column(db.String(120), unique=True, nullable=False)
-    # profile_image = db.Column(db.String(20), nullable=False, default='default.jpg')
-    password = db.Column(db.String(60), nullable=False)
-    post = db.relationship('Post', backref='author', lazy=True)
-    # Linking witht the Post Model - Lazy=True SQL will load the date in one go
-
-    def __repr__(self):
-    # REPR Method or magic methods|Speficies how a method will be printed out
-        return f"User('{self.username}', '{self.email}', '{self.profile_image}')"
+def mongo_connect(url):
+    try:
+        connection = PyMongo.MongoClient(url)
+        print("Connected!")
+        return connection
+    except PyMongo.errors.ConnectionFailure as e:
+        print("Couldnt connect to MongoDB: %s") % e
 
 
-class Post(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    post_title = db.Column(db.String(60), nullable=False)
-    post_subtitle = db.Column(db.String(100))
-    date_released = db.Column(db.DateTime, nullable=False, default=datetime)
-    date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
-    content = db.Column(db.Text, nullable=False)
-    pros_content = db.Column(db.Text, nullable=False)
-    cons_content = db.Column(db.Text, nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-
-    def _repr__(self):
-    # REPR Method or magic methods|Speficy's how a method will be printed out
-        return f"Post('{self.post_title}', '{self.post_subtitle}', '{self.date_released}', '{self.date_posted}')"
-
+# login_manager = LoginManager(app)
+# login_manager.init_app(app)
+# login_manager.login_view = 'login'
+encrypt = bcrypt.gensalt()
 
 
 @app.route('/')
+@app.route('/index')
 def index():
-    return render_template("index.html")
+    return render_template("index.html", users=mongo.db.users.find())
 
 
 @app.route('/review')
@@ -59,70 +65,108 @@ def game_review():
 
 
 @app.route('/post')
-def post_game_review():
+# @login_required
+def post_review():
     return render_template("post.html")
 
 
 @app.route('/login', methods=["GET", "POST"])
 def login():
-    if request.method == "POST":
-        # session.permanent = True
-        session.pop('id', None)
-        # None when no returning anything
-        username = request.form["username"]
-        password = request.form['password']
-
-        user = User(username=username, password=password)
-        # Serch for te username
-        # Checking wether password is right or not
-        if user:
-            session['id'] = user.id
-            # g['user'] = user
-            flash("Welcome {username}")
-            return redirect(url_for('user'))
-
-        flash("Wrong username or password")
-        return redirect(url_for('login'))
-    # flash("You ave been logged out 2")
+    if request.method == 'POST':
+        session["username"] = request.form["username"]
+        # logging_in = users.find_one({"username": request.form["username"]})
+        # if logging_in = users
+        # username = mongo.db.users.find()
+    """
+    form = LoginForm()
+    if form.validate_on_submit():
+        login_user(user)
+        flash('You are logged in')
+    if "username" in session:
+        return render_template("user.html")
+    else:
+        if request.method == "POST":
+            # session.permanent = True
+            # session.pop('id', None)
+            # None when no returning anything
+            username = request.form["username"]
+            password = request.form['password']
+            user = User(username=username, password=password)
+            # Serch for te username
+            # Checking wether password is right or not
+            # if user:
+            #     session['id'] = user.id
+            #     # g['user'] = user
+            #     flash("Welcome {username}")
+            #     return redirect(url_for('user'))
+            return redirect(url_for("user"))
+            # flash("Wrong username or password")
+            # return redirect(url_for('login'))
+        # flash("You ave been logged out 2")
+        else:
+            return render_template("login.html")
     return render_template("login.html")
+    """
 
 
 @app.route('/logout')
 def logout():
-    session.pop("id", None)
-    flash("Yo have been logged out!", "info")
+    session.pop("_id", None)
+    session.clear()
+    # session.pop("username", None)
+    # session.pop("password", None)
+    # flash("Yo have been logged out!", "info")
     # Flash message, "category"
-    return redirect(url_for("login"))
+    return redirect(url_for("index"))
 
 
 @app.route('/user')
+# @login_required
 def user():
     # import pdb;pdb.set_trace()
     # user = g.get("user")
-    if not user:
-        # session.pop('user_id', None)
-        return redirect(url_for('login'))
+    # if "user" in session:
+    #     user = session["user"]
+    #     # session.pop('user_id', None)
+    #     return render_template('user.html')
+    # else:
+    #     return redirect(url_for('login'))
     return render_template('user.html')
 
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
-    if request.method == "POST":
-        username = request.form.get("username")
-        email = request.form.get("email")
-        password = request.form.get("password")
-
-        user = User(username=username, email=email, password=password)
-
-        db.session.add(user)
-        db.session.commit()
+    if request.method == 'POST':
+        users = mongo.db.users
+        find_user = users.find[
+                    {'username': request.form['username']},
+                    {'email': request.form['email']}
+                    ]
+        if find_user is None:
+            # Encoding the password to UTF-8 in order to hash it
+            hash_password = bcrypt.hashpw(
+                                request.form['password'].encode('utf-8'),
+                                bcrypt.gensalt()
+                                )
+            # Inserting a new user
+            users.insert_one(
+                {'username': request.form['username'],
+                    'email': request.form['email'],
+                    'password': hash_password,
+                    'posts': ''}
+                                    )
+            return render_template('login.html')
+        else:
+            flash('Username or email already exists')
     return render_template("register.html")
 
 
-@app.route('/contact_us')
-def contact_us():
+@app.route('/contact')
+def contact():
     return render_template("contactus.html")
 
 
 if __name__ == "__main__":
-    app.run(host=os.getenv('IP', "0.0.0.0"), port=int(os.getenv('PORT', "8080")), debug=True)
+    app.run(host=os.getenv('IP', "0.0.0.0"),
+            port=int(os.getenv('PORT', "8080")),
+            debug=True)

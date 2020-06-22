@@ -5,3 +5,34 @@ python3 app.py runserver
 service mysql start
 pip3 install pymysql
 
+pip3 install flask-login
+
+ admin = User(username='admin', email='admin@admin.com', password='adminpass1')
+
+
+ /*************************************************************************************************/
+https://flask-sqlalchemy.palletsprojects.com/en/2.x/quickstart/
+
+ >>> from app import db
+/workspace/.pip-modules/lib/python3.8/site-packages/flask_sqlalchemy/__init__.py:833: FSADeprecationWarning: SQLALCHEMY_TRACK_MODIFICATIONS adds significant overhead and will be disabled by default in the future.  Set it to True or False to suppress this warning.
+  warnings.warn(FSADeprecationWarning(
+>>> db.creat_all()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: 'SQLAlchemy' object has no attribute 'creat_all'
+>>> db.create_all()
+>>> from app import User
+>>> admin = User(username='admin', email='admin@admin.com', password='adminpass1')
+>>> db.session.add(admin)
+>>> db.session.commit()
+>>> User.query.all()
+[User('1','admin', 'admin@admin.com', 'adminpass1')]
+>>> User.query.filter_by(username='admin')
+<flask_sqlalchemy.BaseQuery object at 0x7f3f5b6f6160>
+>>> User.query.filter_by(username='admin').first()
+User('1','admin', 'admin@admin.com', 'adminpass1')
+>>> 
+
+/**********************************************************************************************************/
+
+pip3 install bcrypt

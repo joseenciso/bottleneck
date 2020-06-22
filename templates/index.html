@@ -3,15 +3,16 @@
 {% block content %}
 
 
-    <h1>Domy message</h1>
+    <h1>Hello!</h1>
+    {#
+        {% for user in users %}
+            <p>ID: {{user._id}}</p>
+            <p>Username: {{user.username}}</p>
+            <p>Email: {{user.email}}</p>
+            <p>Passswor: {{user.password}}</p>
 
-    {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            {% for message in messages %}
-                <p>{{ message }}</p>
-            {% endfor %}
-        {% endif %}
-    {% endwith %}
+        {% endfor %}
+    #}
 
 
 

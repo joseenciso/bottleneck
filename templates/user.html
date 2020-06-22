@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
 
-{% block title %}{{ g.user.username }}{% endblock %}
+{% block title %}{{ username }}{% endblock %}
 
-    <h1>Welcome back {{g.user.username}}!</h1>
-    <h2>You are user number #{{g.user.id}}</h2>
+    <h1>Welcome back {{username}}!</h1>
+    <h2>You are user number #{{id}}</h2>
 
 {% endblock %}
