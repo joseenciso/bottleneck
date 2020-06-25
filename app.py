@@ -73,51 +73,23 @@ def post_review():
 @app.route('/login', methods=["GET", "POST"])
 def login():
     if request.method == 'POST':
-        session["username"] = request.form["username"]
-        # logging_in = users.find_one({"username": request.form["username"]})
-        # if logging_in = users
-        # username = mongo.db.users.find()
-    """
-    form = LoginForm()
-    if form.validate_on_submit():
-        login_user(user)
-        flash('You are logged in')
-    if "username" in session:
-        return render_template("user.html")
+        find_user = mongo.db.Users.find_one({"username": request.form["username"]})
+        print(find_user)
+        if find_user:
+            session["username"] = request.form["username"]
+
+            # print(session)
+
+        return redirect(url_for("user"))
     else:
-        if request.method == "POST":
-            # session.permanent = True
-            # session.pop('id', None)
-            # None when no returning anything
-            username = request.form["username"]
-            password = request.form['password']
-            user = User(username=username, password=password)
-            # Serch for te username
-            # Checking wether password is right or not
-            # if user:
-            #     session['id'] = user.id
-            #     # g['user'] = user
-            #     flash("Welcome {username}")
-            #     return redirect(url_for('user'))
-            return redirect(url_for("user"))
-            # flash("Wrong username or password")
-            # return redirect(url_for('login'))
-        # flash("You ave been logged out 2")
-        else:
-            return render_template("login.html")
-    return render_template("login.html")
-    """
+        return render_template("login.html")
 
 
 @app.route('/logout')
 def logout():
     session.pop("_id", None)
     session.clear()
-    # session.pop("username", None)
-    # session.pop("password", None)
-    # flash("Yo have been logged out!", "info")
-    # Flash message, "category"
-    return redirect(url_for("index"))
+    return redirect(url_for("login"))
 
 
 @app.route('/user')
@@ -125,17 +97,16 @@ def logout():
 def user():
     # import pdb;pdb.set_trace()
     # user = g.get("user")
-    # if "user" in session:
-    #     user = session["user"]
-    #     # session.pop('user_id', None)
-    #     return render_template('user.html')
-    # else:
-    #     return redirect(url_for('login'))
-    return render_template('user.html')
+    if "username" in session:
+        user = session["username"]
+        # session.pop('user_id', None)
+        return render_template('user.html', user=user)
+    else:
+        return redirect(url_for('login'))
 
 
-@app.route('/register', methods=['GET', 'POST'])
-def register():
+@app.route('/signup', methods=['GET', 'POST'])
+def signup():
     if request.method == 'POST':
         users = mongo.db.users
         find_user = users.find[
