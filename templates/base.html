@@ -31,7 +31,7 @@
                             <a class="nav-link" href="{{ url_for('post_review') }}">Post</a>
                         </li>
                         <li class="nav-item {% if request.path == '/user' %}active{% endif %}">
-                            <a class="nav-link" href="{{ url_for('user') }}">{{username}}</a>
+                            <a class="nav-link" href="{{ url_for('user') }}">{{session['username'].capitalize()}}</a>
                         </li> 
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
@@ -41,7 +41,7 @@
                             <a class="nav-link" href="{{ url_for('login') }}">Login</a>
                         </li>
                         <li class="nav-item {% if request.path == '/register' %}active{% endif %}">
-                            <a class="nav-link" href="{{ url_for('register') }}">Register</a>
+                            <a class="nav-link" href="{{ url_for('register') }}">Signup</a>
                         </li>
                     {% endif %}
                     

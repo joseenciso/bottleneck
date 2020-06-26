@@ -3,7 +3,7 @@
 
 {% block content %}
 
-<form class="form form-register" action="" method="POST">
+<form class="form form-register" action="{{url_for('register')}}" method="POST">
     <label for="username">Name: </label>
     <input type="text" id="username" name="username">
     <br>

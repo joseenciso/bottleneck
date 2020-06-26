@@ -1,9 +1,9 @@
 import os
 import uuid
 from flask import (
-                Flask, render_template, redirect, url_for,
-                request, session, flash
-                )
+    Flask, render_template, redirect, url_for,
+    request, session, flash
+)
 
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime, timedelta
@@ -72,17 +72,19 @@ def post_review():
 
 @app.route('/login', methods=["GET", "POST"])
 def login():
+    # import pdb;pdb.set_trace()
     if request.method == 'POST':
-        find_user = mongo.db.Users.find_one({"username": request.form["username"]})
-        print(find_user)
-        if find_user:
-            session["username"] = request.form["username"]
-
-            # print(session)
-
-        return redirect(url_for("user"))
-    else:
-        return render_template("login.html")
+        user = mongo.db.users.find_one(
+            {"username": request.form["username"].lower()}
+            # {'email': request.form['email']}
+        )
+        if user:
+            if bcrypt.hashpw(request.form["password"].encode("utf-8"),
+                             user["password"]) == user["password"]:
+                session["username"] = request.form["username"]
+                # username = session.get["username"]
+                return redirect(url_for("index"))
+    return render_template("login.html")
 
 
 @app.route('/logout')
@@ -105,28 +107,30 @@ def user():
         return redirect(url_for('login'))
 
 
-@app.route('/signup', methods=['GET', 'POST'])
-def signup():
+@app.route('/register', methods=['GET', 'POST'])
+def register():
     if request.method == 'POST':
         users = mongo.db.users
-        find_user = users.find[
-                    {'username': request.form['username']},
-                    {'email': request.form['email']}
-                    ]
+        find_user = users.find_one(
+            {'username': request.form['username'].lower()},
+            # {'email': request.form['email']}
+        )
         if find_user is None:
             # Encoding the password to UTF-8 in order to hash it
             hash_password = bcrypt.hashpw(
-                                request.form['password'].encode('utf-8'),
-                                bcrypt.gensalt()
-                                )
+                request.form['password'].encode('utf-8'),
+                bcrypt.gensalt()
+            )
             # Inserting a new user
             users.insert_one(
-                {'username': request.form['username'],
+                {
+                    'username': request.form['username'],
                     'email': request.form['email'],
                     'password': hash_password,
-                    'posts': ''}
-                                    )
-            return render_template('login.html')
+                    'posts': []
+                }
+            )
+            return redirect(url_for('index'))
         else:
             flash('Username or email already exists')
     return render_template("register.html")
