@@ -67,6 +67,24 @@ def game_review():
 @app.route('/post')
 # @login_required
 def post_review():
+    posting = mongo.db.posts
+    if request.method == "POST":
+        posting.insert_one(
+            {
+                "post_title": request.form["post-title"],
+                "post_subtitle": request.form[""],
+                "date_released": request.form[""],
+                "date_posted": request.form[""],
+                "content": request.form[""],
+                "pros_content": request.form[""],
+                "cons_content": request.form[""],
+                "gallery_1": request.form[""],
+                "gallery_2": request.form[""],
+                "gallery_3": request.form[""],
+                "gallery_4": request.form[""],
+                "gallery_5": request.form[""]
+            }
+        )
     return render_template("post.html")
 
 
