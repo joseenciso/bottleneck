@@ -3,7 +3,7 @@
 {% block content %}
 
 <h2 class="post-heading">Review Post</h2>
-<form class="form form-post">
+<form class="form form-post" method="POST" action="{{url_for('post_review')}}" enctype="multipart/form-data">
     <div class="row">
         <fieldset class="fieldset">
         
@@ -28,7 +28,10 @@
             <legend class="post-legend">Game Section</legend>
                 <div class="col-12"><label for="post-title">Game Title</label></div>
                 <div class="col-12"><input type="text" name="post-title" id="post-title"></div>
-                
+                <br>
+
+                <div class="col-12"><label for="post-title">Game Title</label></div>
+                <div class="col-12"><input type="text" name="post-title" id="post-title"></div>
                 <br>
 
                 <div class="col-12">
@@ -38,8 +41,9 @@
                
                 <br>
                 <div class="col-12"><label for="post-cover">Cover Picture</label></div>
-                <div class="col-12"><input type="file" name="post-cover" id="post-cover"></div>
-                
+                <div class="col-12"><input type="file" name="post-cover" id="post-cover" ></div>
+                <br>
+                <div class="col-12"><input type="text" name="post-cover-link" id="post-cover-link"></div>
             </div>
 
         <hr>
@@ -47,32 +51,45 @@
             <legend class="post-legend">Load 5 pictures for the post</legend>
             <p>Select five pictres for the review's gallery</p>
             <div class="col-12"><label for="Picture -1">Picture </label></div>
-                <div class="col-12"><input type="file" name="Picture -" id="Picture -1"></div>
+                <div class="col-12"><input type="file" name="gallery-1" id="gallery-1" disabled></div>
+                <br>
+                <div class="col-12"><input type="text" name="gallery-1" id="gallery-1"></div>
                 
                 
                 <br>
                 <div class="col-12"><label for="Picture -2">Picture  </label></div>
-                <div class="col-12"><input type="file" name="Picture -" id="Picture -2"></div>
+                <div class="col-12"><input type="file" name="gallery-2" id="gallery-2" disabled></div>
+                <br>
+                <div class="col-12"><input type="text" name="gallery-2" id="gallery-2"></div>
                 
                 
                 <br>
-                <div class="col-12"><label for="Picture -3">Picture  </label></div>
-                <div class="col-12"><input type="file" name="Picture -" id="Picture -3"></div>
+                <div class="col-12"><label for="gallery-3">Picture 3</label></div>
+                <div class="col-12"><input type="file" name="gallery-3" id="gallery-3" disabled></div>
+                <br>
+                <div class="col-12"><input type="text" name="gallery-3" id="gallery-3"></div>
                 
                 
                 <br>
-                <div class="col-12"><label for="Picture -4">Picture  </label></div>
-                <div class="col-12"><input type="file" name="Picture -" id="Picture -4"></div>
-                
+                <div class="col-12"><label for="gallery-4">Picture 4</label></div>
+                <div class="col-12"><input type="file" name="gallery-4" id="gallery-4" disabled></div>
+                <br>
+                <div class="col-12"><input type="text" name="gallery-4" id="gallery-4"></div>
                 
                 <br>
-                <div class="col-12"><label for="Picture -5">Picture  </label></div>
-                <div class="col-12"><input type="file" name="Picture -" id="Picture -5"></div>
+                <div class="col-12"><label for="gallery-5">Picture 5</label></div>
+                <div class="col-12"><input type="file" name="gallery-5" id="gallery-5" disabled></div>
+                <br>
+                <div class="col-12"><input type="text" name="gallery-5" id="gallery-5"></div>
                 
 
             <div class="col-12">
+                <legend class="post-pros">Pros</legend>
+                <textarea name="post-pros" id="pros" class="pros"></textarea>
+                <legend class="post-cons">Cons</legend>
+                <textarea name="post-cons" id="cons" class="cons"></textarea>
                 <legend class="post-review">Review</legend>
-                <textarea name="review" id="review" class="review"></textarea>
+                <textarea name="post-review" id="post-review" class="post-review"></textarea>
             </div>
         </fieldset>
 
