@@ -1,3 +1,7 @@
+<!--li class="nav-item {% if request.path == '/review' %}active{% endif %}">
+                            <a class="nav-link" href="{{ url_for('game_review') }}">Reviews<span class="sr-only">(current)</span></a>
+                        </li-->
+
 # app.run(host=os.getenv('IP', "0.0.0.0"), port=int(os.getenv('PORT', "5000")), debug=False)
 
 python3 app.py runserver

@@ -2,6 +2,8 @@ import os
 import uuid
 import base64
 import bson
+import gridfs
+# from bottle import response
 from flask import (
     Flask, render_template, redirect, url_for,
     request, session, flash
@@ -54,31 +56,28 @@ def mongo_connect(url):
 # login_manager.login_view = 'login'
 encrypt = bcrypt.gensalt()
 
-
 @app.route('/')
 @app.route('/index')
+@app.route('/home')
 def index():
-    return render_template(
-        "index.html",
-        posts=mongo.db.posts.find()
-        )
+    posts = mongo.db.posts.find()
+    return render_template("index.html", posts=posts)
 
 
-@app.route('/gallery/<filename>')
-def gallery(filename):
-    # reponse = mongo.send_file(filename)
-    # import pdb;pdb.set_trace()
-    # return reponse
+
+@app.route("/uploads/<filename>", methods=['GET'])
+def upload(filename):
     return mongo.send_file(filename)
 
 
-@app.route('/review')
-def game_review():
-    review = mongo.db.posts
-    # review.
-    # return render_template("reviews.html")
-    post_cover=mongo.send_file(filename)
-    return render_template('reviews.html', review=review, covers=post_cover)
+@app.route('/review/<review_name>')
+def game_review(review_name):
+    review = mongo.db.posts.find_one_or_404({'post_title': review_name})
+#     # covers=post_cover
+#     # review.
+#     # return render_template("reviews.html")
+#     # post_cover=mongo.send_file(cover)
+    return render_template('reviews.html', post=review)
 
 
 @app.route('/post', methods=['GET', 'POST'])
@@ -98,86 +97,25 @@ def post_review():
                 mongo.db.posts.insert(
                         {
                             "post_title": request.form["post-title"],
+                            "post_subtitle": request.form["post-subtitle"],
                             "post_cover": post_cover.filename,
                             "posted_by": session["username"],
                             "post_review": request.form["post-review"],
                             "pros_content": request.form["post-pros"],
-                            "cons_content": request.form["post-cons"]
+                            "cons_content": request.form["post-cons"],
+                            "date_posted": datetime.now(),
                         }
                     )
             ###########################################
-            # posting = mongo.db.posts
-            # users = mongo.db.user
 
-            # post_cover = request.files["post-cover"]
-            # # gallery_1 = request.files["gallery-1"]
-            # # gallery_2 = request.files["gallery-2"]
-            # # gallery_3 = request.files["gallery-3"]
-            # # gallery_4 = request.files["gallery-4"]
-            # # gallery_5 = request.files["gallery-5"]
-
-            # mongo.save_file(post_cover.filename, post_cover)
-
-            # posting.insert(
-            #     {
-            # #         "post_title": request.form["post-title"],
-            # #         "post_subtitle": request.form["release-date"],
-            # #         "date_released": request.form["release-date"],
-            #         "post_cover": request.files["post-cover"],
-            # #         "post_cover": post_cover,
-            # #         "post_cover_link": request.form["post-cover-link"],
-            # #         "date_posted": datetime.now(),
-            # #         "post_review": request.form["post-review"],
-            # #         "pros_content": request.form["post-pros"],
-            # #         "cons_content": request.form["post-cons"],
-            # #         # "gallery_1": request.form[""],
-            # #         # "gallery_2": request.form[""],
-            # #         # "gallery_3": request.form[""],
-            # #         # "gallery_4": request.form[""],
-            # #         # "gallery_5": request.form[""],
-            # #         "posted_by": session["username"]
-            #     }
-            # )
-
-
-
-
-        # if "post_cover" in request.files:
-        #     post_cover = request.files["post-cover"]
-        #     posting.save(post_cover.filename, post_cover)
-        #     posting.insert_one({"post_cover": post_cover.filename})
-
-        # if "gallery_1" in request.files:
-        #     gallery_1 = request.files["gallery_1"]
-        #     gallery_1.save(gallery_1.filename, gallery_1)
-        #     posting.insert_one({"gallery_1": gallery_1.filename})
-
-        # if "gallery_2" in request.files:
-        #     gallery_2 = request.files["gallery_2"]
-        #     gallery_2.save(gallery_2.filename, gallery_2)
-        #     posting.insert_one({"gallery_2": gallery_2.filename})
-
-        # if "gallery_3" in request.files:
-        #     gallery_3 = request.files["gallery_3"]
-        #     gallery_3.save(gallery_3.filename, gallery_3)
-        #     posting.insert_one({"gallery_3": gallery_3.filename})
-
-        # users = mongo.db.user
-        # users.find_one({
-        #         "username": session["username"]
-        #         })
-        # user.insert_one({"posts": posting})
-        # session["posts"]
         return redirect(url_for("index"))
     return render_template("post.html")
 
 
-@app.route('/edit_post/<post_id>')
-def edit_post(post_id):
+@app.route('/edit_post/<post_title>')
+def edit_post(post_title):
     posts = mongo.db.posts.find_one(
-            {
-                "_id": ObjectId(post_id)
-            }
+            {"post_title": post_title}
         )
 
 

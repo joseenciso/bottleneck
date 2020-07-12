@@ -25,10 +25,10 @@ header{
     z-index: 1;
 }
 
-article{
+/*article{
     /*margin-top: 2.5%;
-    */margin-bottom: 2.5%;
-}
+    margin-bottom: 2.5%;
+}*/
 
 .navbar{
     background-color: rgb(57,57,57);
@@ -104,9 +104,10 @@ main,
 
 .game-cover{
     height: 500px;
-    background-image: url("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fgameswithtoasty.files.wordpress.com%2F2019%2F01%2Fnintendo-switch-super-smash-bros-ultimate-dlc-characters-leaked-surprising-nintendo-direct-1.jpg%3Fw%3D1200&f=1&nofb=1");
-    background-size: cover;
+    /*background-image: url("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fgameswithtoasty.files.wordpress.com%2F2019%2F01%2Fnintendo-switch-super-smash-bros-ultimate-dlc-characters-leaked-surprising-nintendo-direct-1.jpg%3Fw%3D1200&f=1&nofb=1");
+    */background-size: cover;
     background-position: center center;
+    width: 100%;
 }
 
 .title-background{
