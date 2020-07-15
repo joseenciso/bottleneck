@@ -11,8 +11,8 @@
                             <img class="author-photo" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.t4E3Iky4gK0PNy-NVsFjXAHaHa%26pid%3DApi&f=1" alt="">
                         </div>
                         <div class="col-sm-8 col-9">
-                            <div class="author h3">By: <span>{{post.posted_by}}</span></div>
-                            <div class="posted-date h4">Posted on: {{post.date_posted}}</div>
+                            <div class="author h3">Posted by: <span>{{ post.posted_by }}</span></div>
+                            <div class="posted-date h4">Posted on: {{ post.date_posted.strftime('%d/%b/%Y') }}</div>
                         </div>
                         <div class="col-sm-2 col-2 social-networks">
                             <i class="fab fa-facebook-f fa-2x"></i>
@@ -26,50 +26,90 @@
         <article>
             <div class="game-header text-white">
                 <div class="row">
-                    <div class="col-sm-12 col-xl-12">
-                        <img src="{{url_for('upload', filename=post.post_cover)}}" alt="" class="game-cover">
+                    <div class="col-12">
+                        <img src="{{ url_for('upload', filename=post.post_cover) }}" alt="" class="game-cover" style="width: 100%;">
+                    
                         <div class="row title-background ">
-                            <div class="col-md-9 col-10 title-container">
-                                <div class="game-title h3"><span>{{post.post_title}}:<br> {{post.post_subtitle}}</span>
-                                </div>
-                                <div class="game-players h4">No. players: <span> No. of players{{post.no_players}}</span>
-                                </div>
-                                <div class="game-release h4">Release Date: <span>{{post.release_date}}</span>
-                                </div>
+                            <div class="col-lg-2 col-xl-2 d-flex justify-content-around">
+                                {% for pegi in post.pegi_desc %}
+                                    <div class="square-img pegi-size {{ pegi }}"></div>
+                                {% endfor %}
                             </div>
 
-                            <div class="col-sm-6 col-md-2 col-xl-1 points-container">
-                                <div class="progress-circle over50 p95" style="margin: 10px 0 0 0;">
-                                    <span class="score">95</span>
+                            <div class="col-md-9 col-lg-8 col-xl-8 title-container" style="width: 100%;">
+                                <div class="game-title h3"><span>{{ post.post_title }}: {{ post.post_subtitle }}</span>
+                                </div>
+                                <div class="game-players h4">No. players: <span>{{ post.no_players }}</span>
+                                </div>
+                                <div class="game-release h4">Release Date: <span>{{ post.release_date.strftime('%d/%b/%Y') }}</span>
+                                </div>
+                                <div class="square-img h4">Platforms: 
+                                    {% for platform in post.game_platform %}
+                                        <span class="platform">{{ platform }}</span>
+                                    {% endfor %}
+                                </div>  
+                            </div>
+
+                            <div class="col-sm-6 col-md-2 col-lg-2 col-xl-2 points-container">
+                                <div class="progress-circle over50 p{{post.game_score}}" >
+                                    <span class="score">{{post.game_score}}</span>
                                     <div class="left-half-clipper">
                                         <div class="first50-bar"></div>
                                         <div class="value-bar"></div>
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div> 
             </div>
         </article>
-
+        
         <article>
+            <div class="row gallery">
+                    <div class="col-12 d-flex justify-content-around">
+                        <div class="square-img pegi3"></div>
+                        <div class="square-img pegi7"></div>
+                        <div class="square-img pegi12"></div>
+                        <div class="square-img pegi16"></div>
+                        <div class="square-img pegi18"></div>
+                    </div>
+                </div>
+        </article>
+
+    <article>
+                <div class="row gallery">
+                    <div class="col-12 d-flex justify-content-around">
+                        <div class="square-img pegi3">
+                            <img src="{{ url_for('upload', filename=post.gallery_1) }}" alt="" class="square-img pegi3">
+                        </div>
+                        <div class="square-img pegi3">
+                            <img src="{{ url_for('upload', filename=post.gallery_2) }}" alt="" class="square-img pegi3">
+                        </div>
+                        <div class="square-img pegi3">
+                            <img src="{{ url_for('upload', filename=post.gallery_3) }}" alt="" class="square-img pegi3">
+                        </div>
+                        <div class="square-img pegi3">
+                            <img src="{{ url_for('upload', filename=post.gallery_4) }}" alt="" class="square-img pegi3">
+                        </div>
+                        <div class="square-img pegi3">
+                            <img src="{{ url_for('upload', filename=post.gallery_5) }}" alt="" class="square-img pegi3">
+                        </div>
+                    </div>
+                </div>
+        </article>
+
+        <!--article>
             <div class=" pegi-container">
                 <div class="row">
-                    <div class="col-12 d-flex justify-content-around">
-                        <div class=" pegi-size pegi3"></div>
-                        <div class="square-img pegi-size pegi-violence"></div>
-                        <div class="square-img pegi-size pegi-language"></div>
-                        <div class="square-img pegi-size pegi-fear"></div>
-                        <div class="square-img pegi-size pegi-gambling"></div>
-                        <div class="square-img pegi-size pegi-sex"></div>
-                        <div class="square-img pegi-size pegi-drugs"></div>
-                        <div class="square-img pegi-size pegi-discrimination"></div>
+                    <div class="col-2 d-flex justify-content-around">
+                        {% for pegi in post.pegi_desc %}
+                            <div class="square-img pegi-size {{ pegi }}"></div>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
-        </article>    
+        </article-->
 
         <article class=" text-white">
             <div class="row ciritc-row">
@@ -77,26 +117,12 @@
                     <div class="text-center">THE GOOD</div>
                     <div>
                         {{post.pros_content}}
-                        <!--ul class="list-pros">
-                            <li>Pros 1 long line to add content</li>
-                            <li>Pros 2 long line to add content</li>
-                            <li>Pros 3 long line to add content</li>
-                            <li>Pros 4 long line to add content</li>
-                            <li>Pros 5 long line to add content</li>
-                        </ul-->
                     </div>
                 </div>
                 <div class="cons-container col-6">
                     <div class="text-center">THE BAD</div>
                     <div>
                         {{post.cons_content}}
-                        <!--ul class="list-cons">
-                            <li>Cons 1 long line to add content</li>
-                            <li>Cons 2 long line to add content</li>
-                            <li>Cons 3 long line to add content</li>
-                            <li>Cons 4 long line to add content</li>
-                            <li>Cons 5 long line to add content</li>
-                        </ul-->
                     </div>
                 </div>
             </div>
@@ -108,18 +134,6 @@
             </div>
         </article>
 
-        <article>
-            <div class="container gallery">
-                <div class="row">
-                    <div class="col-12 d-flex justify-content-around">
-                        <div class="square-img pegi3"></div>
-                        <div class="square-img pegi7"></div>
-                        <div class="square-img pegi12"></div>
-                        <div class="square-img pegi16"></div>
-                        <div class="square-img pegi18"></div>
-                    </div>
-                </div>
-            </div>
-        </article>
+        
 
 {% endblock %}

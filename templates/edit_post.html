@@ -2,7 +2,7 @@
 {% block title %}Create a new post{% endblock %}
 {% block content %}
 
-<h2 class="post-heading">Review Post</h2>
+<h2 class="post-heading">Edit Post</h2>
 <form class="form form-post" method="POST" action="{{url_for('post_review')}}" enctype="multipart/form-data">
     <div class="row">
         <fieldset class="fieldset">
@@ -113,7 +113,7 @@
         </fieldset>
 
         <div class="col-12">
-            <input type="submit" value="Submit" class="submit btn btn-success">
+            <input type="submit" value="Edit" class="submit btn btn-success">
         </div>
         
     </div>

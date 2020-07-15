@@ -1,16 +1,15 @@
 import os
-import uuid
-import base64
-import bson
-import gridfs
-# from bottle import response
+import bcrypt
 from flask import (
     Flask, render_template, redirect, url_for,
     request, session, flash
 )
-
-from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime, timedelta
+# from bottle import response
+# import uuid
+# import base64
+# import bson
+# import gridfs
 # from flask_login import (
 #                     LoginManager, UserMixin, login_required,
 #                     current_user, login_user
@@ -18,11 +17,9 @@ from datetime import datetime, timedelta
 
 from bson.objectid import ObjectId
 
-# from werkzeug.security import generate_password_hash, check_password_hash
-
 from flask_pymongo import PyMongo
 
-import bcrypt
+
 
 username = os.getenv('C9_USER')
 
@@ -56,6 +53,7 @@ def mongo_connect(url):
 # login_manager.login_view = 'login'
 encrypt = bcrypt.gensalt()
 
+
 @app.route('/')
 @app.route('/index')
 @app.route('/home')
@@ -64,20 +62,20 @@ def index():
     return render_template("index.html", posts=posts)
 
 
-
 @app.route("/uploads/<filename>", methods=['GET'])
 def upload(filename):
     return mongo.send_file(filename)
 
 
-@app.route('/review/<review_name>')
-def game_review(review_name):
-    review = mongo.db.posts.find_one_or_404({'post_title': review_name})
+@app.route('/review/<review_id>')
+def game_review(review_id):
+    post = mongo.db.posts.find_one({'_id': ObjectId(review_id)})
+    # release_date = post.release_date.strftime('%d/%b/%Y')
 #     # covers=post_cover
 #     # review.
 #     # return render_template("reviews.html")
 #     # post_cover=mongo.send_file(cover)
-    return render_template('reviews.html', post=review)
+    return render_template('reviews.html', post=post)
 
 
 @app.route('/post', methods=['GET', 'POST'])
@@ -91,19 +89,40 @@ def post_review():
             #######################################
             if "post-cover" in request.files:
                 post_cover = request.files["post-cover"]
+                gallery_1 = request.files["gallery_1"]
+                gallery_2 = request.files["gallery_2"]
+                gallery_3 = request.files["gallery_3"]
+                gallery_4 = request.files["gallery_4"]
+                gallery_5 = request.files["gallery_5"]
+                release_date = datetime.strptime(request.form["release-date"], '%Y-%m-%d')
                 # posting = mongo.db.posts
                 # users = mongo.db.user
                 mongo.save_file(post_cover.filename, post_cover)
+                mongo.save_file(gallery_1.filename, gallery_1)
+                mongo.save_file(gallery_2.filename, gallery_2)
+                mongo.save_file(gallery_3.filename, gallery_3)
+                mongo.save_file(gallery_4.filename, gallery_4)
+                mongo.save_file(gallery_5.filename, gallery_5)
                 mongo.db.posts.insert(
                         {
                             "post_title": request.form["post-title"],
                             "post_subtitle": request.form["post-subtitle"],
+                            "release_date": release_date,
                             "post_cover": post_cover.filename,
                             "posted_by": session["username"],
-                            "post_review": request.form["post-review"],
+                            "date_posted": datetime.now(),
+                            "no_players": request.form["no_players"],
+                            "game_score": request.form["game_score"],
+                            "game_platform": request.form.getlist("platform"),
+                            "pegi_desc": request.form.getlist("pegi-desc"),
+                            "gallery_1": gallery_1.filename,
+                            "gallery_2": gallery_2.filename,
+                            "gallery_3": gallery_3.filename,
+                            "gallery_4": gallery_4.filename,
+                            "gallery_5": gallery_5.filename,
                             "pros_content": request.form["post-pros"],
                             "cons_content": request.form["post-cons"],
-                            "date_posted": datetime.now(),
+                            "post_review": request.form["post-review"],
                         }
                     )
             ###########################################
@@ -112,11 +131,12 @@ def post_review():
     return render_template("post.html")
 
 
-@app.route('/edit_post/<post_title>')
-def edit_post(post_title):
-    posts = mongo.db.posts.find_one(
-            {"post_title": post_title}
-        )
+# @app.route('/edit_post/<post_title>')
+# def edit_post(post_title):
+#     post = mongo.db.posts.find_one(
+#             {"post_title": post_title}
+#         )
+#     return render_template("edit_post.html", edit_post=mongo.db.posts.find({"post_title": post_title}))
 
 
 @app.route('/login', methods=["GET", "POST"])

@@ -16,7 +16,7 @@ font-family: 'Bungee Shade', cursive;
 ************************************/
 
 body {
-    background: url("../img/background-01.jpg");
+    background: url("../img/assetss/background-01.jpg");
     font-family: 'Roboto', sans-serif;
     color: black;
 }
@@ -51,7 +51,7 @@ main,
 }
 
 /*****************************************/
-/** Reviews **/
+/** Base **/
 /*****************************************/
 
 .navbar-brand{
@@ -60,6 +60,49 @@ main,
 
 .nav-item a{
     font-size: 1.8rem;
+}
+
+/*****************************************/
+/** Home **/
+/*****************************************/
+.card-tex{
+    overflow: hidden;
+}
+
+.card-tile{
+    margin-top: 10px;
+    width: 300px;
+    height: 500px;
+}
+
+ .card,
+.home-cards{
+    width: 450px; 
+    height: 550px; 
+    margin-top: 10px; 
+    margin-left: auto; 
+    margin-right: auto;
+    clear: both;
+    display: inline-block;
+/*    float: left;
+*/}
+
+.card-text{
+    height: 170px;
+    overflow: hidden;
+}
+
+.points-container{
+    height: 120px;
+}
+
+.progress-circle{
+
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-right: auto;
+    margin-left: auto;
+    
 }
 /*****************************************/
 /** Reviews **/
@@ -201,6 +244,10 @@ main,
 }
 
 .pegi-discrimination{
+    background-image: url("https://pegi.info/sites/default/files/inline-images/discrimination-black-EN.jpg");
+}
+
+.pegi-purchase{
     background-image: url("https://pegi.info/sites/default/files/inline-images/discrimination-black-EN.jpg");
 }
 
