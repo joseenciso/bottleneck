@@ -131,12 +131,75 @@ def post_review():
     return render_template("post.html")
 
 
-# @app.route('/edit_post/<post_title>')
-# def edit_post(post_title):
-#     post = mongo.db.posts.find_one(
-#             {"post_title": post_title}
-#         )
-#     return render_template("edit_post.html", edit_post=mongo.db.posts.find({"post_title": post_title}))
+@app.route('/edit_post/<post_id>', methods=['GET', 'POST', 'PUT'])
+def edit_post(post_id):
+    # post = mongo.db.posts.find_one(
+    #         {"post_title": post_id}
+    #     )
+    # , edit_post=mongo.db.posts.find({"post_title": post_title})
+    post = mongo.db.posts.find_one(
+                    {"_id": ObjectId(post_id)})
+    release_date = post.release_date.strftime('%Y-%m-%d')
+    return render_template("edit_post.html",
+                            post=post,
+                            release_date=release_date)
+
+
+@app.route('/update_post/<post_id>')
+def update_post(post_id):
+    if "post_cover" in request.files:
+        post_cover = request.files["post-cover"]
+        return post_cover
+    if "gallery_1" in request.files:
+        gallery_1 = request.files["gallery_1"]
+        return gallery_1
+    if "gallery_2" in request.files:
+        gallery_2 = request.files["gallery_2"]
+        return gallery_2
+    if "gallery_3" in request.files:
+        gallery_3 = request.files["gallery_3"]
+        return gallery_3
+    if "gallery_4" in request.files:
+        gallery_4 = request.files["gallery_4"]
+        return gallery_4
+    if "gallery_5" in request.files:
+        gallery_5 = request.files["gallery_5"]
+        return gallery_5
+    # gallery_1 = request.files["gallery_1"]
+    # gallery_2 = request.files["gallery_2"]
+    # gallery_3 = request.files["gallery_3"]
+    # gallery_4 = request.files["gallery_4"]
+    # gallery_5 = request.files["gallery_5"]
+    release_date = datetime.strptime(
+        request.form["release-date"], '%Y-%m-%d')
+
+    mongo.save_file(post_cover.filename, post_cover)
+    mongo.save_file(gallery_1.filename, gallery_1)
+    mongo.save_file(gallery_2.filename, gallery_2)
+    mongo.save_file(gallery_3.filename, gallery_3)
+    mongo.save_file(gallery_4.filename, gallery_4)
+    mongo.save_file(gallery_5.filename, gallery_5)
+    mongo.db.posts.update(
+            {
+                "post_title": request.form["post-title"],
+                "post_subtitle": request.form["post-subtitle"],
+                "release_date": release_date,
+                "post_cover": post_cover.filename,
+                "no_players": request.form["no_players"],
+                "game_score": request.form["game_score"],
+                "game_platform": request.form.getlist("platform"),
+                "pegi_desc": request.form.getlist("pegi-desc"),
+                "gallery_1": gallery_1.filename,
+                "gallery_2": gallery_2.filename,
+                "gallery_3": gallery_3.filename,
+                "gallery_4": gallery_4.filename,
+                "gallery_5": gallery_5.filename,
+                "pros_content": request.form["post-pros"],
+                "cons_content": request.form["post-cons"],
+                "post_review": request.form["post-review"],
+            }
+        )
+    return redirect(url_for('index'))
 
 
 @app.route('/login', methods=["GET", "POST"])

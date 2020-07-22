@@ -3,7 +3,7 @@
 {% block content %}
 
 <h2 class="post-heading">Edit Post</h2>
-<form class="form form-post" method="POST" action="{{url_for('post_review')}}" enctype="multipart/form-data">
+<form class="form form-post" method="POST" action="{{url_for('update_post', post_id=post._id)}}" enctype="multipart/form-data">
     <div class="row">
         <fieldset class="fieldset">
         
@@ -11,24 +11,24 @@
             <legend class="post-legend">Game Section</legend>
                 <div class="col-12">
                     <label for="post-title">Game Title</label>
-                    <input type="text" name="post-title" id="post-title">
+                    <input type="text" name="post-title" id="post-title" value="{{ post.post_title }}">
                     <br>
                     <br>
                     <label for="post-subtitle">Game Title</label>
-                    <input type="text" name="post-subtitle" id="post-subtitle">
+                    <input type="text" name="post-subtitle" id="post-subtitle" value="{{ post.post_subtitle }}">
                     <br>
                     <br>
-                    <label for="release-date">Game Release: </label>
-                    <input type="date" name="release-date">
+                    <label for="release-date">Game Release: {{ post.release_date.strftime('%d/%m/%Y') }}</label>
+                    <input type="date" name="release-date" value="{{ post.release_date }}">
                     <br>
-                    <label for="post-cover">Cover Picture</label>
+                    <label for="post-cover">Cover Picture: {{ post.post_cover }}</label><br>
                     <input type="file" name="post-cover" id="post-cover">
                     <hr>
                     <label for="no_players">Number of playes:</label>
-                    <input type="number" name="no_players" id="no-players" min="1" max="16">
+                    <input type="number" name="no_players" id="no-players" min="1" max="16" value="{{ post.no_players }}">
                     
                     <label for="score">Game Score: </label>
-                    <input type="number" name="game_score" id="game-score" min="0" max="100">
+                    <input type="number" name="game_score" id="game-score" min="0" max="100" value="{{ post.game_score }}">
                 </div>
             </div>
             
@@ -36,11 +36,31 @@
             
             <div class="pegi-field row">
                 <legend for="plattform">Platfforms:</legend>
+                <div class="col-12">
+                <p>Platforms selected: {{post.game_platform }}</p>
+                {% for platform in post.game_platform %}
+                    <span>{{ plarform }}</span>
+                {% endfor %}
+                {% for platform in post.game_platform %}
+                    <span>{{ plarform }}</span>
+                {% endfor %}
+                </div>
                 <div class="plattform col-4">
-                    <input type="checkbox" name="platform" id="nwii" value="Nintendo Wii"><label for="nwii">Nintendo Wii</label></br>
+                    {% if post.game_platform == "Nintendo Wii" %}
+                        <input type="checkbox" name="platform" id="n3ds" value="Nintendo Wii" checked>
+                    {% else %}
+                        <input type="checkbox" name="platform" id="nwii" value="Nintendo Wii" >
+                    {% endif %}
+                        <label for="nwii">Nintendo Wii</label>
+                    </br>
                     <input type="checkbox" name="platform" id="nwiiu" value="Nintendo Wii U"><label for="nwiiu">Nintendo Wii U</label></br>
                     <input type="checkbox" name="platform" id="nswitch" value="Nintendo Switch"><label for="nswitch">Nintendo Switch</label></br>
-                    <input type="checkbox" name="platform" id="n3ds" value="Nintendo 3DS"><label for="n3ds">Nintendo 3DS</label></br>
+                    {% if post.game_platform == 'Nintendo 3DS' %}
+                        <input type="checkbox" name="platform" id="n3ds" value="Nintendo 3DS" checked>
+                    {% else %}
+                        <input type="checkbox" name="platform" id="n3ds" value="Nintendo 3DS">
+                    {% endif %}
+                        <label for="n3ds">Nintendo 3DS</label></br>
                 </div>
                 <div class="plattform col-4">
                     <input type="checkbox" name="platform" id="xbox-360" value="XBOX 360"><label for="xbox-360">XBOX 360</label></br>
@@ -53,6 +73,7 @@
                     <input type="checkbox" name="platform" id="linux" value="linux"><label for="linux">Linux</label></br>
                     <input type="checkbox" name="platform" id="mac" value="mac"><label for="mac">Mac</label></br>
                 </div>
+                
             </div>
 
             <hr>
@@ -95,18 +116,18 @@
                 <input type="file" name="gallery_4" id="gallery-4" >
                 <br>
                 <label for="gallery-5">Picture 5</label>
-                <input type="file" name="gallery_5" id="gallery-5" >
+                <input type="file" name="gallery_5" id="gallery-5" value="{ post.gallery_5 }">
                 <br>
             </div>
             <hr>
             <legend>Review Section</legend>
             <div class="col-12">
                 <label for="pros" class="post-pros">Pros</label>
-                <textarea name="post-pros" id="pros" class="pros"></textarea>
+                <textarea name="post-pros" id="pros" class="pros">{{ post.pros_content }}</textarea>
                 <label for="cons" class="post-cons">Cons</label>
-                <textarea name="post-cons" id="cons" class="cons"></textarea>
+                <textarea name="post-cons" id="cons" class="cons">{{ post.cons_content }}</textarea>
                 <label for="post-review" class="post-review">Review</label>
-                <textarea name="post-review" id="post-review" class="post-review"></textarea>
+                <textarea name="post-review" id="post-review" class="post-review">{{ post.post_review }}</textarea>
             </div>
 
             
