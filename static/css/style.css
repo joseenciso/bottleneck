@@ -145,11 +145,17 @@ main,
     color: #1DA1F2;
 }
 
+.game-title-container{
+    padding-left: 0;
+    padding-right: 0;
+}
+
 .game-cover{
-    height: 500px;
+    height: 650px;
     /*background-image: url("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fgameswithtoasty.files.wordpress.com%2F2019%2F01%2Fnintendo-switch-super-smash-bros-ultimate-dlc-characters-leaked-surprising-nintendo-direct-1.jpg%3Fw%3D1200&f=1&nofb=1");
     */background-size: cover;
     background-position: center center;
+    padding: 0;
     width: 100%;
 }
 
@@ -159,14 +165,16 @@ main,
     position: absolute;
     bottom: 0;
 
-    height: 120px;
+    margin: 0;
+    padding-top: 10px; 
+    height: 160px;
     width: 100%;
 }
 
-.title-container{
+/* .title-container{
     padding-top: .5rem;
     height: 120px;
-}
+} */
 
 
 .progress-circle{

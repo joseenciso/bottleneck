@@ -37,21 +37,9 @@
             <div class="pegi-field row">
                 <legend for="plattform">Platfforms:</legend>
                 <div class="plattform col-4">
-                    <input type="checkbox" name="platform" id="nwii" value="Nintendo Wii"><label for="nwii">Nintendo Wii</label></br>
-                    <input type="checkbox" name="platform" id="nwiiu" value="Nintendo Wii U"><label for="nwiiu">Nintendo Wii U</label></br>
-                    <input type="checkbox" name="platform" id="nswitch" value="Nintendo Switch"><label for="nswitch">Nintendo Switch</label></br>
-                    <input type="checkbox" name="platform" id="n3ds" value="Nintendo 3DS"><label for="n3ds">Nintendo 3DS</label></br>
-                </div>
-                <div class="plattform col-4">
-                    <input type="checkbox" name="platform" id="xbox-360" value="XBOX 360"><label for="xbox-360">XBOX 360</label></br>
-                    <input type="checkbox" name="platform" id="xbox-one" value="XBOX ONE"><label for="xbox-one">XBOX ONE</label></br>
-                    <input type="checkbox" name="platform" id="sps3" value="PS3"><label for="sps3">PS3</label></br>
-                    <input type="checkbox" name="platform" id="sps4" value="PS4"><label for="sps4">PS4</label></br>
-                </div>
-                <div class="plattform col-4">
-                    <input type="checkbox" name="platform" id="windows" value="windows"><label for="windows">Windows</label></br>
-                    <input type="checkbox" name="platform" id="linux" value="linux"><label for="linux">Linux</label></br>
-                    <input type="checkbox" name="platform" id="mac" value="mac"><label for="mac">Mac</label></br>
+                    {% for platform in platforms %}
+                        <input type="checkbox" name="platform" value="{{platform}}" id="{{platform}}"><label for="{{platform}}">{{platform}}</label></br>
+                    {% endfor %}
                 </div>
             </div>
 
@@ -60,21 +48,11 @@
             <div class="pegi-description row">
                 <legend>Pegi Description</legend>
                 <div class="description-container col-4">
-                    <input type="checkbox" name="pegi-desc" id="bad-lang" value="pegi-language"><label for="bad-lang">Bad Language</label><br>
-                    <input type="checkbox" name="pegi-desc" id="discrimination" value="pegi-discrimination"><label for="discrimination">Discrimination</label><br>
-                    <input type="checkbox" name="pegi-desc" id="drugs" value="pegi-drugs"><label for="Drugs">Drugs</label><br>
+                    {% for pegi in pegi_desc %}
+                        <input type="checkbox" name="pegi-desc" value="{{pegi}}" id="{{pegi}}"><label for="{{pegi}}">{{pegi_desc[pegi]}}</label></br>
+                    {% endfor %}
                 </div>
-                <div class="description-container col-4">
-                    <input type="checkbox" name="pegi-desc" id="fear" value="pegi-fear"><label for="fear">Fear</label><br>
-                    <input type="checkbox" name="pegi-desc" id="gambling" value="pegi-gambling"><label for="gambling">Gambling</label><br>
-                    <input type="checkbox" name="pegi-desc" id="in-purchase" value="pegi-purchase"><label for="in-purchase">In game purchase</label>
-                    <br>
-                </div>
-                <div class="description-container col-4">
-                    <input type="checkbox" name="pegi-desc" id="sexual-content" value="Sexual content"><label for="sexual-content">Sexual content</label>
-                    <br>
-                    <input type="checkbox" name="pegi-desc" id="violence" value="pegi-violence"><label for="violence">Violence</label><br>
-                </div>
+
             </div>
 
             <hr>

@@ -1,9 +1,19 @@
 {% extends 'base.html' %}
+{% block title %}{{ username }}{% endblock %}
 {% block content %}
 
-{% block title %}{{ user }}{% endblock %}
 
-    <h1>Welcome back {{user}}!</h1>
-    <h2>You are user number #{{id}}</h2>
+<div class="col-12 text-white">
+    <h1>Welcome {{username}}!</h1>
+    <h2>You are user number #{{user._id}}</h2>
+
+    <div class="col-12">
+        <div class="col-12 email">
+            <p>Username: <span>{{username}}</span></p>
+            <p>Email: <span>{{user.email}}</span></p>
+            <p>Posts: {{posts}}{% for post in posts %}<span>{{post.post_title}}</span>{% endfor %}</p>
+        </div>
+    </div>
+</div>
 
 {% endblock %}

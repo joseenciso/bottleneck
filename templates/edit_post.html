@@ -18,8 +18,8 @@
                     <input type="text" name="post-subtitle" id="post-subtitle" value="{{ post.post_subtitle }}">
                     <br>
                     <br>
-                    <label for="release-date">Game Release: {{ post.release_date.strftime('%d/%m/%Y') }}</label>
-                    <input type="date" name="release-date" value="{{ post.release_date }}">
+                    <label for="release-date">Game Release: </label>
+                    <input type="date" name="release-date" value="{{ post.release_date.strftime('%Y-%m-%d') }}">
                     <br>
                     <label for="post-cover">Cover Picture: {{ post.post_cover }}</label><br>
                     <input type="file" name="post-cover" id="post-cover">
@@ -38,29 +38,22 @@
                 <legend for="plattform">Platfforms:</legend>
                 <div class="col-12">
                 <p>Platforms selected: {{post.game_platform }}</p>
-                {% for platform in post.game_platform %}
+                {% for platform in platforms %}
+                    {% if platform in post.game_platform %}
+                        <input type="checkbox" name="platform" value="{{platform}}" checked>
+                    {% else %}
+                        <input type="checkbox" name="platform" value="{{platform}}" >
+                    {% endif %}
+                        <label for="nwii">{{platform}}</label>
+                    </br>
                     <span>{{ plarform }}</span>
                 {% endfor %}
-                {% for platform in post.game_platform %}
+                <!-- {% for platform in post.game_platform %}
                     <span>{{ plarform }}</span>
-                {% endfor %}
+                {% endfor %} -->
                 </div>
                 <div class="plattform col-4">
-                    {% if post.game_platform == "Nintendo Wii" %}
-                        <input type="checkbox" name="platform" id="n3ds" value="Nintendo Wii" checked>
-                    {% else %}
-                        <input type="checkbox" name="platform" id="nwii" value="Nintendo Wii" >
-                    {% endif %}
-                        <label for="nwii">Nintendo Wii</label>
-                    </br>
-                    <input type="checkbox" name="platform" id="nwiiu" value="Nintendo Wii U"><label for="nwiiu">Nintendo Wii U</label></br>
-                    <input type="checkbox" name="platform" id="nswitch" value="Nintendo Switch"><label for="nswitch">Nintendo Switch</label></br>
-                    {% if post.game_platform == 'Nintendo 3DS' %}
-                        <input type="checkbox" name="platform" id="n3ds" value="Nintendo 3DS" checked>
-                    {% else %}
-                        <input type="checkbox" name="platform" id="n3ds" value="Nintendo 3DS">
-                    {% endif %}
-                        <label for="n3ds">Nintendo 3DS</label></br>
+                    
                 </div>
                 <div class="plattform col-4">
                     <input type="checkbox" name="platform" id="xbox-360" value="XBOX 360"><label for="xbox-360">XBOX 360</label></br>
@@ -134,7 +127,7 @@
         </fieldset>
 
         <div class="col-12">
-            <input type="submit" value="Edit" class="submit btn btn-success">
+            <input type="submit" value="Update" class="submit btn btn-success">
         </div>
         
     </div>

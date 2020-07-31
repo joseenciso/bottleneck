@@ -39,6 +39,26 @@ DBS_NAME = "bottleneckdb"
 COLECCTION_NAME = "posts"
 
 
+platforms = [
+        'Nintendo Wii', 'Nintendo Wii U', 'Nintendo 3DS',
+        'XBOX 360', 'XBOX ONE', 'PS2', 'PS3', 'PS4',
+        'Linux', 'Mac', 'Windows'
+        ]
+
+pegi_description = {
+        'pegi-language': 'Bad Language',
+        'pegi-discrimination': 'Discrimination',
+        'pegi-drugs': 'Drugs',
+        'pegi-fear': 'Fear',
+        'pegi-gambling': 'Gambling',
+        'pegi-purchase': 'In-Game Purchase',
+        'pegi-sex': 'Sexual Content',
+        'pegi-violence': 'Violence'
+}
+
+pegi_rate = ['pegi3', 'pegi7', 'pegi12', 'pegi16', 'pegi18']
+
+
 def mongo_connect(url):
     try:
         connection = PyMongo.MongoClient(url)
@@ -58,7 +78,7 @@ encrypt = bcrypt.gensalt()
 @app.route('/index')
 @app.route('/home')
 def index():
-    posts = mongo.db.posts.find()
+    posts = mongo.db.posts.find().sort('date_posted', -1)
     return render_template("index.html", posts=posts)
 
 
@@ -128,28 +148,36 @@ def post_review():
             ###########################################
 
         return redirect(url_for("index"))
-    return render_template("post.html")
+    return render_template("post.html", platforms=platforms, pegi_desc=pegi_description)
 
 
-@app.route('/edit_post/<post_id>', methods=['GET', 'POST', 'PUT'])
+@app.route('/edit_post/<post_id>', methods=['GET', 'POST'])
 def edit_post(post_id):
-    # post = mongo.db.posts.find_one(
-    #         {"post_title": post_id}
-    #     )
-    # , edit_post=mongo.db.posts.find({"post_title": post_title})
-    post = mongo.db.posts.find_one(
-                    {"_id": ObjectId(post_id)})
-    release_date = post.release_date.strftime('%Y-%m-%d')
-    return render_template("edit_post.html",
-                            post=post,
-                            release_date=release_date)
+    if "username" in session:
+        # post = mongo.db.posts.find_one(
+        #         {"post_title": post_id}
+        #     )
+        # , edit_post=mongo.db.posts.find({"post_title": post_title})
+        post = mongo.db.posts.find_one(
+                        {"_id": ObjectId(post_id)})
+        # release_date = post.release_date.datetime.strptime( '%Y-%m-%d')
+        # return render_template("edit_post.html",
+        #                         post=post,
+        #                         release_date=release_date)
+        return render_template("edit_post.html",
+                                post=post,
+                                platforms=platforms)
+    else:
+        session.pop("_id", None)
+        return redirect(url_for('login'))
 
 
-@app.route('/update_post/<post_id>')
+@app.route('/update_post/<post_id>', methods=['GET', 'POST'])
 def update_post(post_id):
+    # import pdb;pdb.set_trace()
     if "post_cover" in request.files:
         post_cover = request.files["post-cover"]
-        return post_cover
+        
     if "gallery_1" in request.files:
         gallery_1 = request.files["gallery_1"]
         return gallery_1
@@ -232,9 +260,11 @@ def user():
     # import pdb;pdb.set_trace()
     # user = g.get("user")
     if "username" in session:
-        user = session["username"]
+        username = session["username"]
+        user = mongo.db.users.find_one({"username": username})
         # session.pop('user_id', None)
-        return render_template('user.html', user=user)
+        posts = mongo.db.posts.find({"username": username})
+        return render_template('user.html', username=username, user=user, posts=posts)
     else:
         return redirect(url_for('login'))
 
