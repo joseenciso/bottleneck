@@ -1,38 +1,21 @@
 {% extends 'base.html' %}
 {% block title %}Pagina principal{% endblock %}
 {% block content %}
-    {#
-        {% for user in users %}
-            <p>ID: {{user._id}}</p>
-            <p>Username: {{user.username}}</p>
-            <p>Email: {{user.email}}</p>
-            <p>Passswor: {{user.password}}</p>
 
-        {% endfor %}
-    #}
-
-    {#
-        _id:5eebf0d2dc9f7934fa3ce5f3
-        post_title:"Post Title"
-        post_subtitle:"Post Subtitle"
-        date_released:2020-06-18T23:00:00.000+00:00
-        date_posted:1577836800000
-        content:"Esto es un texto "
-        pros_content:"List of the good things of the game"
-        cons_content:"List of bad things of the game"
-        gallery_1:Binary('', 0)
-    #}
+    <div class="row-cards-container">
     {% for post in posts %}
-    <div class="col-lg-6">
-        <div class="card home-cards" >
-                <img class="card-img-top" src="{{url_for('upload', filename=post.post_cover)}}" alt="{{ post.post_title }}">
+        <div class="card cards">
+            <img class="card-img-top" src="{{url_for('upload', filename=post.post_cover)}}" alt="{{ post.post_title }}">
             <div class="card-body" style="overflow: hidden;">
                 <h5 class="card-title">{{ post.post_title }}. {{ post.post_subtitle }}</h5>
                 <p class="card-text card-text-container">{{ post.post_review }}</p>
-                <p class="footer-card">Posted by: {{ post.posted_by }}<a href="{{url_for('game_review', review_id=post._id)}}" class="btn btn-primary">Read more</a></p>
-                
+                <small class="footer-card">Posted by: {{ post.posted_by|capitalize }}
+                    <span>- {{post.date_posted.strftime('%d/%b/%Y') }}</span>
+                    <a href="{{url_for('game_review', review_id=post._id)}}" class="btn btn-primary">Read more</a>
+                    
+                </small>
             </div>
         </div>
-    </div>
     {% endfor %}
+    </div>
 {% endblock %}
