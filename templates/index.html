@@ -2,20 +2,38 @@
 {% block title %}Pagina principal{% endblock %}
 {% block content %}
 
-    <div class="row-cards-container">
+    <!-- <div class="row-cards-container"> -->
     {% for post in posts %}
         <div class="card cards">
-            <img class="card-img-top" src="{{url_for('upload', filename=post.post_cover)}}" alt="{{ post.post_title }}">
+            <a href="{{url_for('game_review', review_id=post._id)}}">
+                <img class="card-img-top" src="{{url_for('upload', filename=post.post_cover)}}"
+                        alt="{{ post.post_title }}">
+            </a>
             <div class="card-body" style="overflow: hidden;">
-                <h5 class="card-title">{{ post.post_title }}. {{ post.post_subtitle }}</h5>
+                <h5 class="card-title">
+                    <a href="{{url_for('game_review', review_id=post._id)}}">
+                        {{ post.post_title }}
+                        {% if post.post_subtitle %}-{% endif %}
+                        {{ post.post_subtitle }}
+
+                    </a>
+                </h5>
                 <p class="card-text card-text-container">{{ post.post_review }}</p>
-                <small class="footer-card">Posted by: {{ post.posted_by|capitalize }}
-                    <span>- {{post.date_posted.strftime('%d/%b/%Y') }}</span>
-                    <a href="{{url_for('game_review', review_id=post._id)}}" class="btn btn-primary">Read more</a>
-                    
+                <small class="footer-card">
+                    <strong>Posted by:</strong>
+                    <span class="card-author">{{ post.posted_by|capitalize }}</span>
+                    <strong>-</strong>
+                    <span class="card-date">{{post.date_posted.strftime('%d/%b/%Y') }}</span>
                 </small>
+                <div class="read-btn">
+                    <a href="{{url_for('game_review', review_id=post._id)}}"
+                    class="btn btn-primary">
+                        Read more
+                    </a>
+                </div>
+                
             </div>
         </div>
     {% endfor %}
-    </div>
+    <!-- </div> -->
 {% endblock %}

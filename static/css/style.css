@@ -25,30 +25,18 @@ header{
     z-index: 1;
 }
 
-/*article{
-    /*margin-top: 2.5%;
-    margin-bottom: 2.5%;
-}*/
+footer{
+    min-height: 200px;
+}
+
+
 
 .navbar{
     background-color: rgb(57,57,57);
 }
 
 
-/* main,
-.container{
-    border: red 5px solid;
-} */
 
-.main-container{
-    /*background-color: rgba(242, 242, 242, .7);*/
-    
-/*    height: 100vh;
-*/}
-
-.container{
-/*    color: #5d5a5a;*/
-}
 
 /*****************************************/
 /** Base **/
@@ -65,6 +53,11 @@ header{
 /*****************************************/
 /** Home **/
 /*****************************************/
+
+.cards{
+    margin: 2rem auto;
+}
+
 .card-tex{
     overflow: hidden;
 }
@@ -75,42 +68,28 @@ header{
     height: 500px;
 }
 
-.card,
-.home-cards{
-    width: 450px; 
-    height: 550px; 
-    margin-top: 10px; 
-    margin-left: auto; 
-    margin-right: auto;
-    clear: both;
-    display: inline-block;
-/*    float: left;
-*/}
-
 .card-text{
     height: 170px;
     overflow: hidden;
+}
+
+.card-author,
+.card-date{
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.read-btn .btn{
+    min-width: 120px;
+    font-weight: 500;
+    letter-spacing: 2px;
 }
 
 .points-container{
     height: 120px;
 }
 
-.progress-circle{
-
-    margin-top: 10px;
-    margin-bottom: 10px;
-    margin-right: auto;
-    margin-left: auto;
-}
-.card-container{
-    /* padding-left: 10px; */
-    margin: 10 px auto;
-    float: left;
-
-}
-
-.home-cards .card-body{
+.card-body{
     padding: 10px;
 }
 
@@ -118,19 +97,18 @@ header{
     margin-bottom: 10px;
 }
 
-.card .footer-card{
-    margin: 0;
-}
-
-.footer-card .btn{
+.progress-circle{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-right: auto;
     margin-left: auto;
 }
+
+
 
 /*****************************************/
 /** Reviews **/
 /*****************************************/
-
-
 .author-container{
     padding-top: 1.5rem;
 }
@@ -138,10 +116,6 @@ header{
 .author-photo{
     width: 65px;
     border-radius: 50%;
-}
-
-.game-header{
-    position: static;
 }
 
 .social-networks {
@@ -170,15 +144,16 @@ header{
 .game-title-container{
     padding-left: 0;
     padding-right: 0;
+    
 }
 
 .game-cover{
-    height: 650px;
-    /*background-image: url("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fgameswithtoasty.files.wordpress.com%2F2019%2F01%2Fnintendo-switch-super-smash-bros-ultimate-dlc-characters-leaked-surprising-nintendo-direct-1.jpg%3Fw%3D1200&f=1&nofb=1");
-    */background-size: cover;
+    background-size: cover;
     background-position: center center;
     padding: 0;
-    width: 100%;
+    width: 850px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .title-background{
@@ -190,13 +165,8 @@ header{
     margin: 0;
     padding-top: 10px; 
     height: 160px;
-    width: 100%;
 }
 
-/* .title-container{
-    padding-top: .5rem;
-    height: 120px;
-} */
 
 
 .progress-circle{
@@ -217,8 +187,6 @@ header{
     width: 200px;
 
     display: inline-block;
-
-    /*background-color: yellow;*/
 
     background-repeat: no-repeat;
     background-size: contain;
@@ -286,10 +254,9 @@ header{
     width: 200px;
 }
 
-.ciritc-row,
+.pros-cons-row,
 .game-review{
-    padding-left: 5%;
-    padding-right: 5%; 
+    padding: 3rem 5%; 
 }
 
 
@@ -308,11 +275,6 @@ header{
 /*****************************************/
 /** Form **/
 /*****************************************/
-/* .input-group .label-input{
-    margin: 0;
-    padding: 0;
-} */
-
 .plattform,
 .description-container{
     padding-left: 35px;
@@ -323,10 +285,6 @@ header{
 /*****************************************/
 /** Form **/
 /*****************************************/
-/* hr{
-    background-color: white;
-} */
-
 .post-heading{
     margin-top: 3rem;
 }
@@ -338,7 +296,6 @@ header{
     padding: 1rem 3rem 1.5rem 3rem;
     
     border-radius: 10px;
-    /* background-color: rgba(242, 242, 242, .7); */
     background-color: rgb(241,244,247);
 }
 
@@ -360,26 +317,17 @@ header{
     height: 150px;
 }
 
-
 /*****************************************/
 /** Forms Post **/
 /*****************************************/
-
 .form-post{
     width: 625px;
     
 }
 
-
-.form-post label{
-    padding-left: 1rem;
-}
-
 .post-heading{
     text-align: center;
 }
-
-
 
 textarea{
     min-height: 300px;
@@ -395,39 +343,18 @@ textarea{
 /** Forms Login **/
 /*****************************************/
 
-.form-login{
-    width: 500px;
-}
-
 .submit{
     display: block;
     margin: 1rem auto;
-
 }
-
-/*.form-post,
-.form-login,
-.form-register*/
-
-
-/*
-.form-login{
-    width: 400px !important;
-}
-*/
-
 
 .login-container{
     margin: 0 auto;
 }
 
-
 .submit-login{
 
 }
-
-
-
 
 /*****************************************/
 /** Forms Login **/
@@ -435,20 +362,6 @@ textarea{
 .login{
     text-align: center;
 }
-
-.form-login label{
-    padding-left: 10px;
-}
-
-.form-login input{
-    margin-bottom: 20px;
-}
-
-.form-login{
-    width: 390px;
-}
-
-
 
 
 /* ************************************
@@ -470,10 +383,19 @@ textarea{
     @media (min-width: 1200px) { ... }
 ***************************************/
 @media (min-width: 992px){
-    .card-container{
-        /* padding-left: 15px; */
+    .main{
+        width: 850px;
         margin-left: auto;
         margin-right: auto;
+    }
+
+    .cards,
+    .review-container{
+        max-width: 700px;
+    }
+
+    .title-container{
+
     }
 
     .form-login{
@@ -490,91 +412,88 @@ textarea{
 
 }
 
+@media (min-width: 768px){
+    .cards{
+        width: 580px;
+    }
+
+}
+
+@media (min-width: 580px){
+    .read-btn{
+        /* margin: 0 auto; */
+        float:right;
+        margin-right: 2rem;
+    }
+
+    .read-btn .btn{
+        min-width: 120px;
+        font-weight: 500;
+        letter-spacing: 3px;
+    } 
+}
 
 @media (max-width: 575.98px) {
 
-    /* .row-cards-container{
-        margin: 0;
-        padding-left: auto;
-        padding-right: auto;
-    } */
+/*********************************************/
+/***************** General *******************/
+/*********************************************/
+    .container-fluid{
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+
+    .navbar-brand{
+        font-size: 2rem;
+    }
+
+    .btn{
+        width: 100%;
+    }
+/*********************************************/
+/***************** Index *********************/
+/*********************************************/
+
 
     .cards{
         padding: 0;
-        min-width: 320px;
-        max-width: 400px;
-        margin: 6px;
+        min-width: 250px;
+        max-width: 450px;
+        /* margin: 15px 6px; */
     }
 
-    .post-container{
-        padding: 0;
-    }
-
-    .row-cards-container{
+    /* .card-image-top{
         width: 100%;
-    }
-
-    /* .card,
-    .home-cards{
-        width: 350px; 
-        height: 550px; 
-        margin-top: 10px; 
-        margin-left: auto; 
-        margin-right: auto;
-        clear: both;
-        display: inline-block;
-    } */
-/* }
-
-
-@media (min-width: 300px) and (max-width: 450px){ */
-    /* .col-12{
-        padding: 0 10px;
     } */
 
+    /* .post-container{
+        padding: 0;
+    } */
+
+    /* .row-cards-container{
+        width: 100%;
+    } */
+
+/*********************************************/
+/*********************************************/
     .post-legend,
     fieldset p{
         padding-left: 10px;
     }
 
-    /* .form-post,
-    .form-login{
-        border: white 1px solid;
-        
-        
-        border-radius: 10px;
-        background-color: rgba(242, 242, 242, .7);
-    } */
-
-    .form-post{
+    .form-posting{
         padding: 1rem;
         width: 100%;
         border-radius: 0;
-    }
-
-    /* .post-container{
-        margin: 0;
-        padding: 0;
-    } */
-
-    .form-login{
-        width: 320px;
-    }
-
-    .login-input{
-        margin-left: auto;
-    }
-
-    .form-post label{
-        
-        padding-left: 0;
-    }
-
-    input[type="file"]{
-        padding: 5px;
     }
 
     textarea{
         width: 334px;
     }
 }
+
+/* @media (min-width: 300px) and (min-width: 575.98px){
+    .cards{
+        width: 350px;
+    }
+} */

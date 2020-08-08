@@ -12,14 +12,30 @@
 
     <div class="spacer col-12"></div>
 
-    <form class="form form-login" method="POST" action="{{url_for('login')}}">
+    <form class="form form-login form-group" method="POST" action="{{url_for('login')}}">
         <div class="login-container">
             <legend class="login">Login</legend>
-            <label for="username">Username: </label>
-            <input type="text" name="username" id="username" placeholder="Username" class="login-input"/>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <label for="username" class="input-group-text" id="basic-addon1">@</label>
+                    
+                </div>
+                <input type="text" name="username" id="username" placeholder="Username" class="form-control"/>
+                <!-- <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1"> -->
+            </div>
+
+            
+            
             <br>
-            <label for="password">Password: </label>
-            <input type="password" name="password" id="password" placeholder="password" class="login-input"/>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <label for="password" class="input-group-text">Password: </label>
+                    
+                </div>
+                <!-- <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1"> -->
+                <input type="password" name="password" id="password" placeholder="password" class="form-control"/>
+            </div>
+            
             <br>
             <div class="submit-container">
                 <button type="submit" class="submit submit-login btn btn-success">Lets go!</button>
