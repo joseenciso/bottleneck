@@ -53,6 +53,9 @@ footer{
 /*****************************************/
 /** Home **/
 /*****************************************/
+.review-container{
+    color: white;
+}
 
 .cards{
     margin: 2rem auto;
@@ -85,9 +88,9 @@ footer{
     letter-spacing: 2px;
 }
 
-.points-container{
+/* .points-container{
     height: 120px;
-}
+} */
 
 .card-body{
     padding: 10px;
@@ -109,17 +112,28 @@ footer{
 /*****************************************/
 /** Reviews **/
 /*****************************************/
+
+.title{
+    font-size: 3rem;
+}
 .author-container{
     padding-top: 1.5rem;
 }
 
-.author-photo{
+/* .author-photo{
     width: 65px;
     border-radius: 50%;
+} */
+.author-post{
+    display: inline-block;
+    margin-right: auto;
 }
 
 .social-networks {
     height: 85px;
+    display: inline-block;
+    margin-right: auto;
+    float: right;
 }
 
 .social-networks i{
@@ -128,7 +142,7 @@ footer{
     width: 40px;
     height: 40px;
     text-align: center;
-    margin-left: auto;
+    /* float: left; */
 }
 
 .fa-facebook-f{
@@ -141,33 +155,78 @@ footer{
     color: #1DA1F2;
 }
 
-.game-title-container{
-    padding-left: 0;
-    padding-right: 0;
-    
-}
-
 .game-cover{
     background-size: cover;
     background-position: center center;
     padding: 0;
-    width: 850px;
+    width: 100%;
     margin-left: auto;
     margin-right: auto;
 }
 
-.title-background{
+
+.game-title,
+.game-info{
     background-color: rgba(174, 167, 167, .8);
+}
 
-    position: absolute;
-    bottom: 0;
+.game-title{
+    height: 100%;
+}
 
-    margin: 0;
-    padding-top: 10px; 
-    height: 160px;
+.titles{
+    height: 100%;
+}
+
+/* .game-title span{
+    margin-top: auto;
+    margin-bottom: auto;
+} */
+
+.game-info{
+    position: relative;
+    bottom: 10;
+
+    /* margin: 0; */
+    /* padding-top: 10px;  */
+    height: 140px;
+    width: 100%;
+
+    display: flex;
+}
+
+.game-details,
+.points-container{
+    /* display: inline-block; */
+}
+
+.game-details{
+    /* display: inline-block; */
+    padding: 1rem;
+    height: 100%;
+}
+
+.points-container{
+    float: right;
 }
 
 
+.pros-container,
+.cons-container{
+    
+}
+
+
+/* .carousel{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+} */
+
+.social-media{
+    /* margin: 0 auto; */
+    padding-left: auto;
+    padding-right: auto;
+}
 
 .progress-circle{
     margin: 0;
@@ -256,13 +315,29 @@ footer{
 
 .pros-cons-row,
 .game-review{
-    padding: 3rem 5%; 
+    padding: 3.5rem 10%;
+    background-color: white;
+    color: black;
+}
+
+.game-title-container,
+.pros-cons-row,
+.game-review,
+.carousel,
+.pegi-container{
+    margin-bottom: 1rem;
+    width: 100%;
+    /* margin-bottom: 2rem; */
 }
 
 
 /*****************************************/
 /** Reviews **/
 /*****************************************/
+.post-container{
+
+}
+
 .contact-form legend{
     /* color: black; */
     font-size: 2rem;
@@ -389,14 +464,10 @@ textarea{
         margin-right: auto;
     }
 
-    .cards,
+    /* .cards,
     .review-container{
         max-width: 700px;
-    }
-
-    .title-container{
-
-    }
+    } */
 
     .form-login{
         width: 305px;
@@ -417,9 +488,38 @@ textarea{
         width: 580px;
     }
 
+    .pros-cons-row{
+        padding-right: 1.5rem;
+        padding-left: 1.5rem;
+        display: flex;
+    }
+
+    .pros-container,
+    .cons-container{
+        min-width: 250px;
+        max-width: 375px;
+        float: left;
+    }
+
+    .cons,
+    .pros{
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
 }
 
-@media (min-width: 580px){
+@media (min-width: 575px) and (max-width: 768px){
+    .navbar-brand{
+        font-size: 2rem;
+    }
+
+    .nav-item a{
+        font-size: 1.4rem;
+    }
+}
+
+@media (min-width: 575px){
     .read-btn{
         /* margin: 0 auto; */
         float:right;
@@ -430,10 +530,10 @@ textarea{
         min-width: 120px;
         font-weight: 500;
         letter-spacing: 3px;
-    } 
+    }
 }
 
-@media (max-width: 575.98px) {
+@media (max-width: 574px) {
 
 /*********************************************/
 /***************** General *******************/
@@ -455,24 +555,30 @@ textarea{
 /*********************************************/
 
 
-    .cards{
-        padding: 0;
-        min-width: 250px;
-        max-width: 450px;
-        /* margin: 15px 6px; */
-    }
+.cards{
+    padding: 0;
+    min-width: 250px;
+    max-width: 450px;
+}
 
-    /* .card-image-top{
-        width: 100%;
-    } */
+/*********************************************/
+/*************** Game Review *****************/
+/*********************************************/
+.game-review{
+    padding: 2%;
+}
 
-    /* .post-container{
-        padding: 0;
-    } */
+.pros-cons-row{
+    padding-left: .5rem;
+    padding-right: .5rem;
+}
 
-    /* .row-cards-container{
-        width: 100%;
-    } */
+.points-container{
+    /* margin: 0 auto; */
+    /* position: static; */
+    float: none;
+    margin: 0 auto;
+}
 
 /*********************************************/
 /*********************************************/

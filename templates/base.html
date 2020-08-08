@@ -26,7 +26,7 @@
                     {% if session["username"] %}
                         
                         <li class="nav-item {% if request.path == '/game_review' %}active{% endif %}">
-                            <a class="nav-link" href="{{ url_for('post_review') }}">Post</a>
+                            <a class="nav-link" href="{{ url_for('post_review') }}">New Post</a>
                         </li>
                         <li class="nav-item {% if request.path == '/user' %}active{% endif %}">
                             <a class="nav-link" href="{{ url_for('user') }}">{{session['username'].capitalize()}}</a>
@@ -49,12 +49,8 @@
         </div>
     </nav>
     <main class="main">   
-        
-        <div class="container-fluid">
-            {% block content %}
-            {% endblock %}
-        </div>
-
+        {% block content %}
+        {% endblock %}
     </main>
 
     <footer>
