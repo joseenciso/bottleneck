@@ -166,7 +166,8 @@ def edit_post(post_id):
         #                         release_date=release_date)
         return render_template("edit_post.html",
                                 post=post,
-                                platforms=platforms)
+                                platforms=platforms,
+                                pegi_description=pegi_description)
     else:
         session.pop("_id", None)
         return redirect(url_for('login'))

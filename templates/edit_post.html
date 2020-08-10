@@ -2,9 +2,9 @@
 {% block title %}Create a new post{% endblock %}
 {% block content %}
 
-<h2 class="post-heading">Edit Post</h2>
 <form class="form form-post" method="POST" action="{{url_for('update_post', post_id=post._id)}}" enctype="multipart/form-data">
     <div class="row">
+    <h2 class="post-heading">Edit Post</h2>
         <fieldset class="fieldset">
         
             <div class="game-title-section row">
@@ -34,45 +34,29 @@
             
             <hr>
             
-            <div class="pegi-field row">
-                <legend for="plattform">Platfforms:</legend>
-                <div class="col-12">
-                <p>Platforms selected:</p>
-                {% for platform in platforms %}
-                    {% if platform in post.game_platform %}
-                        <input type="checkbox" name="platform" value="{{platform}}" checked>
-                    {% else %}
-                        <input type="checkbox" name="platform" value="{{platform}}" >
-                    {% endif %}
-                        <label for="nwii">{{platform}}</label>
-                    </br>
-                    <span>{{ plarform }}</span>
-                {% endfor %}
-                <!-- {% for platform in post.game_platform %}
-                    <span>{{ plarform }}</span>
-                {% endfor %} -->
+            <div class="platform col-lg-6 col-md-6">
+                <legend>Platfforms:</legend>
+                <div class="platforms form-group">
+                    {% for platform in platforms %}
+                        {% if platform in post.game_platform %}
+                            <input type="checkbox" class="form-check-input" name="platform" value="{{platform}}" checked>
+                        {% else %}
+                            <input type="checkbox" class="form-check-input" name="platform" value="{{platform}}" >
+                        {% endif %}
+                            <label for="nwii">{{platform}}</label>
+                        </br>
+                    {% endfor %}
                 </div>
             </div>
 
             <hr>
 
-            <div class="pegi-description row">
+            <div class="pegi-description col-md-6 col-lg-6">
                 <legend>Pegi Description</legend>
-                <div class="description-container col-4">
-                    <input type="checkbox" name="pegi-desc" id="bad-lang" value="pegi-language"><label for="bad-lang">Bad Language</label><br>
-                    <input type="checkbox" name="pegi-desc" id="discrimination" value="pegi-discrimination"><label for="discrimination">Discrimination</label><br>
-                    <input type="checkbox" name="pegi-desc" id="drugs" value="pegi-drugs"><label for="Drugs">Drugs</label><br>
-                </div>
-                <div class="description-container col-4">
-                    <input type="checkbox" name="pegi-desc" id="fear" value="pegi-fear"><label for="fear">Fear</label><br>
-                    <input type="checkbox" name="pegi-desc" id="gambling" value="pegi-gambling"><label for="gambling">Gambling</label><br>
-                    <input type="checkbox" name="pegi-desc" id="in-purchase" value="pegi-purchase"><label for="in-purchase">In game purchase</label>
-                    <br>
-                </div>
-                <div class="description-container col-4">
-                    <input type="checkbox" name="pegi-desc" id="sexual-content" value="Sexual content"><label for="sexual-content">Sexual content</label>
-                    <br>
-                    <input type="checkbox" name="pegi-desc" id="violence" value="pegi-violence"><label for="violence">Violence</label><br>
+                <div class="description-container form-group">
+                    {% for pegi in pegi_description %}
+                        <input type="checkbox" class="form-check-input" name="pegi_description" value="{{pegi}}" id="{{pegi}}"><label class="" for="{{pegi}}">{{pegi_description[pegi]}}</label></br>
+                    {% endfor %}
                 </div>
             </div>
 
