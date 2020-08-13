@@ -334,6 +334,12 @@ footer{
 /*****************************************/
 /** Reviews **/
 /*****************************************/
+.game-players,
+.game-release,
+.game-platform{
+    font-weight: 600;
+}
+
 .post-container{
 
 }
@@ -348,6 +354,18 @@ footer{
 }
 
 /*****************************************/
+/** Edit Post **/
+/*****************************************/
+.gallery-label{
+    font-weight: 600;
+}
+
+.gallery-label > u{
+    font-weight: 100;
+}
+
+
+/*****************************************/
 /** Form **/
 /*****************************************/
 .platforms,
@@ -355,11 +373,6 @@ footer{
     padding-left: 35px;
 }
 
-
-
-/*****************************************/
-/** Form **/
-/*****************************************/
 .post-heading{
     margin-top: 3rem;
 }
@@ -434,6 +447,7 @@ textarea{
 /*****************************************/
 /** Forms Login **/
 /*****************************************/
+.singup,
 .login{
     text-align: center;
 }
@@ -469,9 +483,7 @@ textarea{
         max-width: 700px;
     } */
 
-    .form-login{
-        width: 305px;
-    }
+
 
     .submit-login{
         margin-top: 20px;
@@ -531,6 +543,17 @@ textarea{
         font-weight: 500;
         letter-spacing: 3px;
     }
+
+    .form-login,
+    .form-register{
+        width: 405px;
+        padding: 24px;
+    }
+
+    .form-login .input-group-text,
+    .form-register .input-group-text{
+        font-weight: 600;
+    }
 }
 
 @media (max-width: 574px) {
@@ -582,7 +605,7 @@ textarea{
 
 /*********************************************/
 /*********************************************/
-    .post-legend,
+    
     fieldset p{
         padding-left: 10px;
     }
@@ -595,6 +618,16 @@ textarea{
 
     textarea{
         width: 334px;
+    }
+
+    .form-register{
+    margin-left: 10px;
+    margin-right: 10px;
+    }
+
+    .form-register .input-group-text{
+        width: 103px;
+        font-weight: 600;
     }
 }
 

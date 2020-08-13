@@ -27,15 +27,20 @@
 
         <div class="game-info">
             <div class="game-details">
-                <div class="game-players "><b>No. players:</b> <span>{{ post.no_players }}</span></div>
-                <div class="game-release "><b>Release Date:</b> <span>{{ post.release_date.strftime('%d/%b/%Y') }}</span></div>
-                <div class="square-img"><b>Platforms:</b> 
+                <div class="game-players">No. players: <span>{{ post.no_players }}</span></div>
+                <div class="game-release ">Release Date: <span>{{ post.release_date.strftime('%d/%b/%Y') }}</span></div>
+                <div class="game-platform">Platforms:
                     {% for platform in post.game_platform %}
                         <span class="platform">{{ platform }} </span>
                     {% endfor %}
                 </div>
             </div>
             
+            <div class="pegi-description">
+                {% for pegi in post.pegi_esc %}
+                    <div class="square-img {{pegi}}"></div>
+                {% endfor %}
+            </div>
             <div class="points-container">
                 <div class="progress-circle over50 p{{post.game_score}}" >
                     <span class="score">{{post.game_score}}</span>

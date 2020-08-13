@@ -5,20 +5,10 @@ from flask import (
     request, session, flash
 )
 from datetime import datetime, timedelta
-# from bottle import response
-# import uuid
-# import base64
-# import bson
-# import gridfs
-# from flask_login import (
-#                     LoginManager, UserMixin, login_required,
-#                     current_user, login_user
-#                     )
 
 from bson.objectid import ObjectId
 
 from flask_pymongo import PyMongo
-
 
 
 username = os.getenv('C9_USER')
@@ -173,61 +163,54 @@ def edit_post(post_id):
         return redirect(url_for('login'))
 
 
-@app.route('/update_post/<post_id>', methods=['GET', 'POST'])
+@app.route('/update_post/<post_id>', methods=['GET', 'POST', 'UPDATE'])
 def update_post(post_id):
-    # import pdb;pdb.set_trace()
-    if "post_cover" in request.files:
+    if request.method == 'POST':
+        # import pdb;pdb.set_trace()
+        # if "post_cover" in request.files:
+        #     post_cover = request.files["post-cover"]
+        # if "gallery_1" in request.files:
+        #     gallery_1 = request.files["gallery_1"]
+        # if "gallery_2" in request.files:
+        #     gallery_2 = request.files["gallery_2"]
+        # if "gallery_3" in request.files:
+        #     gallery_3 = request.files["gallery_3"]
+        # if "gallery_4" in request.files:
+        #     gallery_4 = request.files["gallery_4"]
+        # if "gallery_5" in request.files:
+        #     gallery_5 = request.files["gallery_5"]
         post_cover = request.files["post-cover"]
-        
-    if "gallery_1" in request.files:
         gallery_1 = request.files["gallery_1"]
-        return gallery_1
-    if "gallery_2" in request.files:
         gallery_2 = request.files["gallery_2"]
-        return gallery_2
-    if "gallery_3" in request.files:
         gallery_3 = request.files["gallery_3"]
-        return gallery_3
-    if "gallery_4" in request.files:
         gallery_4 = request.files["gallery_4"]
-        return gallery_4
-    if "gallery_5" in request.files:
         gallery_5 = request.files["gallery_5"]
-        return gallery_5
-    # gallery_1 = request.files["gallery_1"]
-    # gallery_2 = request.files["gallery_2"]
-    # gallery_3 = request.files["gallery_3"]
-    # gallery_4 = request.files["gallery_4"]
-    # gallery_5 = request.files["gallery_5"]
-    release_date = datetime.strptime(
-        request.form["release-date"], '%Y-%m-%d')
+        release_date = datetime.strptime(request.form["release-date"], '%Y-%m-%d')
 
-    mongo.save_file(post_cover.filename, post_cover)
-    mongo.save_file(gallery_1.filename, gallery_1)
-    mongo.save_file(gallery_2.filename, gallery_2)
-    mongo.save_file(gallery_3.filename, gallery_3)
-    mongo.save_file(gallery_4.filename, gallery_4)
-    mongo.save_file(gallery_5.filename, gallery_5)
-    mongo.db.posts.update(
-            {
-                "post_title": request.form["post-title"],
-                "post_subtitle": request.form["post-subtitle"],
-                "release_date": release_date,
-                "post_cover": post_cover.filename,
-                "no_players": request.form["no_players"],
-                "game_score": request.form["game_score"],
-                "game_platform": request.form.getlist("platform"),
-                "pegi_desc": request.form.getlist("pegi-desc"),
-                "gallery_1": gallery_1.filename,
-                "gallery_2": gallery_2.filename,
-                "gallery_3": gallery_3.filename,
-                "gallery_4": gallery_4.filename,
-                "gallery_5": gallery_5.filename,
-                "pros_content": request.form["post-pros"],
-                "cons_content": request.form["post-cons"],
-                "post_review": request.form["post-review"],
-            }
-        )
+        mongo.save_file(post_cover.filename, post_cover)
+        mongo.save_file(gallery_1.filename, gallery_1)
+        mongo.save_file(gallery_2.filename, gallery_2)
+        mongo.save_file(gallery_3.filename, gallery_3)
+        mongo.save_file(gallery_4.filename, gallery_4)
+        mongo.save_file(gallery_5.filename, gallery_5)
+        mongo.db.posts.update({"_id": post_id}, {"$set": {
+                    "post_title": request.form["post-title"],
+                    "post_subtitle": request.form["post-subtitle"],
+                    "release_date": release_date,
+                    "post_cover": post_cover.filename,
+                    "no_players": request.form["no_players"],
+                    "game_score": request.form["game_score"],
+                    "game_platform": request.form.getlist("platform"),
+                    "pegi_desc": request.form.getlist("pegi-desc"),
+                    "gallery_1": gallery_1.filename,
+                    "gallery_2": gallery_2.filename,
+                    "gallery_3": gallery_3.filename,
+                    "gallery_4": gallery_4.filename,
+                    "gallery_5": gallery_5.filename,
+                    "pros_content": request.form["post-pros"],
+                    "cons_content": request.form["post-cons"],
+                    "post_review": request.form["post-review"],
+                    }})
     return redirect(url_for('index'))
 
 

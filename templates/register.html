@@ -3,17 +3,34 @@
 
 {% block content %}
 
-<form class="form form-register" action="{{url_for('register')}}" method="POST">
-    <label for="username">Name: </label>
-    <input type="text" id="username" name="username">
+<div class="spacer col-12"></div>
+
+<form class="form form-register form-group" action="{{url_for('register')}}" method="POST">
+    <legend class="singup">Signup</legend>
     <br>
-    <button<label for="email">Email: </label>
-    <input type="email" id="email" name="email">
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <label for="username" class="input-group-text">Username: </label>
+        </div>
+            <input type="text" id="username" name="username" class="form-control">
+    </div>
     <br>
-    <label for="password">Password: </label>
-    <input type="password" name="password" id="password">
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <label for="email" class="input-group-text">Email: </label>
+        </div>
+        <input type="email" id="email" name="email" class="form-control">
+    </div>
     <br>
-     <button type="submit" value="Submit">Submit</button>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <label for="password" class="input-group-text">Password: </label>
+        </div>
+        <input type="password" name="password" id="password" class="form-control">
+    </div>
+    <br>
+    <button type="submit" value="Submit" class="btn btn-success">Submit</button>
 </form>
 
+<div class="spacer col-12"></div>
 {% endblock %}
