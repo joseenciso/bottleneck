@@ -163,54 +163,31 @@ def edit_post(post_id):
         return redirect(url_for('login'))
 
 
-@app.route('/update_post/<post_id>', methods=['GET', 'POST', 'UPDATE'])
+@app.route('/update_post/<post_id>', methods=['POST'])
 def update_post(post_id):
-    if request.method == 'POST':
-        # import pdb;pdb.set_trace()
-        # if "post_cover" in request.files:
-        #     post_cover = request.files["post-cover"]
-        # if "gallery_1" in request.files:
-        #     gallery_1 = request.files["gallery_1"]
-        # if "gallery_2" in request.files:
-        #     gallery_2 = request.files["gallery_2"]
-        # if "gallery_3" in request.files:
-        #     gallery_3 = request.files["gallery_3"]
-        # if "gallery_4" in request.files:
-        #     gallery_4 = request.files["gallery_4"]
-        # if "gallery_5" in request.files:
-        #     gallery_5 = request.files["gallery_5"]
-        post_cover = request.files["post-cover"]
-        gallery_1 = request.files["gallery_1"]
-        gallery_2 = request.files["gallery_2"]
-        gallery_3 = request.files["gallery_3"]
-        gallery_4 = request.files["gallery_4"]
-        gallery_5 = request.files["gallery_5"]
-        release_date = datetime.strptime(request.form["release-date"], '%Y-%m-%d')
-
-        mongo.save_file(post_cover.filename, post_cover)
-        mongo.save_file(gallery_1.filename, gallery_1)
-        mongo.save_file(gallery_2.filename, gallery_2)
-        mongo.save_file(gallery_3.filename, gallery_3)
-        mongo.save_file(gallery_4.filename, gallery_4)
-        mongo.save_file(gallery_5.filename, gallery_5)
-        mongo.db.posts.update({"_id": post_id}, {"$set": {
-                    "post_title": request.form["post-title"],
-                    "post_subtitle": request.form["post-subtitle"],
-                    "release_date": release_date,
-                    "post_cover": post_cover.filename,
-                    "no_players": request.form["no_players"],
-                    "game_score": request.form["game_score"],
-                    "game_platform": request.form.getlist("platform"),
-                    "pegi_desc": request.form.getlist("pegi-desc"),
-                    "gallery_1": gallery_1.filename,
-                    "gallery_2": gallery_2.filename,
-                    "gallery_3": gallery_3.filename,
-                    "gallery_4": gallery_4.filename,
-                    "gallery_5": gallery_5.filename,
-                    "pros_content": request.form["post-pros"],
-                    "cons_content": request.form["post-cons"],
-                    "post_review": request.form["post-review"],
-                    }})
+    #import pdb;pdb.set_trace()
+    gallery = {}
+    for key, value in request.files.items():
+        if value.filename != "":
+            gallery.update({key: value.filename})
+            mongo.save_file(value.filename, value)
+    release_date = datetime.strptime(request.form["release-date"], '%Y-%m-%d')
+    date_posted = datetime.strptime(request.form["date-posted"], '%Y-%m-%d')
+    gallery.update({
+                "post_title": request.form["post-title"],
+                "post_subtitle": request.form["post-subtitle"],
+                "release_date": release_date,
+                "date_posted": date_posted,
+                "date_edited": datetime.now(),
+                "no_players": request.form["no_players"],
+                "game_score": request.form["game_score"],
+                "game_platform": request.form.getlist("platforms"),
+                "pegi_desc": request.form.getlist("pegi-desc"),
+                "pros_content": request.form["post-pros"],
+                "cons_content": request.form["post-cons"],
+                "post_review": request.form["post-review"],
+                })
+    mongo.db.posts.update({"_id": ObjectId(post_id)}, gallery)
     return redirect(url_for('index'))
 
 

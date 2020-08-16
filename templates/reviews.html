@@ -37,10 +37,11 @@
             </div>
             
             <div class="pegi-description">
-                {% for pegi in post.pegi_esc %}
+                {% for pegi in post.pegi_desc %}
                     <div class="square-img {{pegi}}"></div>
                 {% endfor %}
             </div>
+
             <div class="points-container">
                 <div class="progress-circle over50 p{{post.game_score}}" >
                     <span class="score">{{post.game_score}}</span>

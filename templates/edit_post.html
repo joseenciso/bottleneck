@@ -21,6 +21,9 @@
                     <label for="release-date">Game Release: </label>
                     <input type="date" name="release-date" value="{{ post.release_date.strftime('%Y-%m-%d') }}">
                     <br>
+                    <label for="release-date">Game Posted: </label>
+                    <input type="date" name="date-posted" value="{{ post.date_posted.strftime('%Y-%m-%d') }}" disabled>
+                    <br>
                     <label for="post-cover">Cover Picture: {{ post.post_cover }}</label><br>
                     <input type="file" name="post-cover" id="post-cover">
                     <hr>
