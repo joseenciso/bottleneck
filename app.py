@@ -7,7 +7,7 @@ from flask import (
 from datetime import datetime, timedelta
 
 from bson.objectid import ObjectId
-
+from datetime import datetime 
 from flask_pymongo import PyMongo
 
 
@@ -172,12 +172,10 @@ def update_post(post_id):
             gallery.update({key: value.filename})
             mongo.save_file(value.filename, value)
     release_date = datetime.strptime(request.form["release-date"], '%Y-%m-%d')
-    date_posted = datetime.strptime(request.form["date-posted"], '%Y-%m-%d')
-    gallery.update({
+    gallery.update( {"$set": {
                 "post_title": request.form["post-title"],
                 "post_subtitle": request.form["post-subtitle"],
                 "release_date": release_date,
-                "date_posted": date_posted,
                 "date_edited": datetime.now(),
                 "no_players": request.form["no_players"],
                 "game_score": request.form["game_score"],
@@ -186,7 +184,7 @@ def update_post(post_id):
                 "pros_content": request.form["post-pros"],
                 "cons_content": request.form["post-cons"],
                 "post_review": request.form["post-review"],
-                })
+                }})
     mongo.db.posts.update({"_id": ObjectId(post_id)}, gallery)
     return redirect(url_for('index'))
 
