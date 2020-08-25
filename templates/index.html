@@ -22,8 +22,8 @@
                 <small class="footer-card">
                     <strong>Posted by:</strong>
                     <span class="card-author">{{ post.posted_by|capitalize }}</span>
-                    {#<strong>-</strong>
-                    <span class="card-date">{{post.date_posted.strftime('%d/%b/%Y') }}</span>#}
+                    <strong>-</strong>
+                    <span class="card-date">{{post.date_posted.strftime('%d/%b/%Y') }}</span>
                 </small>
                 <div class="read-btn">
                     <a href="{{url_for('game_review', review_id=post._id)}}"

@@ -5,10 +5,12 @@ from flask import (
     request, session, flash
 )
 from datetime import datetime, timedelta
-
 from bson.objectid import ObjectId
 from datetime import datetime 
 from flask_pymongo import PyMongo
+from flask_paginate import Pagination, get_page_args
+# from flask_mongoengine import MongoEngine
+import click
 
 
 username = os.getenv('C9_USER')
@@ -30,7 +32,7 @@ COLECCTION_NAME = "posts"
 
 
 platforms = [
-        'Nintendo Wii', 'Nintendo Wii U', 'Nintendo 3DS',
+        'Nintendo Switch','Nintendo Wii', 'Nintendo Wii U', 'Nintendo 3DS',
         'XBOX 360', 'XBOX ONE', 'PS2', 'PS3', 'PS4',
         'Linux', 'Mac', 'Windows'
         ]
@@ -69,6 +71,8 @@ encrypt = bcrypt.gensalt()
 @app.route('/home')
 def index():
     posts = mongo.db.posts.find().sort('date_posted', -1)
+    # posts = mongo.db.posts.find().sort('_id', pymongo.ASCENDING)
+    # pages = mongo.query.paginate(per_page=5)
     return render_template("index.html", posts=posts)
 
 
@@ -135,10 +139,14 @@ def post_review():
                             "post_review": request.form["post-review"],
                         }
                     )
+                # post_array = mongo.db.users.update({'username': session["session"]},
+                #    {"$push": {"post_title": request.form["post-title"],
+                #                "post_subtitle": request.form["post-subtitle"],} })
+
             ###########################################
 
         return redirect(url_for("index"))
-    return render_template("post.html", platforms=platforms, pegi_desc=pegi_description)
+    return render_template("post.html", platforms=platforms, pegi_desc=pegi_description, pegi_rate=pegi_rate)
 
 
 @app.route('/edit_post/<post_id>', methods=['GET', 'POST'])
@@ -157,7 +165,8 @@ def edit_post(post_id):
         return render_template("edit_post.html",
                                 post=post,
                                 platforms=platforms,
-                                pegi_description=pegi_description)
+                                pegi_description=pegi_description,
+                                pegi_rate=pegi_rate)
     else:
         session.pop("_id", None)
         return redirect(url_for('login'))
@@ -172,7 +181,7 @@ def update_post(post_id):
             gallery.update({key: value.filename})
             mongo.save_file(value.filename, value)
     release_date = datetime.strptime(request.form["release-date"], '%Y-%m-%d')
-    gallery.update( {"$set": {
+    gallery.updateOne( {"$set": {
                 "post_title": request.form["post-title"],
                 "post_subtitle": request.form["post-subtitle"],
                 "release_date": release_date,
@@ -181,11 +190,20 @@ def update_post(post_id):
                 "game_score": request.form["game_score"],
                 "game_platform": request.form.getlist("platforms"),
                 "pegi_desc": request.form.getlist("pegi-desc"),
+                "pegi_rate": request.form["pegi-rate"],
+                "pegi_rate": request.form["pegi-rate"],
                 "pros_content": request.form["post-pros"],
                 "cons_content": request.form["post-cons"],
                 "post_review": request.form["post-review"],
                 }})
     mongo.db.posts.update({"_id": ObjectId(post_id)}, gallery)
+    return redirect(url_for('index'))
+
+
+@app.route('/delete_post/<post_id>')
+def delete_post(post_id):
+    post = mongo.db.posts.find_one({"_id": post_id})
+    print(post)
     return redirect(url_for('index'))
 
 
@@ -222,7 +240,7 @@ def user():
         username = session["username"]
         user = mongo.db.users.find_one({"username": username})
         # session.pop('user_id', None)
-        posts = mongo.db.posts.find({"username": username})
+        posts = mongo.db.posts.find()
         return render_template('user.html', username=username, user=user, posts=posts)
     else:
         return redirect(url_for('login'))

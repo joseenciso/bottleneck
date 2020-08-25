@@ -241,11 +241,13 @@ footer{
 }
 
 .pegi-description,
+.pegi-rate,
 .pegi-container .square-img,
 .gallery .square-img{
-    height: 200px;
-    width: 200px;
+    height: 130px;
+    width: 130px;
 
+    margin-top: 5px;
     display: inline-block;
 
     background-repeat: no-repeat;
@@ -369,7 +371,7 @@ footer{
 /*****************************************/
 /** Form **/
 /*****************************************/
-.platforms,
+.platforms-container,
 .description-container{
     padding-left: 35px;
 }
@@ -453,6 +455,26 @@ textarea{
     text-align: center;
 }
 
+
+/*****************************************/
+/** Pagination **/
+/*****************************************/
+
+.pagination-page-info {
+    padding: .6em;
+    padding-left: 0;
+    width: 40em;
+    margin: .5em;
+    margin-left: 0;
+    font-size: 12px;
+}
+.pagination-page-info b {
+    color: black;
+    background: #6aa6ed;
+    padding-left: 2px;
+    padding: .1em .25em;
+    font-size: 150%;
+}
 
 /* ************************************
 /**  Queries  **

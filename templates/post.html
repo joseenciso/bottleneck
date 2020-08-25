@@ -72,20 +72,35 @@
 
             <hr>
             
-            <div class="pegi-field col-lg-6 col-md-6">
+            <div class="pegi-field-boxes col-lg-4 col-md-4">
                 <legend for="plattform" class="form-check-label">Platfforms:</legend>
-                <div class="plattform form-group">
+                <div class="platforms-container form-group">
                     {% for platform in platforms %}
-                        <input type="checkbox" class="form-check-input" name="platform" value="{{platform}}" id="{{platform}}"><label for="{{platform}}">{{platform}}</label></br>
+                        <input type="checkbox" class="form-check-input" name="platform" value="{{platform}}" id="{{platform}}">
+                        <label for="{{platform}}">{{platform}}</label>
+                        </br>
                     {% endfor %}
                 </div>
             </div>
 
-            <div class="pegi-description col-lg-6 col-md-6">
+            <div class="pegi-description-boxes col-lg-4 col-md-4">
                 <legend>Pegi Description</legend>
                 <div class="description-container form-group">
                     {% for pegi in pegi_desc %}
-                        <input type="checkbox" class="form-check-input" name="pegi-desc" value="{{pegi}}" id="{{pegi}}"><label class="" for="{{pegi}}">{{pegi_desc[pegi]}}</label></br>
+                        <input type="checkbox" class="form-check-input" name="pegi-desc" value="{{pegi}}" id="{{pegi}}">
+                        <label class="" for="{{pegi}}">{{pegi_desc[pegi]}}</label>
+                        </br>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="pegi-description col-lg-4 col-md-4">
+                <legend>Pegi Rate</legend>
+                <div class="description-container form-group">
+                    {% for pegi_r in pegi_rate %}
+                        <input type="radio" class="form-check-input" name="pegi-rate" value="{{pegi_r}}" id="{{pegi_r}}">
+                        <label class="" for="{{pegi_r}}">{{pegi_r}}</label>
+                        </br>
                     {% endfor %}
                 </div>
             </div>

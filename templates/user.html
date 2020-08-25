@@ -4,16 +4,35 @@
 
 
 <div class="col-12 text-white">
-    <h1>Welcome {{username}}!</h1>
-    <h2>You are user number #{{user._id}}</h2>
+    <h1>Hi {{username}}!</h1>
+    {# <h2>You are user number #{{user._id}}</h2> #}
 
     <div class="col-12">
         <div class="col-12 email">
-            <p>Username: <span>{{username}}</span></p>
-            <p>Email: <span>{{user.email}}</span></p>
-            <p>Posts: {{posts}}{% for post in posts %}<span>{{post.post_title}}</span>{% endfor %}</p>
+            
+            
         </div>
+        
     </div>
+    <table class="table table-striped table-light">
+        <thead> 
+            <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Sub-title</th>
+                <th scope="col">Date posted</th>
+            </tr>
+        </thead>
+
+        {% for post in posts %}
+            {% if username in post.posted_by %}
+            <tr>
+                <td>{{post.post_title}}</td>
+                <td>{{post.post_subtitle}}</td>
+                <td>{{post.date_posted.strftime('%d/%b/%Y')}}</td>
+            </tr>
+            {% endif %}
+        {% endfor %}
+    </table>
 </div>
 
 {% endblock %}
