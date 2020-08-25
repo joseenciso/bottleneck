@@ -100,6 +100,7 @@ footer{
     margin-bottom: 10px;
 }
 
+/*****************************************
 .progress-circle{
     margin-top: 10px;
     margin-bottom: 10px;
@@ -107,6 +108,11 @@ footer{
     margin-left: auto;
 }
 
+.progress-circle{
+    padding: auto 0;
+    margin: 0;
+}
+*****************************************/
 
 
 /*****************************************/
@@ -168,6 +174,7 @@ footer{
 .game-title,
 .game-info{
     background-color: rgba(174, 167, 167, .8);
+    letter-spacing: 2px;
 }
 
 .game-title{
@@ -189,11 +196,21 @@ footer{
 
     /* margin: 0; */
     /* padding-top: 10px;  */
-    height: 140px;
+    min-height: 140px;
     width: 100%;
 
     display: flex;
+    flex-wrap: wrap;
 }
+
+.points-container,
+.pegi-rate,
+.pegi-description,
+.game-details{
+
+}
+
+
 
 .game-details,
 .points-container{
@@ -228,9 +245,7 @@ footer{
     padding-right: auto;
 }
 
-.progress-circle{
-    margin: 0;
-}
+
 
 .score{
     font-size: 3rem;
@@ -244,10 +259,12 @@ footer{
 .pegi-rate,
 .pegi-container .square-img,
 .gallery .square-img{
-    height: 130px;
-    width: 130px;
+    min-height: 100px;
+    max-height: 130px;
+    min-width: 100px;
+    max-width: 130px;
 
-    margin-top: 5px;
+    margin: 5px;
     display: inline-block;
 
     background-repeat: no-repeat;
@@ -437,6 +454,8 @@ textarea{
 .submit{
     display: block;
     margin: 1rem auto;
+    width: 150px;
+    font-weight: 600;
 }
 
 .login-container{
@@ -625,6 +644,8 @@ textarea{
     float: none;
     margin: 0 auto;
 }
+
+
 
 .edit-post{
     margin-bottom: 10px;;
