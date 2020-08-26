@@ -116,57 +116,58 @@
 
             <hr>
             
-            <div class="form-group">
+            <div class="gallery-header col-12">
                 <legend class="post-legend">Gallery Section</legend>
                 <p>Select five pictres for the review's gallery</p>
-                <div class="input-group mb-3 col-lg-12">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="inputGroupFileAddon01">Picture 1 </span>
-                    </div>
-                    <div class="custom-file">
-                        <label class="custom-file-label" style="overflow: hidden;" for="gallery-1">{{ post.gallery_1 }}</label>
-                        <input type="file" name="gallery_1" id="gallery-1" value="{{ post.gallery_1 }}">
-                    </div>
-                </div>
+            </div>
 
-                <div class="input-group mb-3 col-lg-12">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="inputGroupFileAddon01">Picture 2 </span>
-                    </div>
-                    <div class="custom-file">
-                        <label class="custom-file-label" style="overflow: hidden;" for="gallery-2">{{ post.gallery_2 }}</label>
-                        <input type="file" name="gallery_2" id="gallery-2" value="{{ post.gallery_2 }}">
-                    </div>
+            <div class="input-group mb-3 col-12">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroupFileAddon01">Picture 1 </span>
                 </div>
-
-                <div class="input-group mb-3 col-lg-12">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="inputGroupFileAddon01">Picture 3 </span>
-                    </div>
-                    <div class="custom-file">
-                        <label class="custom-file-label" style="overflow: hidden;" for="gallery-3">{{ post.gallery_3 }}</label>
-                        <input type="file" name="gallery_3" id="gallery-3" value="{{ post.gallery_3 }}">
-                    </div>
+                <div class="custom-file">
+                    <label class="custom-file-label" style="overflow: hidden;" for="gallery-1">{{ post.gallery_1 }}</label>
+                    <input type="file" name="gallery_1" id="gallery-1" value="{{ post.gallery_1 }}">
                 </div>
+            </div>
 
-                <div class="input-group mb-3 col-lg-12">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="inputGroupFileAddon01">Picture 4 </span>
-                    </div>
-                    <div class="custom-file">
-                        <label class="custom-file-label" style="overflow: hidden;" for="gallery-4">{{ post.gallery_4 }}</label>
-                        <input type="file" name="gallery_4" id="gallery-4" value="{{ post.gallery_4 }}">
-                    </div>
+            <div class="input-group mb-3 col-12">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroupFileAddon01">Picture 2 </span>
                 </div>
+                <div class="custom-file">
+                    <label class="custom-file-label" style="overflow: hidden;" for="gallery-2">{{ post.gallery_2 }}</label>
+                    <input type="file" name="gallery_2" id="gallery-2" value="{{ post.gallery_2 }}">
+                </div>
+            </div>
 
-                <div class="input-group mb-3 col-lg-12">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="inputGroupFileAddon01">Picture 5 </span>
-                    </div>
-                    <div class="custom-file">
-                        <label class="custom-file-label" fstyle="overflow: hidden;" or="gallery-1">{{ post.gallery_5 }}</label>
-                        <input type="file" name="gallery_5" id="gallery-5" value="{{ post.gallery_5 }}">
-                    </div>
+            <div class="input-group mb-3 col-12">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroupFileAddon01">Picture 3 </span>
+                </div>
+                <div class="custom-file">
+                    <label class="custom-file-label" style="overflow: hidden;" for="gallery-3">{{ post.gallery_3 }}</label>
+                    <input type="file" name="gallery_3" id="gallery-3" value="{{ post.gallery_3 }}">
+                </div>
+            </div>
+
+            <div class="input-group mb-3 col-12">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroupFileAddon01">Picture 4 </span>
+                </div>
+                <div class="custom-file">
+                    <label class="custom-file-label" style="overflow: hidden;" for="gallery-4">{{ post.gallery_4 }}</label>
+                    <input type="file" name="gallery_4" id="gallery-4" value="{{ post.gallery_4 }}">
+                </div>
+            </div>
+
+            <div class="input-group mb-3 col-12">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroupFileAddon01">Picture 5 </span>
+                </div>
+                <div class="custom-file">
+                    <label class="custom-file-label" fstyle="overflow: hidden;" or="gallery-1">{{ post.gallery_5 }}</label>
+                    <input type="file" name="gallery_5" id="gallery-5" value="{{ post.gallery_5 }}">
                 </div>
             </div>
             
@@ -189,6 +190,7 @@
                     </div>
                 </div>
             </div>
+        </div>
 
         <div class="col-12">
             <input type="submit" value="Update" class="submit btn btn-success">
