@@ -2,208 +2,194 @@
 {% block title %}Create a new post{% endblock %}
 {% block content %}
 
-<form class="form  form-group" method="POST" action="{{url_for('update_post', post_id=post._id)}}" enctype="multipart/form-data">
+<form class="form form-edit form-group" method="POST" action="{{url_for('update_post', post_id=post._id)}}" enctype="multipart/form-data">
+    
     <fieldset class="fieldset">
-        <div class="game-title-section row">
-            <div class="col-12">
-                <h2 class="post-heading">Edit Post</h2>
+        <div class="row edit-container">           
+            <h2 class="post-heading">Edit Post</h2>
+            <div class="form-group col-12">
                 <legend class="post-legend">Game Section</legend>
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <label for="post-title" class="input-group-text">Game Title</label>
-                    </div>
-                    <input type="text" class="form-control" name="post-title" id="post-title" value="{{ post.post_title }}">
-                </div>
-
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <label for="post-title" class="input-group-text">Game Subtitle</label>
-                    </div>
-                    <input type="text" class="form-control" name="post-subtitle" id="post-subtitle" value="{{ post.post_subtitle }}">    
-                </div>
                 
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="input-group mb-3">                           
-                            <div class="input-group-prepend">
-                                <label for="release-date" class="input-group-text" id="inputGroupFileAddon01"
-                                    >Game Release: 
-                                </label>
-                            </div>
-                            <div class="custom-file">
-                                <input type="date" class="form-control" name="release-date" value="{{ post.release_date.strftime('%Y-%m-%d') }}">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="input-group mb-3">                           
-                            <div class="input-group-prepend">
-                                <label for="release-date" class="input-group-text">Game Posted: </label>
-                            </div>
-                            <input type="date" class="form-control" name="date-posted" value="{{ post.date_posted.strftime('%Y-%m-%d') }}" disabled>
-                        </div>
-                    </div>
-                </div>
+            </div>
+            <div class="col-sm-12 input-group mb-3">
 
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <label class="input-group-text" for="post-cover">Cover Picture: </label>
-                            </div>
-                            <div class="custom-file">
-                                <input type="file" name="post-cover" id="post-cover">
-                                <label class="custom-file-label" for="post-cover">{{ post.post_cover }}</label>
-                            </div>
-                        </div>
-                    </div>
+                <div class="input-group-prepend">
+                    <label for="post-title" class="input-group-text">Game Title</label>
                 </div>
+                <input type="text" class="form-control" name="post-title" id="post-title" value="{{ post.post_title }}">
+            </div>
 
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="input-group mb-3">
-                            <label for="no_players" class="input-group-text"style="margin: 0;">Number of playes:</label>
-                            <input type="number" class="form-control" name="no_players" id="no-players" min="1" max="16" value="{{ post.no_players }}">
-                        </div>
-                    </div>
-                    
-                    <div class="col-lg-6">
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <label for="score" class="input-group-text">Game Score: </label>
-                            </div>
-                            <input type="number" class="form-control" name="game_score" id="game-score" min="0" max="100" value="{{ post.game_score }}">
-                        </div>
-                    </div>
+            <div class="col-sm-12 input-group mb-3">
+                <div class="input-group-prepend">
+                    <label for="post-title" class="input-group-text">Game Subtitle</label>
                 </div>
+                <input type="text" class="form-control" name="post-subtitle" id="post-subtitle" value="{{ post.post_subtitle }}">    
+            </div>
+
+            <div class="input-group mb-3 col-sm-12 col-md-6 col-lg-6">                           
+                <div class="input-group-prepend">
+                    <label for="release-date" class="input-group-text" id="inputGroupFileAddon01">
+                        Game Release: 
+                    </label>
+                </div>
+                <div class="custom-file">
+                    <input type="date" class="form-control" name="release-date" value="{{ post.release_date.strftime('%Y-%m-%d') }}">
+                </div>
+            </div>
+
+            <div class="input-group mb-3 col-sm-12 col-md-6 col-lg-6">                           
+                <div class="input-group-prepend">
+                    <label for="release-date" class="input-group-text">Game Posted: </label>
+                </div>
+                <input type="date" class="form-control" name="date-posted" value="{{ post.date_posted.strftime('%Y-%m-%d') }}" disabled>
+            </div>
+
+            <div class="input-group mb-3 col-lg-12">
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="post-cover">Cover Picture: </label>
+                </div>
+                <div class="custom-file">
+                    <input type="file" name="post-cover" id="post-cover">
+                    <label class="custom-file-label" style="overflow: hidden;" for="post-cover">{{ post.post_cover }}</label>
+                </div>
+            </div>
+
+            <div class="input-group mb-3 col-md-6 col-lg-6">
+                <label for="no_players" class="input-group-text"style="margin: 0;">Number of playes:</label>
+                <input type="number" class="form-control" name="no_players" id="no-players" min="1" max="16" value="{{ post.no_players }}">
+            </div>
             
-                <hr>
-                <div class="row">
-                    <div class="platform col-lg-4 col-md-4">
-                        <legend for="plattform" class="form-check-label">Platfforms:</legend>
-                        <div class="platforms-container form-group">
-                            {% for platform in platforms %}
-                                {% if platform in post.game_platform %}
-                                    <input type="checkbox" class="form-check-input" name="platforms" value="{{platform}}" checked>
-                                {% else %}
-                                    <input type="checkbox" class="form-check-input" name="platforms" value="{{platform}}" >
-                                {% endif %}
-                                    <label for="platform">{{platform}}</label>
-                                </br>
-                            {% endfor %}
-                        </div>
-                    </div>
-            
-            
-                    <div class="pegi-description col-md-4 col-lg-4">
-                        <legend>Pegi Description</legend>
-                        <div class="description-container form-group">
-                            {% for pegi in pegi_description %}
-                                {% if pegi in post.pegi_desc %}
-                                    <input type="checkbox" class="form-check-input" name="pegi_description" value="{{pegi}}" id="{{pegi}}" checked>
-                                {% else %}
-                                    <input type="checkbox" class="form-check-input" name="pegi_description" value="{{pegi}}" id="{{pegi}}">
-                                {% endif %}
-                                <label class="" for="{{pegi}}">{{pegi_description[pegi]}}</label></br>
-                            {% endfor %}
-                        </div>
-                    </div>
-            
-                    <div class="pegi-description col-lg-4 col-md-4">
-                        <legend>Pegi Rate</legend>
-                        <div class="description-container form-group">
-                            {% for pegi in pegi_rate %}
-                                {% if pegi in post.pegi_rate %}
-                                    <input type="radio" class="form-check-input" name="pegi-rate" value="{{pegi}}" id="{{pegi}}" checked>
-                                {% else %}
-                                    <input type="radio" class="form-check-input" name="pegi-rate" value="{{pegi_r}}" id="{{pegi}}">
-                                {% endif %}
-                                <label class="" for="{{pegi}}">{{pegi}}</label>
-                                <br>
-                            {% endfor %}
-                        </div>
+            <div class="input-group mb-3 col-md-6 col-lg-6">
+                <div class="input-group-prepend">
+                    <label for="score" class="input-group-text">Game Score: </label>
+                </div>
+                <input type="number" class="form-control" name="game_score" id="game-score" min="0" max="100" value="{{ post.game_score }}">
+            </div>
+
+        
+            <hr>
+            <div class="options-container">
+                <div class="platform col-lg-4 col-md-4">
+                    <legend for="plattform" class="form-check-label">Platfforms:</legend>
+                    <div class="platforms-container form-group">
+                        {% for platform in platforms %}
+                            {% if platform in post.game_platform %}
+                                <input type="checkbox" class="form-check-input" name="platforms" value="{{platform}}" checked>
+                            {% else %}
+                                <input type="checkbox" class="form-check-input" name="platforms" value="{{platform}}" >
+                            {% endif %}
+                                <label for="platform">{{platform}}</label>
+                            </br>
+                        {% endfor %}
                     </div>
                 </div>
         
-
-        <hr>
-            
-        <div class="form-group col-12">
-            <legend class="post-legend">Gallery Section</legend>
-            <p>Select five pictres for the review's gallery</p>
-            <div class="input-group mb-3 col-lg-12">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroupFileAddon01">Picture 1 </span>
+                <div class="col-md-4 col-lg-4">
+                    <legend>Pegi Description</legend>
+                    <div class="description-container form-group">
+                        {% for pegi in pegi_description %}
+                            {% if pegi in post.pegi_desc %}
+                                <input type="checkbox" class="form-check-input" name="pegi_description" value="{{pegi}}" id="{{pegi}}" checked>
+                            {% else %}
+                                <input type="checkbox" class="form-check-input" name="pegi_description" value="{{pegi}}" id="{{pegi}}">
+                            {% endif %}
+                            <label class="" for="{{pegi}}">{{pegi_description[pegi]}}</label></br>
+                        {% endfor %}
+                    </div>
                 </div>
-                <div class="custom-file">
-                    <label class="custom-file-label" for="gallery-1">Picture 1: <u>{{ post.gallery_1 }}</u> </label>
-                    <input type="file" name="gallery_1" id="gallery-1" value="{{ post.gallery_1 }}">
-                </div>
-            </div>
-
-            <div class="input-group mb-3 col-lg-12">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroupFileAddon01">Picture 2 </span>
-                </div>
-                <div class="custom-file">
-                    <label class="custom-file-label" for="gallery-2">Picture 2: <u>{{ post.gallery_2 }}</u> </label>
-                    <input type="file" name="gallery_2" id="gallery-2" value="{{ post.gallery_2 }}">
-                </div>
-            </div>
-
-            <div class="input-group mb-3 col-lg-12">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroupFileAddon01">Picture 3 </span>
-                </div>
-                <div class="custom-file">
-                    <label class="custom-file-label" for="gallery-3">Picture 3: <u>{{ post.gallery_3 }}</u> </label>
-                    <input type="file" name="gallery_3" id="gallery-3" value="{{ post.gallery_3 }}">
-                </div>
-            </div>
-
-            <div class="input-group mb-3 col-lg-12">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroupFileAddon01">Picture 4 </span>
-                </div>
-                <div class="custom-file">
-                    <label class="custom-file-label" for="gallery-4">Picture 1: <u>{{ post.gallery_4 }}</u> </label>
-                    <input type="file" name="gallery_4" id="gallery-4" value="{{ post.gallery_4 }}">
-                </div>
-            </div>
-
-            <div class="input-group mb-3 col-lg-12">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroupFileAddon01">Picture 5 </span>
-                </div>
-                <div class="custom-file">
-                    <label class="custom-file-label" for="gallery-1">Picture 5: <u>{{ post.gallery_5 }}</u> </label>
-                    <input type="file" name="gallery_5" id="gallery-5" value="{{ post.gallery_5 }}">
-                </div>
-            </div>
-        </div>
-        <hr>
-            
-        <div class="col-12 form-group">
-            <legend>Review Section</legend>
-            <div class="row">
-                <div class="col-lg-6 mb-3">
-                    <label for="pros" class="post-pros input-group-text">Pros</label>
-                    <textarea name="post-pros" id="pros" class="pros form-control">{{ post.pros_content }}</textarea>
-                </div>
-                <div class="col-lg-6 mb-3">
-                    <label for="cons" class="post-cons input-group-text">Cons</label>
-                    <textarea name="post-cons" id="cons" class="cons form-control">{{ post.cons_content }}</textarea>
-                </div> 
-                <div class="col-12 mb-3">
-                    <label for="post-review" class="post-review input-group-text">Review</label>
-                    <textarea name="post-review" id="post-review" class="post-review form-control">{{ post.post_review }}</textarea>
-                </div>
-            </div>
-        </div>
-
-            
         
-        
+                <div class="col-lg-4 col-md-4">
+                    <legend>Pegi Rate</legend>
+                    <div class="description-container form-group">
+                        {% for pegi in pegi_rate %}
+                            {% if pegi in post.pegi_rate %}
+                                <input type="radio" class="form-check-input" name="pegi-rate" value="{{pegi}}" id="{{pegi}}" checked>
+                            {% else %}
+                                <input type="radio" class="form-check-input" name="pegi-rate" value="{{pegi_r}}" id="{{pegi}}">
+                            {% endif %}
+                            <label class="" for="{{pegi}}">{{pegi}}</label>
+                            <br>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+            
+            <div class="form-group">
+                <legend class="post-legend">Gallery Section</legend>
+                <p>Select five pictres for the review's gallery</p>
+                <div class="input-group mb-3 col-lg-12">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroupFileAddon01">Picture 1 </span>
+                    </div>
+                    <div class="custom-file">
+                        <label class="custom-file-label" style="overflow: hidden;" for="gallery-1">{{ post.gallery_1 }}</label>
+                        <input type="file" name="gallery_1" id="gallery-1" value="{{ post.gallery_1 }}">
+                    </div>
+                </div>
+
+                <div class="input-group mb-3 col-lg-12">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroupFileAddon01">Picture 2 </span>
+                    </div>
+                    <div class="custom-file">
+                        <label class="custom-file-label" style="overflow: hidden;" for="gallery-2">{{ post.gallery_2 }}</label>
+                        <input type="file" name="gallery_2" id="gallery-2" value="{{ post.gallery_2 }}">
+                    </div>
+                </div>
+
+                <div class="input-group mb-3 col-lg-12">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroupFileAddon01">Picture 3 </span>
+                    </div>
+                    <div class="custom-file">
+                        <label class="custom-file-label" style="overflow: hidden;" for="gallery-3">{{ post.gallery_3 }}</label>
+                        <input type="file" name="gallery_3" id="gallery-3" value="{{ post.gallery_3 }}">
+                    </div>
+                </div>
+
+                <div class="input-group mb-3 col-lg-12">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroupFileAddon01">Picture 4 </span>
+                    </div>
+                    <div class="custom-file">
+                        <label class="custom-file-label" style="overflow: hidden;" for="gallery-4">{{ post.gallery_4 }}</label>
+                        <input type="file" name="gallery_4" id="gallery-4" value="{{ post.gallery_4 }}">
+                    </div>
+                </div>
+
+                <div class="input-group mb-3 col-lg-12">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroupFileAddon01">Picture 5 </span>
+                    </div>
+                    <div class="custom-file">
+                        <label class="custom-file-label" fstyle="overflow: hidden;" or="gallery-1">{{ post.gallery_5 }}</label>
+                        <input type="file" name="gallery_5" id="gallery-5" value="{{ post.gallery_5 }}">
+                    </div>
+                </div>
+            </div>
+            
+            <hr>
+                
+            <div class="col-12 form-group">
+                <legend>Review Section</legend>
+                <div class="row">
+                    <div class="col-lg-6 mb-3">
+                        <label for="pros" class="post-pros input-group-text">Pros</label>
+                        <textarea name="post-pros" id="pros" class="pros form-control">{{ post.pros_content }}</textarea>
+                    </div>
+                    <div class="col-lg-6 mb-3">
+                        <label for="cons" class="post-cons input-group-text">Cons</label>
+                        <textarea name="post-cons" id="cons" class="cons form-control">{{ post.cons_content }}</textarea>
+                    </div> 
+                    <div class="col-12 mb-3">
+                        <label for="post-review" class="post-review input-group-text">Review</label>
+                        <textarea name="post-review" id="post-review" class="post-review form-control">{{ post.post_review }}</textarea>
+                    </div>
+                </div>
+            </div>
+
         <div class="col-12">
             <input type="submit" value="Update" class="submit btn btn-success">
         </div>

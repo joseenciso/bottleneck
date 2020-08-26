@@ -394,7 +394,7 @@ footer{
 }
 
 .post-heading{
-    margin-top: 3rem;
+    margin: 1rem auto;
 }
 
 .form{
@@ -412,10 +412,7 @@ footer{
     width: 100%;
 }
 
-.post-legend{
-    text-align: left;
-    margin-top: 1rem; 
-}
+
 
 .send-botton{
     margin: 2rem auto;
@@ -537,6 +534,13 @@ textarea{
 
 }
 
+@media (min-width: 750px) and (max-width: 780px){
+    /*Media Query exclusive for iPad*/
+    .game-details{
+        width: 350px;;
+    }
+}
+
 @media (min-width: 768px){
     .cards{
         width: 580px;
@@ -638,13 +642,11 @@ textarea{
     padding-right: .5rem;
 }
 
-.points-container{
-    /* margin: 0 auto; */
-    /* position: static; */
-    float: none;
-    margin: 0 auto;
-}
 
+
+.game-details{
+   width: 100%; 
+}
 
 
 .edit-post{
@@ -676,10 +678,31 @@ textarea{
         width: 103px;
         font-weight: 600;
     }
-}
 
-/* @media (min-width: 300px) and (min-width: 575.98px){
-    .cards{
-        width: 350px;
+/*********************************************
+****** Edit Review *****
+*********************************************/
+
+    .form-edit{
+        padding-left: 5px;
+        padding-right: 5px;
     }
-} */
+
+    .custom-file-label{
+        line-height: 1.6;
+    }
+
+    .options-container{
+        padding-left: 1.5rem;
+    }
+
+    .edit-container{
+        width: 100%;
+        margin: 0;
+    }
+
+    .custom-file input{
+        max-width: 240px;
+        overflow: hidden;
+    }
+}
