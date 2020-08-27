@@ -2,23 +2,27 @@
 {% block title %}Create a new post{% endblock %}
 {% block content %}
 <div class="container">
-
     <form class="form form-edit" method="POST" action="{{url_for('update_post', post_id=post._id)}}" enctype="multipart/form-data">
-        
         <fieldset class="fieldset">
             <div class="row edit-container">
-                <h2 class="post-heading">Edit Post</h2>
-                    <legend class="post-legend">Game Section</legend>
+                <h2 class="post-heading"><i class="fas fa-edit"></i>&nbsp;Edit Post</h2>
+                    <legend class="post-legend">
+                        &nbsp;<i class="fas fa-gamepad"></i>&nbsp;Game Section
+                    </legend>
                 <div class="col-sm-12 input-group mb-3">
                     <div class="input-group-prepend">
-                        <label for="post-title" class="input-group-text">Game Title</label>
+                        <label for="post-title" class="input-group-text">
+                            <i class="fas fa-gamepad"></i>&nbsp;Title
+                        </label>
                     </div>
                     <input type="text" class="form-control" name="post-title" id="post-title" value="{{ post.post_title }}">
                 </div>
 
                 <div class="col-sm-12 input-group mb-3">
                     <div class="input-group-prepend">
-                        <label for="post-title" class="input-group-text">Game Subtitle</label>
+                        <label for="post-title" class="input-group-text">
+                            <i class="fas fa-gamepad"></i>&nbsp;Subtitle
+                        </label>
                     </div>
                     <input type="text" class="form-control" name="post-subtitle" id="post-subtitle" value="{{ post.post_subtitle }}">    
                 </div>
@@ -26,7 +30,7 @@
                 <div class="input-group mb-3 col-sm-12 col-md-6 col-lg-6">                           
                     <div class="input-group-prepend">
                         <label for="release-date" class="input-group-text" id="inputGroupFileAddon01">
-                            Game Release: 
+                            <i class="far fa-calendar-plus"></i>&nbsp;Release 
                         </label>
                     </div>
                     <div class="custom-file">
@@ -36,38 +40,49 @@
 
                 <div class="input-group mb-3 col-sm-12 col-md-6 col-lg-6">                           
                     <div class="input-group-prepend">
-                        <label for="release-date" class="input-group-text">Game Posted: </label>
+                        <label for="release-date" class="input-group-text">
+                            <i class="far fa-calendar-plus"></i>&nbsp;Posted
+                        </label>
                     </div>
                     <input type="date" class="form-control" name="date-posted" value="{{ post.date_posted.strftime('%Y-%m-%d') }}" disabled>
                 </div>
 
                 <div class="input-group mb-3 col-lg-12">
                     <div class="input-group-prepend">
-                        <label class="input-group-text" for="post-cover">Cover Picture: </label>
+                        <label class="input-group-text" for="post-cover">
+                            <i class="fas fa-file-image"></i>&nbsp;Cover
+                        </label>
                     </div>
                     <div class="custom-file">
                         <input type="file" name="post-cover" id="post-cover">
-                        <label class="custom-file-label" style="overflow: hidden;" for="post-cover">{{ post.post_cover }}</label>
+                        <label class="custom-file-label" style="overflow: hidden;" for="post-cover">
+                            {{ post.post_cover }}
+                        </label>
                     </div>
                 </div>
 
                 <div class="input-group mb-3 col-md-6 col-lg-6">
-                    <label for="no_players" class="input-group-text"style="margin: 0;">Number of playes:</label>
+                    <label for="no_players" class="input-group-text"style="margin: 0;">
+                        <i class="fas fa-gamepad"></i>&nbsp;Playes
+                    </label>
                     <input type="number" class="form-control" name="no_players" id="no-players" min="1" max="16" value="{{ post.no_players }}">
                 </div>
                 
                 <div class="input-group mb-3 col-md-6 col-lg-6">
                     <div class="input-group-prepend">
-                        <label for="score" class="input-group-text">Game Score: </label>
+                        <label for="score" class="input-group-text">
+                            <i class="fas fa-star-half-alt"></i>&nbsp;Score
+                        </label>
                     </div>
                     <input type="number" class="form-control" name="game_score" id="game-score" min="0" max="100" value="{{ post.game_score }}">
                 </div>
             </div>
             
             <hr>
+            
             <div class="options-container row">
                 <div class="col-xs-12 col-sm-12 col-lg-4 col-md-4">
-                    <legend for="plattforms" class="form-check-label">Platfforms:</legend>
+                    <legend for="plattforms" class="form-check-label">&nbsp;<i class="fas fa-th-large"></i>&nbsp;Platfforms:</legend>
                     <div class="platforms-container">
                         {% for platform in platforms %}
                             {% if platform in post.game_platform %}
@@ -82,7 +97,7 @@
                 </div>
         
                 <div class="col-md-4 col-lg-4">
-                    <legend>Pegi Description</legend>
+                    <legend>&nbsp;<i class="fas fa-list"></i>&nbsp;Pegi Description</legend>
                     <div class="description-container">
                         {% for pegi in pegi_description %}
                             {% if pegi in post.pegi_desc %}
@@ -96,7 +111,7 @@
                 </div>
         
                 <div class="col-lg-4 col-md-4">
-                    <legend>Pegi Rate</legend>
+                    <legend>&nbsp;<i class="fas fa-percent"></i>&nbsp;Pegi Rate</legend>
                     <div class="description-container">
                         {% for pegi in pegi_rate %}
                             {% if pegi in post.pegi_rate %}
@@ -115,13 +130,13 @@
             
             <div class="gallery-container row">
                 <div class="gallery-header col-12">
-                    <legend class="post-legend">Gallery Section</legend>
+                    <legend class="post-legend">&nbsp;<i class="fas fa-photo-video"></i>&nbsp;Gallery Section</legend>
                     <p>Select five pictres for the review's gallery</p>
                 </div>
         
                 <div class="input-group mb-3 col-12">
                     <div class="input-group-prepend">
-                        <span class="input-group-text" id="inputGroupFileAddon01">Picture 1 </span>
+                        <span class="input-group-text" id="inputGroupFileAddon01"><i class="fas fa-file-image"></i></span>
                     </div>
                     <div class="custom-file">
                         <label class="custom-file-label" style="overflow: hidden;" for="gallery-1">{{ post.gallery_1 }}</label>
@@ -131,7 +146,7 @@
         
                 <div class="input-group mb-3 col-12">
                     <div class="input-group-prepend">
-                        <span class="input-group-text" id="inputGroupFileAddon01">Picture 2 </span>
+                        <span class="input-group-text" id="inputGroupFileAddon01"><i class="fas fa-file-image"></i></span>
                     </div>
                     <div class="custom-file">
                         <label class="custom-file-label" style="overflow: hidden;" for="gallery-2">{{ post.gallery_2 }}</label>
@@ -141,7 +156,7 @@
         
                 <div class="input-group mb-3 col-12">
                     <div class="input-group-prepend">
-                        <span class="input-group-text" id="inputGroupFileAddon01">Picture 3 </span>
+                        <span class="input-group-text" id="inputGroupFileAddon01"><i class="fas fa-file-image"></i></span>
                     </div>
                     <div class="custom-file">
                         <label class="custom-file-label" style="overflow: hidden;" for="gallery-3">{{ post.gallery_3 }}</label>
@@ -151,7 +166,7 @@
         
                 <div class="input-group mb-3 col-12">
                     <div class="input-group-prepend">
-                        <span class="input-group-text" id="inputGroupFileAddon01">Picture 4 </span>
+                        <span class="input-group-text" id="inputGroupFileAddon01"><i class="fas fa-file-image"></i></span>
                     </div>
                     <div class="custom-file">
                         <label class="custom-file-label" style="overflow: hidden;" for="gallery-4">{{ post.gallery_4 }}</label>
@@ -161,7 +176,7 @@
         
                 <div class="input-group mb-3 col-12">
                     <div class="input-group-prepend">
-                        <span class="input-group-text" id="inputGroupFileAddon01">Picture 5 </span>
+                        <span class="input-group-text" id="inputGroupFileAddon01"><i class="fas fa-file-image"></i></span>
                     </div>
                     <div class="custom-file">
                         <label class="custom-file-label" fstyle="overflow: hidden;" or="gallery-1">{{ post.gallery_5 }}</label>
@@ -175,19 +190,25 @@
                     
             <div class="row">
                 <div class="col-12">
-                    <legend>Review Section</legend>
+                    <legend><i class="far fa-file-code"></i>Review Section</legend>
                 </div>
                 
                 <div class="col-lg-6 mb-3">
-                    <label for="pros" class="post-pros input-group-text">Pros</label>
+                    <label for="pros" class="post-pros input-group-text">
+                        <i class="fas fa-thumbs-up"></i>&nbsp;Pros
+                    </label>
                     <textarea name="post-pros" id="pros" class="pros form-control">{{ post.pros_content }}</textarea>
                 </div>
                 <div class="col-lg-6 mb-3">
-                    <label for="cons" class="post-cons input-group-text">Cons</label>
+                    <label for="cons" class="post-cons input-group-text">
+                        <i class="fas fa-thumbs-down"></i>&nbsp;Cons
+                    </label>
                     <textarea name="post-cons" id="cons" class="cons form-control">{{ post.cons_content }}</textarea>
                 </div> 
                 <div class="col-12 mb-3">
-                    <label for="post-review" class="post-review input-group-text">Review</label>
+                    <label for="post-review" class="post-review input-group-text">
+                        <i class="far fa-file-alt"></i>&nbsp;Review
+                    </label>
                     <textarea name="post-review" id="post-review" class="post-review form-control">{{ post.post_review }}</textarea>
                 </div>
             </div>

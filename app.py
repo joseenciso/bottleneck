@@ -2,7 +2,7 @@ import os
 import bcrypt
 from flask import (
     Flask, render_template, redirect, url_for,
-    request, session, flash
+    request, session, flash, jsonify
 )
 from datetime import datetime, timedelta
 from bson.objectid import ObjectId
@@ -11,6 +11,7 @@ from flask_pymongo import PyMongo
 # from flask_paginate import Pagination, get_page_args
 # from flask_mongoengine import MongoEngine
 import click
+from mongonator import MongoClientWithPagination, ASCENDING
 
 
 username = os.getenv('C9_USER')
@@ -60,9 +61,6 @@ def mongo_connect(url):
         print("Couldnt connect to MongoDB: %s") % e
 
 
-# login_manager = LoginManager(app)
-# login_manager.init_app(app)
-# login_manager.login_view = 'login'
 encrypt = bcrypt.gensalt()
 
 
@@ -70,10 +68,36 @@ encrypt = bcrypt.gensalt()
 @app.route('/index')
 @app.route('/home')
 def index():
-    posts = mongo.db.posts.find().sort('date_posted', -1)
+    # post  = mongo.db.posts
+    # offset = int(request.args['offset'])
+    # limit = int(request.args['limit'])
+    # 
+    # offset = 2
+    #limit = 2
+    # 
+    # initial_post = post.find().sort('_id', -1)
+    # last_post = initial_post[offset]['_id']
+    # pages = post.find({'_id': {'$lte': last_post}}).sort('_id', -1).limit(limit)
+    # output = []
+    # 
+    # for i in pages:
+    #     output.append(i['_id'])
+    #     print(output)
+    # 
+    # next_url = '?limit=' + str(limit) + '&offset=' + str(offset + limit)
+    # prev_url = '?limit=' + str(limit) + '&offset=' + str(offset - limit)
+    # 
+    # return jsonify({'result': output, 'prev_url': prev_url, 'next_url': next_url})
+    #return jsonify({'result': output, 'prev_url': '', 'next_url': ''})
+    # page=n
+    # posts = mongo.db.posts.find().sort('date_posted', -1).limit(5)
     # posts = mongo.db.posts.find().sort('_id', pymongo.ASCENDING)
     # pages = mongo.query.paginate(per_page=5)
+    # next = mongo.db.posts.find().sort('date_posted', -1).skip(5).limit(5)
+    posts = mongo.db.posts.find().sort('date_posted', -1)
     return render_template("index.html", posts=posts)
+    #return render_template("index.html", post=output, next_url=next_url, prev_url=prev_url)
+    
 
 
 @app.route("/uploads/<filename>", methods=['GET'])

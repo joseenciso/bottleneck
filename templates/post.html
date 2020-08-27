@@ -4,190 +4,209 @@
 <div class="container">
     <form class="form form-posting" method="POST" action="{{url_for('post_review')}}" enctype="multipart/form-data">
         <fieldset class="fieldset">
-            <div class="game-title-section row form-group">                         
-                <div class="form-group col-12">
-                    <h2 class="post-heading">New Review</h2>
-                    <legend class="post-legend">Game Section</legend>
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <label for="post-title" class="input-group-text">Game Title</label>
-                        </div>
-                        <input type="text" class="form-control" name="post-title" id="post-title">
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="post-heading">
+                        <i class="far fa-newspaper"></i>&nbsp;New Review
+                    </h2>
+                    <legend class="post-legend">
+                        <i class="fas fa-gamepad"></i>&nbsp;Game Section
+                    </legend>
+                </div>
+                <div class="input-group mb-3 col-12">
+                    <div class="input-group-prepend">
+                        <label for="post-title" class="input-group-text">
+                            <i class="fas fa-gamepad"></i>&nbsp;Title
+                        </label>
                     </div>
+                    <input type="text" class="form-control" name="post-title" id="post-title">
+                </div>
 
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <label for="post-title" class="input-group-text">Game Subtitle</label>
-                        </div>
-                        <input type="text" class="form-control" name="post-subtitle" id="post-subtitle">
+                <div class="input-group mb-3 col-12">
+                    <div class="input-group-prepend">
+                        <label for="post-title" class="input-group-text">
+                            <i class="fas fa-gamepad"></i>&nbsp;Subtitle
+                        </label>
                     </div>
+                    <input type="text" class="form-control" name="post-subtitle" id="post-subtitle">
                 </div>
             </div>
+
             <div class="row">
-                <div class="col-lg-6">
-                    <div class="input-group mb-3">                           
-                        <div class="input-group-prepend">
-                            <label for="release-date" class="input-group-text" id="inputGroupFileAddon01"
-                                >Game Release: 
-                            </label>
-                        </div>
-                        <div class="custom-file">
-                            <input type="date" class="form-control" name="release-date">
-                        </div>
+                <div class="input-group mb-3 col-md-6 col-lg-6">                           
+                    <div class="input-group-prepend">
+                        <label for="release-date" class="input-group-text" id="inputGroupFileAddon01">
+                            <i class="far fa-calendar-plus"></i>&nbsp;Release: 
+                        </label>
+                    </div>
+                    <div class="custom-file">
+                        <input type="date" class="form-control" name="release-date">
                     </div>
                 </div>
                 
-                <div class="col-lg-6">
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <label class="input-group-text" for="post-cover">Cover Picture</label>
-                        </div>
-                        <div class="custom-file">
-                            <input type="file" class="custom-file-input" name="post-cover"  id="post-cover" aria-describedby="inputGroupFileAddon01">
-                            <label class="custom-file-label" for="post-cover">Choose file</label>
-                        </div>
+                <div class="input-group mb-3 col-md-6 col-lg-6">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="post-cover">
+                            <i class="fas fa-file-image"></i>
+                        </label>
+                    </div>
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" name="post-cover"  id="post-cover" aria-describedby="inputGroupFileAddon01">
+                        <label class="custom-file-label" for="post-cover">Cover Image</label>
                     </div>
                 </div>
             </div>
 
             <hr>
-
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="input-group mb-3">
-                            <label for="no_players" class="input-group-text"style="margin: 0;">Number of playes:</label>
-                            <input type="number" class="form-control" name="no_players" id="no-players" min="1" max="16">
-                        </div>
+            
+            <div class="row">
+                <div class="input-group mb-3 col-md-6 col-lg-6">
+                    <label for="no_players" class="input-group-text"style="margin: 0;">
+                        <i class="fas fa-gamepad"></i>&nbsp;Players</label>
+                    <input type="number" class="form-control" name="no_players" id="no-players" min="1" max="16">
+                </div>
+                <div class="input-group mb-3 col-md-6 col-lg-6">
+                    <div class="input-group-prepend">
+                        <label for="score" class="input-group-text">
+                            <i class="fas fa-star-half-alt"></i>&nbsp;Score
+                        </label>
                     </div>
-                    <div class="col-lg-6">
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <label for="score" class="input-group-text">Game Score: </label>
-                            </div>
-                            <input type="number" class="form-control" name="game_score" id="game-score" min="0" max="100">
-                        </div>
+                    <input type="number" class="form-control" name="game_score" id="game-score" min="0" max="100">
+                </div>
+            </div>
+            
+            <hr>
+            
+            <div class="row">
+                <div class="col-lg-4 col-md-4">
+                    <legend for="plattform" class="form-check-label">
+                        <i class="fas fa-th-large"></i>&nbsp;Platforms</legend>
+                    <div class="platforms-container form-group">
+                        {% for platform in platforms %}
+                            <input type="checkbox" class="form-check-input" name="platform" value="{{platform}}" id="{{platform}}">
+                            <label for="{{platform}}">{{platform}}</label>
+                            </br>
+                        {% endfor %}
                     </div>
                 </div>
 
+                <div class="col-lg-4 col-md-4">
+                    <legend>
+                        <i class="fas fa-list"></i>&nbsp;Pegi Description
+                    </legend>
+                    <div class="description-container form-group">
+                        {% for pegi in pegi_desc %}
+                            <input type="checkbox" class="form-check-input" name="pegi-desc" value="{{pegi}}" id="{{pegi}}">
+                            <label class="" for="{{pegi}}">{{pegi_desc[pegi]}}</label>
+                            </br>
+                        {% endfor %}
+                    </div>
+                </div>
 
-                <hr>
-                <div class="row">
-                    <div class="pegi-field-boxes col-lg-4 col-md-4">
-                        <legend for="plattform" class="form-check-label">Platfforms:</legend>
-                        <div class="platforms-container form-group">
-                            {% for platform in platforms %}
-                                <input type="checkbox" class="form-check-input" name="platform" value="{{platform}}" id="{{platform}}">
-                                <label for="{{platform}}">{{platform}}</label>
-                                </br>
-                            {% endfor %}
-                        </div>
+                <div class="col-lg-4 col-md-4">
+                    <legend><i class="fas fa-percent"></i>&nbsp;Pegi Rate</legend>
+                    <div class="description-container form-group">
+                        {% for pegi_r in pegi_rate %}
+                            <input type="radio" class="form-check-input" name="pegi-rate" value="{{pegi_r}}" id="{{pegi_r}}">
+                            <label class="" for="{{pegi_r}}">{{pegi_r}}</label>
+                            </br>
+                        {% endfor %}
                     </div>
-    
-                    <div class="pegi-description-boxes col-lg-4 col-md-4">
-                        <legend>Pegi Description</legend>
-                        <div class="description-container form-group">
-                            {% for pegi in pegi_desc %}
-                                <input type="checkbox" class="form-check-input" name="pegi-desc" value="{{pegi}}" id="{{pegi}}">
-                                <label class="" for="{{pegi}}">{{pegi_desc[pegi]}}</label>
-                                </br>
-                            {% endfor %}
-                        </div>
-                    </div>
-    
-                    <div class="pegi-description col-lg-4 col-md-4">
-                        <legend>Pegi Rate</legend>
-                        <div class="description-container form-group">
-                            {% for pegi_r in pegi_rate %}
-                                <input type="radio" class="form-check-input" name="pegi-rate" value="{{pegi_r}}" id="{{pegi_r}}">
-                                <label class="" for="{{pegi_r}}">{{pegi_r}}</label>
-                                </br>
-                            {% endfor %}
-                        </div>
-                    </div>
+                </div>
+            </div>
+            
+            <hr>
+
+            <div class="row">
+                <div class="form-group col-lg-12">
+                    <legend class="post-legend">
+                        <i class="fas fa-photo-video"></i>&nbsp;Gallery section
+                    </legend>
+                    <p>Select 5 images that will be shown on the gallery.</p>
                 </div>
                 
-                
-                <hr>
-                <div class="row">
-                    <div class="form-group  col-lg-12">
-                    <legend class="post-legend">Load 5 pictures for the post</legend>
-                    <p>Select five pictres for the review's gallery</p>
-                        <div class="input-group mb-3 col-lg-12">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="inputGroupFileAddon01">Picture 1 </span>
-                            </div>
-                            <div class="custom-file">
-                                <input type="file" class="custom-file-input" name="gallery_1"  id="gallery-1" aria-describedby="gallery-1">
-                                <label class="custom-file-label" for="gallery-1">Choose file</label>
-                            </div>
-                        </div>
-                        <div class="input-group mb-3 col-lg-12">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="inputGroupFileAddon01">Picture 2 </span>
-                            </div>
-                            <div class="custom-file">
-                                <input type="file" class="custom-file-input" name="gallery_2"  id="gallery-2" aria-describedby="gallery-2">
-                                <label class="custom-file-label" for="gallery-2">Choose file</label>
-                            </div>
-                        </div>
-                        <div class="input-group mb-3 col-lg-12">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="inputGroupFileAddon01">Picture 3 </span>
-                            </div>
-                            <div class="custom-file">
-                                <input type="file" class="custom-file-input" name="gallery_3"  id="gallery-3" aria-describedby="gallery-3">
-                                <label class="custom-file-label" for="gallery-3">Choose file</label>
-                            </div>
-                        </div>
-                        <div class="input-group mb-3 col-lg-12">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="inputGroupFileAddon01">Picture 4 </span>
-                            </div>
-                            <div class="custom-file">
-                                <input type="file" class="custom-file-input" name="gallery_4"  id="gallery-4" aria-describedby="gallery-4">
-                                <label class="custom-file-label" for="gallery-4">Choose file</label>
-                            </div>
-                        </div>
-                        <div class="input-group mb-3 col-lg-12">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="inputGroupFileAddon01">Picture 5 </span>
-                            </div>
-                            <div class="custom-file">
-                                <input type="file" class="custom-file-input" name="gallery_5"  id="gallery-5" aria-describedby="gallery-5">
-                                <label class="custom-file-label" for="gallery-5">Choose file</label>
-                            </div>
-                        </div>
+                <div class="input-group mb-3 col-lg-12">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroupFileAddon01"><i class="fas fa-file-image"></i></span>
+                    </div>
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" name="gallery_1"  id="gallery-1" aria-describedby="gallery-1">
+                        <label class="custom-file-label" for="gallery-1">Image 1</label>
                     </div>
                 </div>
-                <hr>
-                <div class="row">
-                    <div class="col-12 form-group">
-                        <legend>Review Section</legend>
-                        <p>
-                            Html friendly: Give a go to your Html skills to add your owen spice to your post.
-                        </p>
-                        <div class="row">
-                            <div class="col-lg-6 mb-3">
-                                <label for="pros" class="post-pros input-group-text">Pros</label>
-                                <textarea name="post-pros" class="form-control" id="pros" class="pros"></textarea>                    
-                            </div>
-                            <div class="col-lg-6 mb-3">
-                                <label for="cons" class="post-cons input-group-text">Cons</label>
-                                <textarea name="post-cons" class="form-control" id="cons" class="cons"></textarea>                    
-                            </div>
-                            <div class="col-12 mb-3">
-                                <label for="post-review" class="post-review input-group-text">Review</label>
-                                <textarea name="post-review" class="form-control" id="post-review" class="post-review"></textarea>
-                            </div>
-                        </div>
-                        
-                        
+
+                <div class="input-group mb-3 col-lg-12">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroupFileAddon01"><i class="fas fa-file-image"></i></span>
                     </div>
-    
-                    <div class="col-12 form-group">
-                        <input type="submit" value="Submit" class="form-control submit btn btn-success">
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" name="gallery_2"  id="gallery-2" aria-describedby="gallery-2">
+                        <label class="custom-file-label" for="gallery-2">Image 2</label>
                     </div>
                 </div>
+
+                <div class="input-group mb-3 col-lg-12">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroupFileAddon01"><i class="fas fa-file-image"></i></span>
+                    </div>
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" name="gallery_3"  id="gallery-3" aria-describedby="gallery-3">
+                        <label class="custom-file-label" for="gallery-3">Image 3</label>
+                    </div>
+                </div>
+
+                <div class="input-group mb-3 col-lg-12">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroupFileAddon01"><i class="fas fa-file-image"></i></span>
+                    </div>
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" name="gallery_4"  id="gallery-4" aria-describedby="gallery-4">
+                        <label class="custom-file-label" for="gallery-4">Image 4</label>
+                    </div>
+                </div>
+
+                <div class="input-group mb-3 col-lg-12">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroupFileAddon01"><i class="fas fa-file-image"></i></span>
+                    </div>
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" name="gallery_5"  id="gallery-5" aria-describedby="gallery-5">
+                        <label class="custom-file-label" for="gallery-5">Image 5</label>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-12 form-group">
+                    <legend>Review Section</legend>
+                    <p>
+                        Html friendly: Give a go to your Html skills to add your owen spice to your post.
+                    </p>
+                </div>
+                <div class="col-lg-6 mb-3">
+                    <label for="pros" class="post-pros input-group-text">
+                        <i class="fas fa-thumbs-up"></i>&nbsp;Pros
+                    </label>
+                    <textarea name="post-pros" class="form-control" id="pros" class="pros"></textarea>                    
+                </div>
+                <div class="col-lg-6 mb-3">
+                    <label for="cons" class="post-cons input-group-text">
+                        <i class="fas fa-thumbs-down"></i>&nbsp;Cons
+                    </label>
+                    <textarea name="post-cons" class="form-control" id="cons" class="cons"></textarea>                    
+                </div>
+                <div class="col-12 mb-3">
+                    <label for="post-review" class="post-review input-group-text">
+                        <i class="far fa-file-alt"></i>&nbsp;Review
+                    </label>
+                    <textarea name="post-review" class="form-control" id="post-review" class="post-review"></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 form-group">
+                    <input type="submit" value="Submit" class="form-control submit btn btn-success">
+                </div>
+            </div>
              
         </fieldset>
     </form>
