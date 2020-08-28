@@ -5,7 +5,7 @@
 <div class="container-fluid review-container">
     <div class="game-header">
         {% if 'username' in session %}
-            <div class="edit-post p-3 mb-2 bg-info">
+            <div class="edit-post p-3 mb-2  d-flex justify-content-around bg-info">
                 <a href="{{ url_for('edit_post', post_id=post._id) }}" class="edit-post btn btn-warning text-white">
                     Edit Post
                 </a>
@@ -15,6 +15,12 @@
             </div>
             
         {% endif %}
+
+        <div class="author-post h5 d-flex justify-content-around text-light">
+            <div class="author d-flex"><i class="fas fa-user-edit"></i>&nbsp;<span>{{ post.posted_by }}</span></div>
+            <div class="posted-date d-flex"><i class="far fa-calendar-alt"></i>&nbsp;{{ post.date_posted.strftime('%d/%b/%Y') }}</div>
+        </div> 
+
         <div class="game-title h3 text-center">
             <div class="titles align-middle">
                <span class="title">{{ post.post_title }}</span>
@@ -31,9 +37,9 @@
 
         <div class="game-info">
             <div class="game-details">
-                <div class="game-players">No. players: <span>{{ post.no_players }}</span></div>
-                <div class="game-release ">Release Date: <span>{{ post.release_date.strftime('%d/%b/%Y') }}</span></div>
-                <div class="game-platform">Platforms:<br>
+                <div class="game-players"><i class="fas fa-gamepad"></i>&nbsp;Players: <span>{{ post.no_players }}</span></div>
+                <div class="game-release "><i class="far fa-calendar-plus"></i>&nbsp;Release:  <span>{{ post.release_date.strftime('%d/%b/%Y') }}</span></div>
+                <div class="game-platform"><i class="fas fa-th-large"></i>&nbsp;Platforms:<br>
                     {% for platform in post.game_platform %}
                         <span class="platform">{{ platform }} </span>
                     {% endfor %}
@@ -47,7 +53,13 @@
             <div class="pegi-rate {{post.pegi_rate}}"></div>
 
             <div class="points-container">
-                <div class="progress-circle over50 p{{post.game_score}}" >
+                <div class="progress-circle over50 p{{post.game_score}}">
+                {#% if fifty > post.game_score %}
+                    <div class="progress-circle over50 p{{post.game_score}}">
+                {% else %}
+                    <div class="progress-circle first50-bar p{{post.game_score}}">
+                {% endif %#}
+                {{score}}
                     <span class="score">{{post.game_score}}</span>
                     <div class="left-half-clipper">
                         <div class="first50-bar"></div>
@@ -134,28 +146,19 @@
     <div class="pros-cons-row">
         <div class="pros-container">
             <div class="pros">
-                <h3 class="text-center mb-3  mt-3"><u>THE GOOD</u></h3>
+                <h3 class="text-center mb-3  mt-3"><i class="fas fa-thumbs-up text-success"></i>&nbsp;<u>THE GOOD</u></h3>
                 {{post.pros_content|safe}}
             </div>
         </div>
         <div class="cons-container ">  
             <div class="cons">
-                <h3 class="text-center mb-2 mt-3"><u>THE BAD</u></h3>
+                <h3 class="text-center mb-2 mt-3"><i class="fas fa-thumbs-down text-danger"></i>&nbsp;<u>THE BAD</u></h3>
                 {{post.cons_content|safe}}
             </div>
         </div>
     </div>
 
-     <div class="author-container text-light">
-        <div class="author-post h5">
-            <div class="author">Posted by: <span>{{ post.posted_by }}</span></div>
-            <div class="posted-date ">Posted on: {{ post.date_posted.strftime('%d/%b/%Y') }}</div>
-        </div>
-        <div class=" social-networks">
-            <i class="fab fa-facebook-f fa-2x"></i>
-            <i class="fab fa-twitter fa-2x"></i>
-        </div>
-    </div>    
+        
 
 </div>      
 

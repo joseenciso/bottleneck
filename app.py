@@ -11,7 +11,7 @@ from flask_pymongo import PyMongo
 # from flask_paginate import Pagination, get_page_args
 # from flask_mongoengine import MongoEngine
 import click
-from mongonator import MongoClientWithPagination, ASCENDING
+#from mongonator import MongoClientWithPagination, ASCENDING
 
 
 username = os.getenv('C9_USER')
@@ -109,10 +109,15 @@ def upload(filename):
 def game_review(review_id):
     post = mongo.db.posts.find_one({'_id': ObjectId(review_id)})
     # release_date = post.release_date.strftime('%d/%b/%Y')
-#     # covers=post_cover
-#     # review.
-#     # return render_template("reviews.html")
-#     # post_cover=mongo.send_file(cover)
+    # covers=post_cover
+    # review.
+    # return render_template("reviews.html")
+    # post_cover=mongo.send_file(cover)
+    #if post.game_score >= 50:
+    #    score = '<div class="progress-circle over50 p{{post.game_score}}">'
+    #else:
+    #    score = '<div class="progress-circle first50-bar p{{post.game_score}}">'
+    #fifty = 50
     return render_template('reviews.html', post=post)
 
 

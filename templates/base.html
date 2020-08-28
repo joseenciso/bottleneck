@@ -17,7 +17,7 @@
 <body>
     <nav class="navbar navbar-expand-sm navbar-dark ">
         <div class="container">
-            <a class="navbar-brand " href="{{ url_for('index')}}">Bottleneck</a>
+            <a class="navbar-brand " href="{{ url_for('index')}}"><i class="fas fa-wine-bottle"></i>Bottleneck</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -27,20 +27,20 @@
                     {% if session["username"] %}
                         
                         <li class="nav-item {% if request.path == '/game_review' %}active{% endif %}">
-                            <a class="nav-link" href="{{ url_for('post_review') }}">New Post</a>
+                            <a class="nav-link" href="{{ url_for('post_review') }}"><i class="fas fa-plus text-white"></i>&nbsp;New Post</a>
                         </li>
                         <li class="nav-item {% if request.path == '/user' %}active{% endif %}">
-                            <a class="nav-link" href="{{ url_for('user') }}">{{session['username'].capitalize()}}</a>
+                            <a class="nav-link" href="{{ url_for('user') }}"><i class="fas fa-user-circle text-white"></i>&nbsp;{{session['username'].capitalize()}}</a>
                         </li> 
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
+                            <a class="nav-link" href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt text-white"></i>&nbsp;Logout</a>
                         </li>
                     {% else %}
                         <li class="nav-item {% if request.path == '/login' %}active{% endif %}">
-                            <a class="nav-link" href="{{ url_for('login') }}">Login</a>
+                            <a class="nav-link" href="{{ url_for('login') }}"><i class="fas fa-sign-in-alt text-white"></i>&nbsp;Login</a>
                         </li>
                         <li class="nav-item {% if request.path == '/register' %}active{% endif %}">
-                            <a class="nav-link" href="{{ url_for('register') }}">Signup</a>
+                            <a class="nav-link" href="{{ url_for('register') }}"><i class="fas fa-pen-square text-white"></i>&nbsp;Signup</a>
                         </li>
                     {% endif %}
                     
