@@ -67,7 +67,7 @@ encrypt = bcrypt.gensalt()
 
 
 @app.route('/')
-@app.route('/index')
+@app.route('/index?page=<page>')
 def home():
     return redirect(url_for('index'))
 
