@@ -1,5 +1,8 @@
 {% extends 'base.html' %}
 {% block title %}Pagina principal{% endblock %}
+{#% from "macros.html" import pagination %#}
+
+
 {% block content %}
 <div class="container-fluid">
     <!-- <div class="row-cards-container"> -->
@@ -35,5 +38,27 @@
             </div>
         </div>
     {% endfor %}
+    
+
+    <div class="row">
+        <div class="col-12">
+            <div class="paginatior d-flex justify-content-around">
+                <a href="{{ url_for('index' ) }}?page={{ prev_url }}" class="prev btn text-white">
+                    <i class="fas fa-arrow-circle-left"></i>
+                    &nbsp;Prev
+                </a>
+                {% for page in range(pages) %}
+                <a href="{{ url_for('index' ) }}?page={{page+1}}" class="btn text-white">
+                    {{page + 1}}
+                </a>
+                {% endfor %}
+                <a href="{{ url_for('index') }}?page={{ next_url }}" class="next btn text-white">
+                    Next&nbsp;
+                    <i class="fas fa-arrow-circle-right"></i>
+                </a>
+            </div>
+        </div>
+    </div>    
+    
 </div>
 {% endblock %}

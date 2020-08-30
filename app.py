@@ -1,5 +1,7 @@
 import os
 import bcrypt
+import click
+import math
 from flask import (
     Flask, render_template, redirect, url_for,
     request, session, flash, jsonify
@@ -8,9 +10,8 @@ from datetime import datetime, timedelta
 from bson.objectid import ObjectId
 from datetime import datetime 
 from flask_pymongo import PyMongo
-# from flask_paginate import Pagination, get_page_args
+# from flask_paginate import Pagination, get_page_parameter
 # from flask_mongoengine import MongoEngine
-import click
 #from mongonator import MongoClientWithPagination, ASCENDING
 
 
@@ -64,40 +65,79 @@ def mongo_connect(url):
 encrypt = bcrypt.gensalt()
 
 
+
 @app.route('/')
 @app.route('/index')
+def home():
+    return redirect(url_for('index'))
+
+
 @app.route('/home')
 def index():
-    # post  = mongo.db.posts
-    # offset = int(request.args['offset'])
-    # limit = int(request.args['limit'])
-    # 
-    # offset = 2
-    #limit = 2
-    # 
-    # initial_post = post.find().sort('_id', -1)
-    # last_post = initial_post[offset]['_id']
-    # pages = post.find({'_id': {'$lte': last_post}}).sort('_id', -1).limit(limit)
-    # output = []
-    # 
-    # for i in pages:
-    #     output.append(i['_id'])
-    #     print(output)
-    # 
-    # next_url = '?limit=' + str(limit) + '&offset=' + str(offset + limit)
-    # prev_url = '?limit=' + str(limit) + '&offset=' + str(offset - limit)
-    # 
-    # return jsonify({'result': output, 'prev_url': prev_url, 'next_url': next_url})
-    #return jsonify({'result': output, 'prev_url': '', 'next_url': ''})
-    # page=n
-    # posts = mongo.db.posts.find().sort('date_posted', -1).limit(5)
-    # posts = mongo.db.posts.find().sort('_id', pymongo.ASCENDING)
-    # pages = mongo.query.paginate(per_page=5)
-    # next = mongo.db.posts.find().sort('date_posted', -1).skip(5).limit(5)
-    posts = mongo.db.posts.find().sort('date_posted', -1)
-    return render_template("index.html", posts=posts)
-    #return render_template("index.html", post=output, next_url=next_url, prev_url=prev_url)
+    post = mongo.db.posts
     
+    page = int(request.args['page'])
+    
+    offset = 0
+    limit = 4
+
+    number = post.count()
+    pages = math.ceil(number/limit)
+
+    if page <= 0:
+        page = 1
+        offset = 0
+    elif page == 2:
+        offset = 4
+    elif page >= pages:
+        page = pages
+        offset = 4*page
+    
+    prev_url = page-1
+    next_url = page+1
+    
+    all_posts = post.find().sort('_id', -1)
+    offset_post = post.find().sort('_id', -1).skip(offset).limit(limit)
+    print(offset)
+    
+    # posts = post.find().sort('_id', -1).skip(offset).limit(limit)
+    # print('Post', posts)
+    
+    # last_post = post.find().sort('_id')
+    # ast_post = first_post[offset]['_id']
+    # print('last post', last_post)
+    
+    # posts = post.find({'_id': {'$lte': last_post}}).sort('_id', -1).limit(limit)
+    # posts = post.find().sort('_id', -1).limit(limit)
+    # print('Post', posts)
+    
+    all_titles = []
+    titles = []
+    
+    posts = post.find().sort('_id', -1)
+    print(posts)
+    # return render_template('index.html', posts=posts)
+    # return jsonify({'result': output, 'prev_url': '', 'next_url': ''})
+    for i in all_posts:
+        all_titles.append(i['post_title'])
+    
+
+    for i in posts:
+        titles.append(i['post_title'])
+        # count.append(i)
+
+    print("Titles", titles, end="\n\n")
+    print("Offset", offset)
+    #return jsonify({'All Posts': all_titles,
+    #            'Limit_Skip': titles,
+    #            'Pages': pages,
+    #            'Page': page,
+    #            'Prev_Url': prev_url,
+    #            'Next_Url': next_url,
+    #            'Limit': limit,
+    #           'Offset': offset })
+    #return render_template('index.html', posts=results, pages=pages)
+    return render_template('index.html', posts=offset_post, page=page, pages=pages, prev_url=prev_url, next_url=next_url)
 
 
 @app.route("/uploads/<filename>", methods=['GET'])
@@ -122,7 +162,6 @@ def game_review(review_id):
 
 
 @app.route('/post', methods=['GET', 'POST'])
-# @login_required
 def post_review():
     # import pdb;pdb.set_trace()
     if request.method == 'POST':
@@ -311,5 +350,5 @@ def contact():
 
 if __name__ == "__main__":
     app.run(host=os.getenv('IP', "0.0.0.0"),
-            port=int(os.getenv('PORT', "8080")),
+            port=int(os.getenv('PORT', "5000")),
             debug=True)

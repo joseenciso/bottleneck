@@ -19,7 +19,7 @@
                             <i class="fas fa-gamepad"></i>&nbsp;Title
                         </label>
                     </div>
-                    <input type="text" class="form-control" name="post-title" id="post-title">
+                    <input type="text" class="form-control" name="post-title" id="post-title" required>
                 </div>
 
                 <div class="input-group mb-3 col-12">
@@ -40,7 +40,7 @@
                         </label>
                     </div>
                     <div class="custom-file">
-                        <input type="date" class="form-control" name="release-date">
+                        <input type="date" class="form-control" name="release-date" required>
                     </div>
                 </div>
                 
@@ -51,7 +51,7 @@
                         </label>
                     </div>
                     <div class="custom-file">
-                        <input type="file" class="custom-file-input" name="post-cover"  id="post-cover" aria-describedby="inputGroupFileAddon01">
+                        <input type="file" class="custom-file-input" name="post-cover"  id="post-cover" aria-describedby="inputGroupFileAddon01" required>
                         <label class="custom-file-label" for="post-cover">Cover Image</label>
                     </div>
                 </div>
@@ -63,7 +63,7 @@
                 <div class="input-group mb-3 col-md-6 col-lg-6">
                     <label for="no_players" class="input-group-text"style="margin: 0;">
                         <i class="fas fa-gamepad"></i>&nbsp;Players</label>
-                    <input type="number" class="form-control" name="no_players" id="no-players" min="1" max="16">
+                    <input type="number" class="form-control" name="no_players" id="no-players" min="1" max="16" required>
                 </div>
                 <div class="input-group mb-3 col-md-6 col-lg-6">
                     <div class="input-group-prepend">
@@ -71,7 +71,7 @@
                             <i class="fas fa-star-half-alt"></i>&nbsp;Score
                         </label>
                     </div>
-                    <input type="number" class="form-control" name="game_score" id="game-score" min="0" max="100">
+                    <input type="number" class="form-control" name="game_score" id="game-score" min="0" max="100" required>
                 </div>
             </div>
             
@@ -83,7 +83,7 @@
                         <i class="fas fa-th-large"></i>&nbsp;Platforms</legend>
                     <div class="platforms-container form-group">
                         {% for platform in platforms %}
-                            <input type="checkbox" class="form-check-input" name="platform" value="{{platform}}" id="{{platform}}">
+                            <input type="checkbox" class="form-check-input" name="platform" value="{{platform}}" id="{{platform}}" required>
                             <label for="{{platform}}">{{platform}}</label>
                             </br>
                         {% endfor %}
@@ -96,7 +96,7 @@
                     </legend>
                     <div class="description-container form-group">
                         {% for pegi in pegi_desc %}
-                            <input type="checkbox" class="form-check-input" name="pegi-desc" value="{{pegi}}" id="{{pegi}}">
+                            <input type="checkbox" class="form-check-input" name="pegi-desc" value="{{pegi}}" id="{{pegi}}" required>
                             <label class="" for="{{pegi}}">{{pegi_desc[pegi]}}</label>
                             </br>
                         {% endfor %}
@@ -107,7 +107,7 @@
                     <legend><i class="fas fa-percent"></i>&nbsp;Pegi Rate</legend>
                     <div class="description-container form-group">
                         {% for pegi_r in pegi_rate %}
-                            <input type="radio" class="form-check-input" name="pegi-rate" value="{{pegi_r}}" id="{{pegi_r}}">
+                            <input type="radio" class="form-check-input" name="pegi-rate" value="{{pegi_r}}" id="{{pegi_r}}" required>
                             <label class="" for="{{pegi_r}}">{{pegi_r}}</label>
                             </br>
                         {% endfor %}
@@ -130,7 +130,7 @@
                         <span class="input-group-text" id="inputGroupFileAddon01"><i class="fas fa-file-image"></i></span>
                     </div>
                     <div class="custom-file">
-                        <input type="file" class="custom-file-input" name="gallery_1"  id="gallery-1" aria-describedby="gallery-1">
+                        <input type="file" class="custom-file-input" name="gallery_1"  id="gallery-1" aria-describedby="gallery-1" required>
                         <label class="custom-file-label" for="gallery-1">Image 1</label>
                     </div>
                 </div>
@@ -140,7 +140,7 @@
                         <span class="input-group-text" id="inputGroupFileAddon01"><i class="fas fa-file-image"></i></span>
                     </div>
                     <div class="custom-file">
-                        <input type="file" class="custom-file-input" name="gallery_2"  id="gallery-2" aria-describedby="gallery-2">
+                        <input type="file" class="custom-file-input" name="gallery_2"  id="gallery-2" aria-describedby="gallery-2" required>
                         <label class="custom-file-label" for="gallery-2">Image 2</label>
                     </div>
                 </div>
@@ -150,7 +150,7 @@
                         <span class="input-group-text" id="inputGroupFileAddon01"><i class="fas fa-file-image"></i></span>
                     </div>
                     <div class="custom-file">
-                        <input type="file" class="custom-file-input" name="gallery_3"  id="gallery-3" aria-describedby="gallery-3">
+                        <input type="file" class="custom-file-input" name="gallery_3"  id="gallery-3" aria-describedby="gallery-3" required>
                         <label class="custom-file-label" for="gallery-3">Image 3</label>
                     </div>
                 </div>
@@ -160,7 +160,7 @@
                         <span class="input-group-text" id="inputGroupFileAddon01"><i class="fas fa-file-image"></i></span>
                     </div>
                     <div class="custom-file">
-                        <input type="file" class="custom-file-input" name="gallery_4"  id="gallery-4" aria-describedby="gallery-4">
+                        <input type="file" class="custom-file-input" name="gallery_4"  id="gallery-4" aria-describedby="gallery-4" required>
                         <label class="custom-file-label" for="gallery-4">Image 4</label>
                     </div>
                 </div>
@@ -170,7 +170,7 @@
                         <span class="input-group-text" id="inputGroupFileAddon01"><i class="fas fa-file-image"></i></span>
                     </div>
                     <div class="custom-file">
-                        <input type="file" class="custom-file-input" name="gallery_5"  id="gallery-5" aria-describedby="gallery-5">
+                        <input type="file" class="custom-file-input" name="gallery_5"  id="gallery-5" aria-describedby="gallery-5" required>
                         <label class="custom-file-label" for="gallery-5">Image 5</label>
                     </div>
                 </div>
@@ -189,19 +189,19 @@
                     <label for="pros" class="post-pros input-group-text">
                         <i class="fas fa-thumbs-up"></i>&nbsp;Pros
                     </label>
-                    <textarea name="post-pros" class="form-control" id="pros" class="pros"></textarea>                    
+                    <textarea name="post-pros" class="form-control" id="pros" class="pros" required></textarea>                    
                 </div>
                 <div class="col-lg-6 mb-3">
                     <label for="cons" class="post-cons input-group-text">
                         <i class="fas fa-thumbs-down"></i>&nbsp;Cons
                     </label>
-                    <textarea name="post-cons" class="form-control" id="cons" class="cons"></textarea>                    
+                    <textarea name="post-cons" class="form-control" id="cons" class="cons" required></textarea>                    
                 </div>
                 <div class="col-12 mb-3">
                     <label for="post-review" class="post-review input-group-text">
                         <i class="far fa-file-alt"></i>&nbsp;Review
                     </label>
-                    <textarea name="post-review" class="form-control" id="post-review" class="post-review"></textarea>
+                    <textarea name="post-review" class="form-control" id="post-review" class="post-review" required></textarea>
                 </div>
             </div>
             <div class="row">
