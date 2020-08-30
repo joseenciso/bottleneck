@@ -66,10 +66,10 @@ encrypt = bcrypt.gensalt()
 
 
 
-@app.route('/')
+@app.route('/?page=<page>')
 @app.route('/index?page=<page>')
-def home():
-    return redirect(url_for('index'))
+def home(page):
+    return redirect(url_for('index?page=<page>'))
 
 
 @app.route('/home')
@@ -197,6 +197,7 @@ def post_review():
                             "game_score": request.form["game_score"],
                             "game_platform": request.form.getlist("platform"),
                             "pegi_desc": request.form.getlist("pegi-desc"),
+                            "pegi_rate": request.form['pegi-rate'],
                             "gallery_1": gallery_1.filename,
                             "gallery_2": gallery_2.filename,
                             "gallery_3": gallery_3.filename,
@@ -242,28 +243,31 @@ def edit_post(post_id):
 
 @app.route('/update_post/<post_id>', methods=['POST'])
 def update_post(post_id):
-    #import pdb;pdb.set_trace()
+    
     gallery = {}
     for key, value in request.files.items():
         if value.filename != "":
             gallery.update({key: value.filename})
             mongo.save_file(value.filename, value)
     release_date = datetime.strptime(request.form["release-date"], '%Y-%m-%d')
-    gallery.updateOne( {"$set": {
+    date_posted = datetime.strptime(request.form["date-posted"], '%Y-%m-%d')
+    #import pdb;pdb.set_trace()
+    # 
+    gallery.update( {
                 "post_title": request.form["post-title"],
                 "post_subtitle": request.form["post-subtitle"],
                 "release_date": release_date,
+                "date_posted": date_posted,
                 "date_edited": datetime.now(),
                 "no_players": request.form["no_players"],
                 "game_score": request.form["game_score"],
                 "game_platform": request.form.getlist("platforms"),
                 "pegi_desc": request.form.getlist("pegi-desc"),
-                "pegi_rate": request.form["pegi-rate"],
-                "pegi_rate": request.form["pegi-rate"],
+                # "pegi_rate": request.form["pegi_rate"],
                 "pros_content": request.form["post-pros"],
                 "cons_content": request.form["post-cons"],
                 "post_review": request.form["post-review"],
-                }})
+                })
     mongo.db.posts.update({"_id": ObjectId(post_id)}, gallery)
     return redirect(url_for('index'))
 
@@ -272,7 +276,7 @@ def update_post(post_id):
 def delete_post(post_id):
     post = mongo.db.posts.find_one({"_id": post_id})
     print(post)
-    return redirect(url_for('index'))
+    return redirect(url_for('home'))
 
 
 @app.route('/login', methods=["GET", "POST"])
