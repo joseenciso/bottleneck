@@ -165,7 +165,7 @@ def post_review():
                             "post_review": request.form["post-review"],
                         }
                     )
-        return redirect(url_for("index", pasge=1))
+        return redirect(url_for("index", page=1))
     return render_template("post.html", platforms=platforms, pegi_desc=pegi_description, pegi_rate=pegi_rate)
 
 
