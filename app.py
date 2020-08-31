@@ -84,9 +84,9 @@ def index():
     number = post.count()
     pages = math.ceil(number/limit)
 
-    if page <= 0:
-        page = 1
+    if page <= 1:
         offset = 0
+        page=1
     elif page == 2:
         offset = 4
     elif page >= pages:
@@ -98,45 +98,17 @@ def index():
     
     all_posts = post.find().sort('_id', -1)
     offset_post = post.find().sort('_id', -1).skip(offset).limit(limit)
-    print(offset)
-    
-    # posts = post.find().sort('_id', -1).skip(offset).limit(limit)
-    # print('Post', posts)
-    
-    # last_post = post.find().sort('_id')
-    # ast_post = first_post[offset]['_id']
-    # print('last post', last_post)
-    
-    # posts = post.find({'_id': {'$lte': last_post}}).sort('_id', -1).limit(limit)
-    # posts = post.find().sort('_id', -1).limit(limit)
-    # print('Post', posts)
     
     all_titles = []
     titles = []
     
     posts = post.find().sort('_id', -1)
-    print(posts)
-    # return render_template('index.html', posts=posts)
-    # return jsonify({'result': output, 'prev_url': '', 'next_url': ''})
     for i in all_posts:
         all_titles.append(i['post_title'])
     
 
     for i in posts:
         titles.append(i['post_title'])
-        # count.append(i)
-
-    print("Titles", titles, end="\n\n")
-    print("Offset", offset)
-    #return jsonify({'All Posts': all_titles,
-    #            'Limit_Skip': titles,
-    #            'Pages': pages,
-    #            'Page': page,
-    #            'Prev_Url': prev_url,
-    #            'Next_Url': next_url,
-    #            'Limit': limit,
-    #           'Offset': offset })
-    #return render_template('index.html', posts=results, pages=pages)
     return render_template('index.html', posts=offset_post, page=page, pages=pages, prev_url=prev_url, next_url=next_url)
 
 
@@ -148,16 +120,6 @@ def upload(filename):
 @app.route('/review/<review_id>')
 def game_review(review_id):
     post = mongo.db.posts.find_one({'_id': ObjectId(review_id)})
-    # release_date = post.release_date.strftime('%d/%b/%Y')
-    # covers=post_cover
-    # review.
-    # return render_template("reviews.html")
-    # post_cover=mongo.send_file(cover)
-    #if post.game_score >= 50:
-    #    score = '<div class="progress-circle over50 p{{post.game_score}}">'
-    #else:
-    #    score = '<div class="progress-circle first50-bar p{{post.game_score}}">'
-    #fifty = 50
     return render_template('reviews.html', post=post)
 
 
@@ -166,9 +128,6 @@ def post_review():
     # import pdb;pdb.set_trace()
     if request.method == 'POST':
         if request.files:
-
-            # post_cover = request.files["post-cover"]
-            #######################################
             if "post-cover" in request.files:
                 post_cover = request.files["post-cover"]
                 gallery_1 = request.files["gallery_1"]
@@ -177,8 +136,6 @@ def post_review():
                 gallery_4 = request.files["gallery_4"]
                 gallery_5 = request.files["gallery_5"]
                 release_date = datetime.strptime(request.form["release-date"], '%Y-%m-%d')
-                # posting = mongo.db.posts
-                # users = mongo.db.user
                 mongo.save_file(post_cover.filename, post_cover)
                 mongo.save_file(gallery_1.filename, gallery_1)
                 mongo.save_file(gallery_2.filename, gallery_2)
@@ -208,29 +165,15 @@ def post_review():
                             "post_review": request.form["post-review"],
                         }
                     )
-                # post_array = mongo.db.users.update({'username': session["session"]},
-                #    {"$push": {"post_title": request.form["post-title"],
-                #                "post_subtitle": request.form["post-subtitle"],} })
-
-            ###########################################
-
-        return redirect(url_for("index"))
+        return redirect(url_for("index", pasge=1))
     return render_template("post.html", platforms=platforms, pegi_desc=pegi_description, pegi_rate=pegi_rate)
 
 
 @app.route('/edit_post/<post_id>', methods=['GET', 'POST'])
 def edit_post(post_id):
     if "username" in session:
-        # post = mongo.db.posts.find_one(
-        #         {"post_title": post_id}
-        #     )
-        # , edit_post=mongo.db.posts.find({"post_title": post_title})
         post = mongo.db.posts.find_one(
                         {"_id": ObjectId(post_id)})
-        # release_date = post.release_date.datetime.strptime( '%Y-%m-%d')
-        # return render_template("edit_post.html",
-        #                         post=post,
-        #                         release_date=release_date)
         return render_template("edit_post.html",
                                 post=post,
                                 platforms=platforms,
@@ -255,11 +198,6 @@ def update_post(post_id):
 
     
     date_posted = datetime.strptime(request.form["date_posted"], "%Y-%m-%d")
-    # date_posted = request.form["date_posted"]
-    # print(date_posted)
-    # print(request.form["date_posted"])
-    # import pdb;pdb.set_trace()
-    # 
     gallery.update({
                 "post_title": request.form["post-title"],
                 "post_subtitle": request.form["post-subtitle"],
@@ -285,7 +223,7 @@ def update_post(post_id):
 def delete_post(post_id):
     post = mongo.db.posts.find_one({"_id": post_id})
     print(post)
-    return redirect(url_for('home'))
+    return redirect(url_for('home', page=1))
 
 
 @app.route('/login', methods=["GET", "POST"])
@@ -294,13 +232,11 @@ def login():
     if request.method == 'POST':
         user = mongo.db.users.find_one(
             {"username": request.form["username"].lower()}
-            # {'email': request.form['email']}
         )
         if user:
             if bcrypt.hashpw(request.form["password"].encode("utf-8"),
                              user["password"]) == user["password"]:
                 session["username"] = request.form["username"]
-                # username = session.get["username"]
                 return redirect(url_for("index", page=1))
     return render_template("login.html")
 
@@ -313,14 +249,11 @@ def logout():
 
 
 @app.route('/user')
-# @login_required
 def user():
     # import pdb;pdb.set_trace()
-    # user = g.get("user")
     if "username" in session:
         username = session["username"]
         user = mongo.db.users.find_one({"username": username})
-        # session.pop('user_id', None)
         posts = mongo.db.posts.find()
         return render_template('user.html', username=username, user=user, posts=posts)
     else:
@@ -333,15 +266,12 @@ def register():
         users = mongo.db.users
         find_user = users.find_one(
             {'username': request.form['username'].lower()},
-            # {'email': request.form['email']}
         )
         if find_user is None:
-            # Encoding the password to UTF-8 in order to hash it
             hash_password = bcrypt.hashpw(
                 request.form['password'].encode('utf-8'),
                 bcrypt.gensalt()
             )
-            # Inserting a new user
             users.insert_one(
                 {
                     'username': request.form['username'].lower(),

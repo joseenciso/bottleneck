@@ -43,19 +43,31 @@
     <div class="row">
         <div class="col-12">
             <div class="paginatior d-flex justify-content-around">
-                <a href="{{ url_for('index' ) }}?page={{ prev_url }}" class="prev btn text-white">
+                {{ prev_url }}
+                {% if prev_url == 0 %}
+                    <a href="{{ url_for('index' ) }}?page={{ prev_url }}" class="prev btn text-white">
+                {% else %}
+                    <a href="{{ url_for('index' ) }}?page={{ prev_url }}" class="prev btn text-white" sityle="display: none;">
+                {% endif %}
                     <i class="fas fa-arrow-circle-left"></i>
                     &nbsp;Prev
                 </a>
+
                 {% for page in range(pages) %}
                 <a href="{{ url_for('index' ) }}?page={{page+1}}" class="btn text-white">
                     {{page + 1}}
                 </a>
                 {% endfor %}
+
+                {% if next_url == pages %}
+                    <a href="{{ url_for('index') }}?page={{ next_url }}" class="next btn text-white" disabled>
+                {% else %}
                 <a href="{{ url_for('index') }}?page={{ next_url }}" class="next btn text-white">
+                {% endif %}
                     Next&nbsp;
                     <i class="fas fa-arrow-circle-right"></i>
                 </a>
+                {{ next_url }}
             </div>
         </div>
     </div>    
