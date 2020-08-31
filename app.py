@@ -350,7 +350,7 @@ def register():
                     'posts': []
                 }
             )
-            return redirect(url_for('index'))
+            return redirect(url_for('index', page=1))
         else:
             flash('Username or email already exists')
     return render_template("register.html")
