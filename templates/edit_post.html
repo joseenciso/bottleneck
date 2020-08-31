@@ -13,7 +13,7 @@
                             <i class="fas fa-user-circle"></i>&nbsp;Posted By
                         </label>
                     </div>
-                    <input type="text" class="form-control" name="posted_by" id="post-subtitle" value="{{ post.posted_by }}" disabled>    
+                    <input type="text" class="form-control" name="posted_by" id="post-subtitle" value="{{ post.posted_by }}">    
                 </div>
                 
                 <div class="input-group mb-3 col-sm-12 col-md-6 col-lg-6">                           
@@ -22,7 +22,7 @@
                             <i class="far fa-calendar-plus"></i>&nbsp;Posted
                         </label>
                     </div>
-                    <input type="date" class="form-control" name="date_posted" value="{{ post.date_posted.strftime('%Y-%m-%d') }}" disabled>
+                    <input type="date" class="form-control" name="date_posted" value="{{ post.date_posted.strftime('%Y-%m-%d') }}">
                 </div>
             </div>
 

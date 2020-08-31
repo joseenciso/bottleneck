@@ -66,10 +66,10 @@ encrypt = bcrypt.gensalt()
 
 
 
-@app.route('/?page=<page>')
-@app.route('/index?page=<page>')
-def home(page):
-    return redirect(url_for('index?page=<page>'))
+@app.route('/')
+@app.route('/index')
+def home():
+    return redirect(url_for('index', page=1))
 
 
 @app.route('/home')
@@ -243,23 +243,31 @@ def edit_post(post_id):
 
 @app.route('/update_post/<post_id>', methods=['GET', 'POST'])
 def update_post(post_id):
-    
+    # import pdb;pdb.set_trace()
     gallery = {}
     for key, value in request.files.items():
         if value.filename != "":
             gallery.update({key: value.filename})
             mongo.save_file(value.filename, value)
-    release_date = datetime.strptime(request.form["release_date"], "%Y-%m-%dT%H:%M:%S.000Z")
-    date_posted = datetime.strptime(request.form["date_posted"], "%Y-%m-%dT%H:%M:%S.000Z")
-    #import pdb;pdb.set_trace()
+    # import pdb;pdb.set_trace()
+    release_date = datetime.strptime(request.form["release_date"], "%Y-%m-%d")
+    # print(request.form["release_date"])
+
+    
+    date_posted = datetime.strptime(request.form["date_posted"], "%Y-%m-%d")
+    # date_posted = request.form["date_posted"]
+    # print(date_posted)
+    # print(request.form["date_posted"])
+    # import pdb;pdb.set_trace()
     # 
-    gallery.update({"_id": ObjectId(post_id)},{
+    gallery.update({
                 "post_title": request.form["post-title"],
                 "post_subtitle": request.form["post-subtitle"],
                 "release_date": release_date,
-                "posted_by": request.form["posted_by"],
                 "date_posted": date_posted,
                 "date_edited": datetime.now(),
+                "edited_by": session["username"],
+                "posted_by": request.form["posted_by"],
                 "no_players": request.form["no_players"],
                 "game_score": request.form["game_score"],
                 "game_platform": request.form.getlist("platforms"),
@@ -270,7 +278,7 @@ def update_post(post_id):
                 "post_review": request.form["post-review"],
                 })
     mongo.db.posts.update({"_id": ObjectId(post_id)}, gallery)
-    return redirect(url_for('index'))
+    return redirect(url_for('index', page=1))
 
 
 @app.route('/delete_post/<post_id>')
@@ -293,7 +301,7 @@ def login():
                              user["password"]) == user["password"]:
                 session["username"] = request.form["username"]
                 # username = session.get["username"]
-                return redirect(url_for("index"))
+                return redirect(url_for("index", page=1))
     return render_template("login.html")
 
 
@@ -355,5 +363,5 @@ def contact():
 
 if __name__ == "__main__":
     app.run(host=os.getenv('IP', "0.0.0.0"),
-            port=int(os.getenv('PORT', "5000")),
+            port=int(os.getenv('PORT', "8080")),
             debug=True)
