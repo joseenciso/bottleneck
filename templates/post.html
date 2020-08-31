@@ -83,7 +83,7 @@
                         <i class="fas fa-th-large"></i>&nbsp;Platforms</legend>
                     <div class="platforms-container form-group">
                         {% for platform in platforms %}
-                            <input type="checkbox" class="form-check-input" name="platform" value="{{platform}}" id="{{platform}}" required>
+                            <input type="checkbox" class="form-check-input" name="platform" value="{{platform}}" id="{{platform}}">
                             <label for="{{platform}}">{{platform}}</label>
                             </br>
                         {% endfor %}
@@ -96,7 +96,7 @@
                     </legend>
                     <div class="description-container form-group">
                         {% for pegi in pegi_desc %}
-                            <input type="checkbox" class="form-check-input" name="pegi-desc" value="{{pegi}}" id="{{pegi}}" required>
+                            <input type="checkbox" class="form-check-input" name="pegi-desc" value="{{pegi}}" id="{{pegi}}">
                             <label class="" for="{{pegi}}">{{pegi_desc[pegi]}}</label>
                             </br>
                         {% endfor %}
@@ -107,7 +107,7 @@
                     <legend><i class="fas fa-percent"></i>&nbsp;Pegi Rate</legend>
                     <div class="description-container form-group">
                         {% for pegi_r in pegi_rate %}
-                            <input type="radio" class="form-check-input" name="pegi-rate" value="{{pegi_r}}" id="{{pegi_r}}" required>
+                            <input type="radio" class="form-check-input" name="pegi-rate" value="{{pegi_r}}" id="{{pegi_r}}">
                             <label class="" for="{{pegi_r}}">{{pegi_r}}</label>
                             </br>
                         {% endfor %}
