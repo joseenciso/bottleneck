@@ -241,7 +241,7 @@ def edit_post(post_id):
         return redirect(url_for('login'))
 
 
-@app.route('/update_post/<post_id>', methods=['POST'])
+@app.route('/update_post/<post_id>', methods=['GET', 'POST'])
 def update_post(post_id):
     
     gallery = {}
@@ -249,21 +249,22 @@ def update_post(post_id):
         if value.filename != "":
             gallery.update({key: value.filename})
             mongo.save_file(value.filename, value)
-    release_date = datetime.strptime(request.form["release-date"], '%Y-%m-%d')
-    date_posted = datetime.strptime(request.form["date-posted"], '%Y-%m-%d')
+    release_date = datetime.strptime(request.form["release_date"], "%Y-%m-%dT%H:%M:%S.000Z")
+    date_posted = datetime.strptime(request.form["date_posted"], "%Y-%m-%dT%H:%M:%S.000Z")
     #import pdb;pdb.set_trace()
     # 
-    gallery.update( {
+    gallery.update({"_id": ObjectId(post_id)},{
                 "post_title": request.form["post-title"],
                 "post_subtitle": request.form["post-subtitle"],
                 "release_date": release_date,
+                "posted_by": request.form["posted_by"],
                 "date_posted": date_posted,
                 "date_edited": datetime.now(),
                 "no_players": request.form["no_players"],
                 "game_score": request.form["game_score"],
                 "game_platform": request.form.getlist("platforms"),
-                "pegi_desc": request.form.getlist("pegi-desc"),
-                # "pegi_rate": request.form["pegi_rate"],
+                "pegi_desc": request.form.getlist("pegi_description"),
+                "pegi_rate": request.form.get("pegi_rate"),
                 "pros_content": request.form["post-pros"],
                 "cons_content": request.form["post-cons"],
                 "post_review": request.form["post-review"],

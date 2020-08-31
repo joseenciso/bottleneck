@@ -4,19 +4,40 @@
 <div class="container">
     <form class="form form-edit" method="POST" action="{{url_for('update_post', post_id=post._id)}}" enctype="multipart/form-data">
         <fieldset class="fieldset">
-            <div class="row edit-container">
+            <div class="row ">
                 <h2 class="post-heading"><i class="fas fa-edit"></i>&nbsp;Edit Post</h2>
-                    <legend class="post-legend">
-                        &nbsp;<i class="fas fa-gamepad"></i>&nbsp;Game Section
-                    </legend>
+                <legend><i class="fas fa-id-card"></i>&nbsp;User Section</legend>
+                <div class="col-sm-12 col-lg-6 input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label for="post-title" class="input-group-text">
+                            <i class="fas fa-user-circle"></i>&nbsp;Posted By
+                        </label>
+                    </div>
+                    <input type="text" class="form-control" name="posted_by" id="post-subtitle" value="{{ post.posted_by }}" disabled>    
+                </div>
+                
+                <div class="input-group mb-3 col-sm-12 col-md-6 col-lg-6">                           
+                    <div class="input-group-prepend">
+                        <label for="release-date" class="input-group-text">
+                            <i class="far fa-calendar-plus"></i>&nbsp;Posted
+                        </label>
+                    </div>
+                    <input type="date" class="form-control" name="date_posted" value="{{ post.date_posted.strftime('%Y-%m-%d') }}" disabled>
+                </div>
+            </div>
+
+            <div class="row edit-container">
+                <legend class="post-legend">
+                    &nbsp;<i class="fas fa-gamepad"></i>&nbsp;Game Section
+                </legend>
                 <div class="col-sm-12 input-group mb-3">
                     <div class="input-group-prepend">
                         <label for="post-title" class="input-group-text">
                             <i class="fas fa-gamepad"></i>&nbsp;Title
                         </label>
                     </div>
-                    <input type="text" class="form-control" name="post-title" id="post-title" value="{{ post.post_title }}" required>
-                </div>
+                    <input type="text" class="form-control" name="post-title" id="post-title" value="{{ post.post_title }}">
+                </div> 
 
                 <div class="col-sm-12 input-group mb-3">
                     <div class="input-group-prepend">
@@ -34,38 +55,38 @@
                         </label>
                     </div>
                     <div class="custom-file">
-                        <input type="date" class="form-control" name="release-date" value="{{ post.release_date.strftime('%Y-%m-%d') }}" required>
+                        <input type="date" class="form-control" name="release-date" value="{{ post.release_date.strftime('%Y-%m-%d') }}">
                     </div>
                 </div>
 
-                <div class="input-group mb-3 col-sm-12 col-md-6 col-lg-6">                           
+                <div class="input-group mb-3 col-12">
                     <div class="input-group-prepend">
-                        <label for="release-date" class="input-group-text">
-                            <i class="far fa-calendar-plus"></i>&nbsp;Posted
-                        </label>
-                    </div>
-                    <input type="date" class="form-control" name="date-posted" value="{{ post.date_posted.strftime('%Y-%m-%d') }}" disabled>
-                </div>
-
-                <div class="input-group mb-3 col-lg-12">
-                    <div class="input-group-prepend">
-                        <label class="input-group-text" for="post-cover">
-                            <i class="fas fa-file-image"></i>&nbsp;Cover
-                        </label>
+                        <span class="input-group-text" id="inputGroupFileAddon01"><i class="fas fa-file-image"></i></span>
                     </div>
                     <div class="custom-file">
-                        <input type="file" name="post-cover" id="post-cover" required>
-                        <label class="custom-file-label" style="overflow: hidden;" for="post-cover">
-                            {{ post.post_cover }}
-                        </label>
+                        <label class="" style="overflow: hidden;" for="post_cover">{{ post.post_cover }}</label>
+                        <input type="file" name="post_cover" id="gallery-1" value="{{ post.post_cover }}">
                     </div>
                 </div>
+
+                <!--div class="input-group mb-3 col-lg-12">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" for="post-cover">
+                            <i class="fas fa-file-image"></i>&nbsp;Cover
+                        </span>
+                    </div>
+                    <div class="custom-file">
+                        <label class="" style="overflow: hidden;" for="post-cover">{#{ post.post_cover }#}</label>
+                        <input type="file" name="post-cover" id="post-cover">
+                        
+                    </div>
+                </div-->
 
                 <div class="input-group mb-3 col-md-6 col-lg-6">
                     <label for="no_players" class="input-group-text"style="margin: 0;">
                         <i class="fas fa-gamepad"></i>&nbsp;Playes
                     </label>
-                    <input type="number" class="form-control" name="no_players" id="no-players" min="1" max="16" value="{{ post.no_players }}" required>
+                    <input type="number" class="form-control" name="no_players" id="no-players" min="1" max="16" value="{{ post.no_players }}">
                 </div>
                 
                 <div class="input-group mb-3 col-md-6 col-lg-6">
@@ -74,7 +95,7 @@
                             <i class="fas fa-star-half-alt"></i>&nbsp;Score
                         </label>
                     </div>
-                    <input type="number" class="form-control" name="game_score" id="game-score" min="0" max="100" value="{{ post.game_score }}" required>
+                    <input type="number" class="form-control" name="game_score" id="game-score" min="0" max="100" value="{{ post.game_score }}">
                 </div>
             </div>
             
@@ -139,8 +160,8 @@
                         <span class="input-group-text" id="inputGroupFileAddon01"><i class="fas fa-file-image"></i></span>
                     </div>
                     <div class="custom-file">
-                        <label class="custom-file-label" style="overflow: hidden;" for="gallery-1">{{ post.gallery_1 }}</label>
-                        <input type="file" name="gallery_1" id="gallery-1" value="{{ post.gallery_1 }}" required>
+                        <label class="" style="overflow: hidden;" for="gallery-1">{{ post.gallery_1 }}</label>
+                        <input type="file" name="gallery_1" id="gallery-1" value="{{ post.gallery_1 }}">
                     </div>
                 </div>
         
@@ -149,8 +170,8 @@
                         <span class="input-group-text" id="inputGroupFileAddon01"><i class="fas fa-file-image"></i></span>
                     </div>
                     <div class="custom-file">
-                        <label class="custom-file-label" style="overflow: hidden;" for="gallery-2">{{ post.gallery_2 }}</label>
-                        <input type="file" name="gallery_2" id="gallery-2" value="{{ post.gallery_2 }}" required>
+                        <label class="" style="overflow: hidden;" for="gallery-2">{{ post.gallery_2 }}</label>
+                        <input type="file" name="gallery_2" id="gallery-2" value="{{ post.gallery_2 }}">
                     </div>
                 </div>
         
@@ -159,8 +180,8 @@
                         <span class="input-group-text" id="inputGroupFileAddon01"><i class="fas fa-file-image"></i></span>
                     </div>
                     <div class="custom-file">
-                        <label class="custom-file-label" style="overflow: hidden;" for="gallery-3">{{ post.gallery_3 }}</label>
-                        <input type="file" name="gallery_3" id="gallery-3" value="{{ post.gallery_3 }}" required>
+                        <label class="" style="overflow: hidden;" for="gallery-3">{{ post.gallery_3 }}</label>
+                        <input type="file" name="gallery_3" id="gallery-3" value="{{ post.gallery_3 }}">
                     </div>
                 </div>
         
@@ -169,8 +190,8 @@
                         <span class="input-group-text" id="inputGroupFileAddon01"><i class="fas fa-file-image"></i></span>
                     </div>
                     <div class="custom-file">
-                        <label class="custom-file-label" style="overflow: hidden;" for="gallery-4">{{ post.gallery_4 }}</label>
-                        <input type="file" name="gallery_4" id="gallery-4" value="{{ post.gallery_4 }}" required>
+                        <label class="" style="overflow: hidden;" for="gallery-4">{{ post.gallery_4 }}</label>
+                        <input type="file" name="gallery_4" id="gallery-4" value="{{ post.gallery_4 }}">
                     </div>
                 </div>
         
@@ -179,8 +200,8 @@
                         <span class="input-group-text" id="inputGroupFileAddon01"><i class="fas fa-file-image"></i></span>
                     </div>
                     <div class="custom-file">
-                        <label class="custom-file-label" fstyle="overflow: hidden;" or="gallery-1">{{ post.gallery_5 }}</label>
-                        <input type="file" name="gallery_5" id="gallery-5" value="{{ post.gallery_5 }}" required>
+                        <label class="" fstyle="overflow: hidden;" for="gallery-5">{{ post.gallery_5 }}</label>
+                        <input type="file" name="gallery_5" id="gallery-5" value="{{ post.gallery_5 }}">
                     </div>
                 </div>
             </div>
@@ -199,19 +220,19 @@
                     <label for="pros" class="post-pros input-group-text">
                         <i class="fas fa-thumbs-up"></i>&nbsp;Pros
                     </label>
-                    <textarea name="post-pros" id="pros" class="pros form-control" required>{{ post.pros_content }}</textarea>
+                    <textarea name="post-pros" id="pros" class="pros form-control">{{ post.pros_content }}</textarea>
                 </div>
                 <div class="col-lg-6 mb-3">
                     <label for="cons" class="post-cons input-group-text">
                         <i class="fas fa-thumbs-down"></i>&nbsp;Cons
                     </label>
-                    <textarea name="post-cons" id="cons" class="cons form-control" required>{{ post.cons_content }}</textarea>
+                    <textarea name="post-cons" id="cons" class="cons form-control">{{ post.cons_content }}</textarea>
                 </div> 
                 <div class="col-12 mb-3">
                     <label for="post-review" class="post-review input-group-text">
                         <i class="far fa-file-alt"></i>&nbsp;Review
                     </label>
-                    <textarea name="post-review" id="post-review" class="post-review form-control" required>{{ post.post_review }}</textarea>
+                    <textarea name="post-review" id="post-review" class="post-review form-control">{{ post.post_review }}</textarea>
                 </div>
             </div>
 
