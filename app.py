@@ -125,46 +125,44 @@ def game_review(review_id):
 
 @app.route('/post', methods=['GET', 'POST'])
 def post_review():
-    # import pdb;pdb.set_trace()
     if request.method == 'POST':
+        # import pdb;pdb.set_trace()
         if request.files:
-            if "post-cover" in request.files:
-                post_cover = request.files["post-cover"]
-                gallery_1 = request.files["gallery_1"]
-                gallery_2 = request.files["gallery_2"]
-                gallery_3 = request.files["gallery_3"]
-                gallery_4 = request.files["gallery_4"]
-                gallery_5 = request.files["gallery_5"]
-                release_date = datetime.strptime(request.form["release-date"], '%Y-%m-%d')
-                mongo.save_file(post_cover.filename, post_cover)
-                mongo.save_file(gallery_1.filename, gallery_1)
-                mongo.save_file(gallery_2.filename, gallery_2)
-                mongo.save_file(gallery_3.filename, gallery_3)
-                mongo.save_file(gallery_4.filename, gallery_4)
-                mongo.save_file(gallery_5.filename, gallery_5)
-                mongo.db.posts.insert(
-                        {
-                            "post_title": request.form["post-title"],
-                            "post_subtitle": request.form["post-subtitle"],
-                            "release_date": release_date,
-                            "post_cover": post_cover.filename,
-                            "posted_by": session["username"],
-                            "date_posted": datetime.now(),
-                            "no_players": request.form["no_players"],
-                            "game_score": request.form["game_score"],
-                            "game_platform": request.form.getlist("platform"),
-                            "pegi_desc": request.form.getlist("pegi-desc"),
-                            "pegi_rate": request.form['pegi-rate'],
-                            "gallery_1": gallery_1.filename,
-                            "gallery_2": gallery_2.filename,
-                            "gallery_3": gallery_3.filename,
-                            "gallery_4": gallery_4.filename,
-                            "gallery_5": gallery_5.filename,
-                            "pros_content": request.form["post-pros"],
-                            "cons_content": request.form["post-cons"],
-                            "post_review": request.form["post-review"],
-                        }
-                    )
+            post_cover = request.files["post_cover"]
+            gallery_1 = request.files["gallery_1"]
+            gallery_2 = request.files["gallery_2"]
+            gallery_3 = request.files["gallery_3"]
+            gallery_4 = request.files["gallery_4"]
+            gallery_5 = request.files["gallery_5"]
+            release_date = datetime.strptime(request.form["release-date"], '%Y-%m-%d')
+            mongo.save_file(post_cover.filename, post_cover)
+            mongo.save_file(gallery_1.filename, gallery_1)
+            mongo.save_file(gallery_2.filename, gallery_2)
+            mongo.save_file(gallery_3.filename, gallery_3)
+            mongo.save_file(gallery_4.filename, gallery_4)
+            mongo.save_file(gallery_5.filename, gallery_5)
+            mongo.db.posts.insert({
+                        "post_title": request.form["post-title"],
+                        "post_subtitle": request.form["post-subtitle"],
+                        "release_date": release_date,
+                        "post_cover": post_cover.filename,
+                        "posted_by": session["username"],
+                        "date_posted": datetime.now(),
+                        "no_players": request.form["no_players"],
+                        "game_score": request.form["game_score"],
+                        "game_platform": request.form.getlist("platform"),
+                        "pegi_desc": request.form.getlist("pegi-desc"),
+                        "pegi_rate": request.form['pegi-rate'],
+                        "gallery_1": gallery_1.filename,
+                        "gallery_2": gallery_2.filename,
+                        "gallery_3": gallery_3.filename,
+                        "gallery_4": gallery_4.filename,
+                        "gallery_5": gallery_5.filename,
+                        "pros_content": request.form["post-pros"],
+                        "cons_content": request.form["post-cons"],
+                        "post_review": request.form["post-review"],
+                    })
+                
         return redirect(url_for("index", page=1))
     return render_template("post.html", platforms=platforms, pegi_desc=pegi_description, pegi_rate=pegi_rate)
 
@@ -284,11 +282,6 @@ def register():
         else:
             flash('Username or email already exists')
     return render_template("register.html")
-
-
-@app.route('/contact')
-def contact():
-    return render_template("contactus.html")
 
 
 if __name__ == "__main__":
