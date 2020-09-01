@@ -98,7 +98,7 @@ def index():
     
     all_titles = []
     titles = []
-    import pdb;pdb.set_trace()
+    #import pdb;pdb.set_trace()
     posts = post.find().sort('_id', -1)
     for i in all_posts:
         all_titles.append(i['post_title'])
