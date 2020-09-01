@@ -33,7 +33,7 @@ COLECCTION_NAME = "posts"
 platforms = [
         'Nintendo Switch','Nintendo Wii', 'Nintendo Wii U', 'Nintendo 3DS',
         'XBOX 360', 'XBOX ONE', 'PS2', 'PS3', 'PS4',
-        'Linux', 'Mac', 'Windows'
+        'Linux', 'Mac', 'Windows', 'iOS'
         ]
 
 pegi_description = {
