@@ -10,9 +10,6 @@ from datetime import datetime, timedelta
 from bson.objectid import ObjectId
 from datetime import datetime 
 from flask_pymongo import PyMongo
-# from flask_paginate import Pagination, get_page_parameter
-# from flask_mongoengine import MongoEngine
-#from mongonator import MongoClientWithPagination, ASCENDING
 
 
 username = os.getenv('C9_USER')
@@ -101,7 +98,7 @@ def index():
     
     all_titles = []
     titles = []
-    
+    import pdb;pdb.set_trace()
     posts = post.find().sort('_id', -1)
     for i in all_posts:
         all_titles.append(i['post_title'])
@@ -109,6 +106,7 @@ def index():
 
     for i in posts:
         titles.append(i['post_title'])
+    # import pdb;pdb.set_trace()
     return render_template('index.html', posts=offset_post, page=page, pages=pages, prev_url=prev_url, next_url=next_url)
 
 

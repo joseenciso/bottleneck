@@ -1,18 +1,8 @@
-/*@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&family=Roboto&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&family=Roboto&display=swap');
-*/
-
-/* @import url('https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap'); */
-
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 /************************************
-font-family: 'Noto Sans', sans-serif;
 font-family: 'Roboto', sans-serif;
-
-font-family: 'Noto Sans', sans-serif;
-font-family: 'Roboto', sans-serif;
-
-font-family: 'Bungee Shade', cursive;
+font-family: 'Pacifico', cursive;
 ************************************/
 *{
     margin: 0;
@@ -30,17 +20,11 @@ header{
     z-index: 1;
 }
 
-
 .navbar{
     background-color: rgb(57,57,57);
 }
 
-
-
-
-/*****************************************/
-/** Base **/
-/*****************************************/
+/******* Base ********************************/
 
 .navbar-brand{
     font-size: 2.5rem;
@@ -63,9 +47,12 @@ footer{
     
 }
 
-/*****************************************/
-/** Home **/
-/*****************************************/
+.je{
+    font-family: 'Pacifico', cursive;
+    font-size: 2rem;
+}
+
+/****** Home ********************************/
 .review-container{
     color: white;
 }
@@ -114,11 +101,7 @@ footer{
 }
 
 
-
-/*****************************************/
-/** Reviews **/
-/*****************************************/
-
+/***** Reviews *******************************/
 .title{
     font-size: 3rem;
 }
@@ -126,10 +109,6 @@ footer{
     padding-top: 1.5rem;
 }
 
-/* .author-photo{
-    width: 65px;
-    border-radius: 50%;
-} */
 .author-post{
     display: inline-block;
     margin-right: auto;
@@ -143,12 +122,10 @@ footer{
 }
 
 .social-networks i{
-    /* background-color: white; */
     border-radius: 50%;
     width: 40px;
     height: 40px;
     text-align: center;
-    /* float: left; */
 }
 
 .fa-facebook-f{
@@ -170,7 +147,6 @@ footer{
     margin-right: auto;
 }
 
-
 .game-title,
 .game-info{
     background-color: rgba(174, 167, 167, .8);
@@ -185,17 +161,10 @@ footer{
     height: 100%;
 }
 
-/* .game-title span{
-    margin-top: auto;
-    margin-bottom: auto;
-} */
-
 .game-info{
     position: relative;
     bottom: 10;
 
-    /* margin: 0; */
-    /* padding-top: 10px;  */
     min-height: 140px;
     width: 100%;
 
@@ -203,22 +172,7 @@ footer{
     flex-wrap: wrap;
 }
 
-.points-container,
-.pegi-rate,
-.pegi-description,
 .game-details{
-
-}
-
-
-
-.game-details,
-.points-container{
-    /* display: inline-block; */
-}
-
-.game-details{
-    /* display: inline-block; */
     padding: 1rem;
     height: 100%;
 }
@@ -227,25 +181,10 @@ footer{
     float: right;
 }
 
-
-.pros-container,
-.cons-container{
-    
-}
-
-
-/* .carousel{
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-} */
-
 .social-media{
-    /* margin: 0 auto; */
     padding-left: auto;
     padding-right: auto;
 }
-
-
 
 .score{
     font-size: 3rem;
@@ -347,13 +286,9 @@ footer{
 .pegi-container{
     margin-bottom: 1rem;
     width: 100%;
-    /* margin-bottom: 2rem; */
 }
 
-
-/*****************************************/
-/** Reviews **/
-/*****************************************/
+/******* Reviews ******************************/
 .game-players,
 .game-release,
 .game-platform{
@@ -376,9 +311,7 @@ footer{
     margin-left: auto;
 }
 
-/*****************************************/
-/** Edit Post **/
-/*****************************************/
+/*****Edit Post ***********************/
 .gallery-label{
     font-weight: 600;
 }
@@ -387,10 +320,7 @@ footer{
     font-weight: 100;
 }
 
-
-/*****************************************/
-/** Form **/
-/*****************************************/
+/********* Form *************************/
 .platforms-container,
 .description-container{
     padding-left: 35px;
@@ -414,8 +344,6 @@ footer{
     width: 100%;
 }
 
-
-
 .send-botton{
     margin: 2rem auto;
 }
@@ -424,9 +352,7 @@ footer{
     height: 150px;
 }
 
-/*****************************************/
-/** Forms Post **/
-/*****************************************/
+/********** Forms Post **/***********************/
 .form-post{
     width: 625px;
     
@@ -446,9 +372,7 @@ textarea{
     width: 100%;
 }
 
-/*****************************************
- ** Forms Login **
-*****************************************/
+/********* Forms Login ***********************/
 
 .submit{
     display: block;
@@ -461,22 +385,13 @@ textarea{
     margin: 0 auto;
 }
 
-.submit-login{
-
-}
-
-/*****************************************/
-/** Forms Login **/
-/*****************************************/
+/****** Forms Login ***********************/
 .singup,
 .login{
     text-align: center;
 }
 
-
-/*****************************************
-****** User****
-*****************************************/
+/******* User **************************/
 .user-container{
     margin-top: 100px;
 }
@@ -489,30 +404,9 @@ textarea{
     text-align: center;
 }
 
-
-/*****************************************/
-/** Pagination **/
-/*****************************************/
-
-.pagination-page-info {
-    padding: .6em;
-    padding-left: 0;
-    width: 40em;
-    margin: .5em;
-    margin-left: 0;
-    font-size: 12px;
-}
-.pagination-page-info b {
-    color: black;
-    background: #6aa6ed;
-    padding-left: 2px;
-    padding: .1em .25em;
-    font-size: 150%;
-}
-
 /* ************************************
-/**  Queries  **
-/***************************************
+**  Queries  **
+***************************************
     ? Extra small devices (portrait phones, less than 576px)
     ! @media (max-width: 575.98px) { ... }
 
@@ -527,20 +421,14 @@ textarea{
 
     ? Extra large devices (large desktops, 1200px and up)
     !@media (min-width: 1200px) { ... }
-/***************************************/
+***************************************
+***************************************/
 @media (min-width: 992px){
     .main{
         width: 850px;
         margin-left: auto;
         margin-right: auto;
     }
-
-    /* .cards,
-    .review-container{
-        max-width: 700px;
-    } */
-
-
 
     .submit-login{
         margin-top: 20px;
@@ -626,9 +514,7 @@ textarea{
 
 @media (max-width: 574px) {
 
-/*********************************************/
-/***************** General *******************/
-/*********************************************/
+/*************** General ***************************/
     .container-fluid{
         padding-left: 8px;
         padding-right: 8px;
@@ -641,20 +527,15 @@ textarea{
     .btn{
         width: 100%;
     }
-/*********************************************/
-/***************** Index *********************/
-/*********************************************/
 
-
+/****************** Index *******************************/
 .cards{
     padding: 0;
     min-width: 250px;
     max-width: 450px;
 }
 
-/*********************************************/
-/*************** Game Review *****************/
-/*********************************************/
+/************* Game Review **************************/
 .game-review{
     padding: 2%;
 }
@@ -664,20 +545,17 @@ textarea{
     padding-right: .5rem;
 }
 
-
-
 .game-details{
    width: 100%; 
 }
-
 
 .progress-circle{
     margin-left: 5px !important;
     margin-right: 5px !important;
 }
+
 /*********************************************/
 /*********************************************/
-    
     fieldset p{
         padding-left: 10px;
     }
@@ -702,17 +580,17 @@ textarea{
         font-weight: 600;
     }
 
-/*********************************************
-****** Edit Review *****
-*********************************************/
+/***** Login **********************************/
+.form-login{
+    margin-left: 10px;
+    margin-right: 10px;
 
-    .form-edit{
-        /*
-        padding-left: 5px;
-        padding-right: 5px;
-        width: 100%;*/
-    }
+    padding-left: 5px;
+    padding-right: 5px;
+}
 
+
+/******* Edit Review ************************************/
     .custom-file-label{
         line-height: 1.6;
     }
@@ -728,4 +606,22 @@ textarea{
         overflow: hidden;
     }
 
+}
+
+/******* Register ************************************/
+.form-register {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.form-register button{
+    margin-top: 10px ;
+    margin-bottom: 10px;
+    width: 80%;
+}
+
+@media (min-width: 280px) and (max-width: 320px){
+    .navbar-expand-sm{
+        padding-right: 8px;
+        padding-left: 8px;
+    }
 }
