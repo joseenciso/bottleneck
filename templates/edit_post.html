@@ -59,29 +59,6 @@
                     </div>
                 </div>
 
-                <div class="input-group mb-3 col-12">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="inputGroupFileAddon01"><i class="fas fa-file-image"></i></span>
-                    </div>
-                    <div class="custom-file">
-                        <label class="" style="overflow: hidden;" for="post_cover">{{ post.post_cover }}</label>
-                        <input type="file" name="post_cover" id="gallery-1" value="{{ post.post_cover }}">
-                    </div>
-                </div>
-
-                <!--div class="input-group mb-3 col-lg-12">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" for="post-cover">
-                            <i class="fas fa-file-image"></i>&nbsp;Cover
-                        </span>
-                    </div>
-                    <div class="custom-file">
-                        <label class="" style="overflow: hidden;" for="post-cover">{#{ post.post_cover }#}</label>
-                        <input type="file" name="post-cover" id="post-cover">
-                        
-                    </div>
-                </div-->
-
                 <div class="input-group mb-3 col-md-6 col-lg-6">
                     <label for="no_players" class="input-group-text"style="margin: 0;">
                         <i class="fas fa-gamepad"></i>&nbsp;Playes
@@ -152,67 +129,87 @@
             <div class="gallery-container row">
                 <div class="gallery-header col-12">
                     <legend class="post-legend">&nbsp;<i class="fas fa-photo-video"></i>&nbsp;Gallery Section</legend>
-                    <p>Select five pictres for the review's gallery</p>
+                    <p>Select one image for your cover and 5 more that will be shown on the gallery.</p>
+                    <p><i class="fas fa-exclamation-triangle"></i>&nbsp;When editing the post, please make sure to reupload the images for the post. <br>Thanks!  </p>
                 </div>
-        
+                
                 <div class="input-group mb-3 col-12">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="inputGroupFileAddon01"><i class="fas fa-file-image"></i></span>
-                    </div>
-                    <div class="custom-file">
-                        <label class="" style="overflow: hidden;" for="gallery-1">{{ post.gallery_1 }}</label>
-                        <input type="file" name="gallery_1" id="gallery-1" value="{{ post.gallery_1 }}">
-                    </div>
-                </div>
-        
-                <div class="input-group mb-3 col-12">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="inputGroupFileAddon01"><i class="fas fa-file-image"></i></span>
-                    </div>
-                    <div class="custom-file">
-                        <label class="" style="overflow: hidden;" for="gallery-2">{{ post.gallery_2 }}</label>
-                        <input type="file" name="gallery_2" id="gallery-2" value="{{ post.gallery_2 }}">
+                    <div class="custome-input-file custom-file">
+                        <div class="icon-file">
+                            <span class=""><i class="fas fa-file-image"></i></span>
+                        </div>
+                        <div class="">
+                            <span class="prev-img" style="overflow: hidden;">{{ post.post_cover }}</span>
+                            <input type="file" clas="file-input" name="post_cover" id="gallery-1" value="{{ post.post_cover }}" accept="image/png, image/jpeg">
+                        </div>
                     </div>
                 </div>
-        
+
                 <div class="input-group mb-3 col-12">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="inputGroupFileAddon01"><i class="fas fa-file-image"></i></span>
-                    </div>
-                    <div class="custom-file">
-                        <label class="" style="overflow: hidden;" for="gallery-3">{{ post.gallery_3 }}</label>
-                        <input type="file" name="gallery_3" id="gallery-3" value="{{ post.gallery_3 }}">
+                    <div class="custome-input-file custom-file">
+                        <div class="icon-file">
+                            <span class=""><i class="fas fa-file-image"></i></span>
+                        </div>
+                        <div class="">
+                            <span class="prev-img" style="overflow: hidden;" for="gallery-1">{{ post.gallery_1 }}</span>
+                        <input type="file" clas="file-input" name="gallery_1" id="gallery-1" value="{{ post.gallery_1 }}" accept="image/png, image/jpeg">
+                        </div>
                     </div>
                 </div>
         
                 <div class="input-group mb-3 col-12">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="inputGroupFileAddon01"><i class="fas fa-file-image"></i></span>
-                    </div>
-                    <div class="custom-file">
-                        <label class="" style="overflow: hidden;" for="gallery-4">{{ post.gallery_4 }}</label>
-                        <input type="file" name="gallery_4" id="gallery-4" value="{{ post.gallery_4 }}">
+                    <div class="custome-input-file custom-file">
+                        <div class="icon-file">
+                            <span class=""><i class="fas fa-file-image"></i></span>
+                        </div>
+                        <div class="">
+                            <span  class="prev-img" style="overflow: hidden;">{{ post.gallery_2 }}</span>
+                            <input type="file" clas="file-input" name="gallery_2" id="gallery-2" value="{{ post.gallery_2 }}" accept="image/png, image/jpeg">
+                        </div>
                     </div>
                 </div>
         
                 <div class="input-group mb-3 col-12">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="inputGroupFileAddon01"><i class="fas fa-file-image"></i></span>
+                    <div class="custome-input-file custom-file">
+                        <div class="icon-file">
+                            <span class=""><i class="fas fa-file-image"></i></span>
+                        </div>
+                        <div class="">
+                            <span class="prev-img" style="overflow: hidden;">{{ post.gallery_3 }}</span>
+                            <input type="file" clas="file-input" name="gallery_3" id="gallery-3" value="{{ post.gallery_3 }}" accept="image/png, image/jpeg">
+                        </div>
                     </div>
-                    <div class="custom-file">
-                        <label class="" fstyle="overflow: hidden;" for="gallery-5">{{ post.gallery_5 }}</label>
-                        <input type="file" name="gallery_5" id="gallery-5" value="{{ post.gallery_5 }}">
+                </div>
+        
+                <div class="input-group mb-3 col-12">
+                    <div class="custome-input-file custom-file">
+                        <div class="icon-file">
+                            <span class=""><i class="fas fa-file-image"></i></span></div>
+                        <div class="">
+                            <span class="prev-img" style="overflow: hidden;">{{ post.gallery_4 }}</span>
+                            <input type="file" clas="file-input" name="gallery_4" id="gallery-4" value="{{ post.gallery_4 }}" accept="image/png, image/jpeg"></div>
+                    </div>
+                </div>
+        
+                <div class="input-group mb-3 col-12">
+                    <div class="custome-input-file custom-file">
+                        <div class="icon-file">
+                            <span class=""><i class="fas fa-file-image"></i></span>
+                        </div>
+                        <div class="">
+                            <span class="prev-img" fstyle="overflow: hidden;">{{ post.gallery_5 }}</span>
+                            <input type="file" clas="file-input" name="gallery_5" id="gallery-5" value="{{ post.gallery_5 }}" accept="image/png, image/jpeg">
+                        </div>
                     </div>
                 </div>
             </div>
-            
             
             <hr>
                     
             <div class="row">
                 <div class="col-12">
                     <legend>
-                        <i class="fas fa-file-word"></i>Review Section
+                        <i class="fas fa-file-word"></i>&nbsp;Review Section
                     </legend>
                 </div>
                 

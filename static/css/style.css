@@ -128,16 +128,6 @@ footer{
     text-align: center;
 }
 
-.fa-facebook-f{
-    padding-top: 4px;
-    color:#3B5998;
-}
-
-.fa-twitter{
-    padding-top: 4px;
-    color: #1DA1F2;
-}
-
 .game-cover{
     background-size: cover;
     background-position: center center;
@@ -318,6 +308,73 @@ footer{
 
 .gallery-label > u{
     font-weight: 100;
+}
+
+.fa-exclamation-triangle{
+    color: red;
+}
+
+.icon-file{
+    width: 50px;
+    height: 30px;
+
+    background-color: rgb(233,236,239);
+    border: 1px solid rgb(206,212,218);
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+
+    text-align: center;
+    margin-right: 5px;
+}
+
+.icon-file i{
+    vertical-align: text-bottom;
+}
+
+.prev-img{
+    height: 30px;
+    min-width: 100px;
+    width: 80%;
+    background-color: rgb(255,255,255);
+
+    padding-left: 5px;
+    padding-right: 5px;
+
+    margin-right: 10px;
+
+    vertical-align: sub
+}
+
+.file-input{
+    background-color: rgb(233,236,239);
+    padding: 0 5px;
+    margin-left: 10px;
+}
+
+.icon-file,
+.prev-img,
+.file-input{
+    display: inline-block;
+}
+
+.icon-file,
+.file-input{
+    position: relative;
+    top: 0;
+}
+
+.custome-input-file{
+
+    height: 40px;
+
+    background-color: rgb(233,236,239);
+    border: 1px solid rgb(206,212,218);
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+
+    padding: 5px 2px;
+    
+    text-align: center;
 }
 
 /********* Form *************************/
@@ -533,6 +590,11 @@ textarea{
     padding: 0;
     min-width: 250px;
     max-width: 450px;
+}
+
+.prev-text,
+.next-text{
+    display: none;
 }
 
 /************* Game Review **************************/

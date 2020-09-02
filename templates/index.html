@@ -21,7 +21,7 @@
 
                     </a>
                 </h5>
-                <p class="card-text card-text-container">{{ post.post_review }}</p>
+                <div class="card-text card-text-container">{{ post.post_review|safe}}</div>
                 <small class="footer-card">
                     <strong>Posted by:</strong>
                     <span class="card-author">{{ post.posted_by|capitalize }}</span>
@@ -40,17 +40,17 @@
     {% endfor %}
     
 
-    <div class="row">
-        <div class="col-12">
+    <div class="row page-row">
+        <div class="col-sm-10 col-12 page-col">
             <div class="paginatior d-flex justify-content-around">
-                {{ prev_url }}
+                {#{ prev_url }#}
                 {% if prev_url == 0 %}
                     <a href="{{ url_for('index' ) }}?page={{ prev_url }}" class="prev btn text-white">
                 {% else %}
                     <a href="{{ url_for('index' ) }}?page={{ prev_url }}" class="prev btn text-white" sityle="display: none;">
                 {% endif %}
                     <i class="fas fa-arrow-circle-left"></i>
-                    &nbsp;Prev
+                    <span class="prev-text">&nbsp;Prev</span>
                 </a>
 
                 {% for page in range(pages) %}
@@ -59,15 +59,15 @@
                 </a>
                 {% endfor %}
 
-                {% if next_url == pages %}
+                {% if next_url >= pages %}
                     <a href="{{ url_for('index') }}?page={{ next_url }}" class="next btn text-white" disabled>
                 {% else %}
                 <a href="{{ url_for('index') }}?page={{ next_url }}" class="next btn text-white">
                 {% endif %}
-                    Next&nbsp;
+                    <span class="next-text">Next&nbsp;</span>
                     <i class="fas fa-arrow-circle-right"></i>
                 </a>
-                {{ next_url }}
+                {#{ next_url }#}
             </div>
         </div>
     </div>    

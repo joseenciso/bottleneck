@@ -81,17 +81,23 @@ def index():
     number = post.count()
     pages = math.ceil(number/limit)
 
+    prev_url = page-1
+    next_url = page+1
+    
+    if page >= pages:
+        next_url = pages
+    elif page <= 1:
+        prev_url = 1
+        page = 1
+
     if page <= 1:
         offset = 0
         page=1
     elif page == 2:
         offset = 4
-    elif page >= pages:
-        page = pages
-        offset = 4*page
-    
-    prev_url = page-1
-    next_url = page+1
+    elif page == 3:
+        #page = pages
+        offset = prev_url*4
     
     all_posts = post.find().sort('_id', -1)
     offset_post = post.find().sort('_id', -1).skip(offset).limit(limit)
@@ -106,6 +112,9 @@ def index():
 
     for i in posts:
         titles.append(i['post_title'])
+
+    
+
     # import pdb;pdb.set_trace()
     return render_template('index.html', posts=offset_post, page=page, pages=pages, prev_url=prev_url, next_url=next_url)
 
