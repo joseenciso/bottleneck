@@ -225,6 +225,8 @@ def delete_post(post_id):
     post = mongo.db.posts.find_one({"_id": post_id})
     gallery
     print(post)
+
+    
     return redirect(url_for('home', page=1))
 
 
@@ -297,15 +299,17 @@ def page_forbiden(error):
     return render_template('errors/403.html', error=error), 403
 
 
-@app.errorhandler(500)
-def internal_server_error(error):
+@app.errorhandler(Exception)
+def handle_exception(e):
+    # pass through HTTP errors
     if isinstance(e, HTTPException):
         return e
-    error_message = 'Internal Server Error'
-    return render_template('errors/500.html', e=error_message, error=error_message), 500
+
+    # now you're handling non-HTTP exceptions only
+    return render_template("errors/500.html", e=e), 500
 
 
 if __name__ == "__main__":
     app.run(host=os.getenv('IP', "0.0.0.0"),
             port=int(os.getenv('PORT', "8080")),
-            debug=True)
+            debug=False)
