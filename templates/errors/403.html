@@ -1,8 +1,15 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div class="response_container">
-    <h1 class="text-white response_message">{{error}</h1>
+<div class="container">
+    <div class="response_container text-white">
+        <div class="response_message mt-5">
+            <h1 class="oops">Oops!</h1>
+            <div class="error-message">
+                <p>Forbiden Page</p>
+            </div>
+        </div>
+    </div>
 </div>
 
 {% endblock %}

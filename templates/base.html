@@ -9,7 +9,7 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
     <link rel="stylesheet" href="{{ url_for('static', filename='css/css-circular-prog-bar.css') }}" rel="stylesheet">
-    <link rel="shortcut icon" href="https://storage.needpix.com/rsynced_images/buttons-1294505_1280.png">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/assets/icon.png')}}">
     
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
     <title>{% block title %}{% endblock %}</title>
@@ -57,7 +57,7 @@
     <footer class="footer">
         <div class="container text-white pt-3">
             <div class="row">
-                <div class="col-sm-12 col-lg-6">
+                <div class="col-sm-12 col-md-6 col-lg-6">
                     <h2>MileStone Project 3</h2>
                     <div class="bottleneck">
                         <span style="font-size: 1.5rem; line-height: 50px;">
@@ -70,7 +70,7 @@
                         bottleneck-gaming
                     </span>
                 </div>
-                <div class="col-sm-12 col-lg-6">
+                <div class="col-sm-12 col-md-6 col-lg-6">
                     <h2>Made by:</h2>
                     <p class="je">Jose Enciso</p>
                 </div>

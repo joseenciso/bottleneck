@@ -10,6 +10,7 @@ from datetime import datetime, timedelta
 from bson.objectid import ObjectId
 from datetime import datetime 
 from flask_pymongo import PyMongo
+from werkzeug.exceptions import HTTPException
 
 
 username = os.getenv('C9_USER')
@@ -31,7 +32,7 @@ COLECCTION_NAME = "posts"
 
 
 platforms = [
-        'Nintendo Switch','Nintendo Wii', 'Nintendo Wii U', 'Nintendo 3DS',
+        'Switch','Wii', 'Wii U', '3DS',
         'XBOX 360', 'XBOX ONE', 'PS2', 'PS3', 'PS4',
         'Linux', 'Mac', 'Windows', 'iOS'
         ]
@@ -60,7 +61,6 @@ def mongo_connect(url):
 
 
 encrypt = bcrypt.gensalt()
-
 
 
 @app.route('/')
@@ -109,11 +109,8 @@ def index():
     for i in all_posts:
         all_titles.append(i['post_title'])
     
-
     for i in posts:
         titles.append(i['post_title'])
-
-    
 
     # import pdb;pdb.set_trace()
     return render_template('index.html', posts=offset_post, page=page, pages=pages, prev_url=prev_url, next_url=next_url)
@@ -124,7 +121,7 @@ def upload(filename):
     return mongo.send_file(filename)
 
 
-@app.route('/review/<review_id>')
+@app.route('/review/<review_id>', methods=['GET'])
 def game_review(review_id):
     post = mongo.db.posts.find_one({'_id': ObjectId(review_id)})
     return render_template('reviews.html', post=post)
@@ -201,7 +198,6 @@ def update_post(post_id):
     release_date = datetime.strptime(request.form["release_date"], "%Y-%m-%d")
     # print(request.form["release_date"])
 
-    
     date_posted = datetime.strptime(request.form["date_posted"], "%Y-%m-%d")
     gallery.update({
                 "post_title": request.form["post-title"],
@@ -220,13 +216,14 @@ def update_post(post_id):
                 "cons_content": request.form["post-cons"],
                 "post_review": request.form["post-review"],
                 })
-    mongo.db.posts.update({"_id": ObjectId(post_id)}, gallery)
+    mongo.db.posts.update({"_id": ObjectId(post_id)}, {'$set': gallery })
     return redirect(url_for('index', page=1))
 
 
 @app.route('/delete_post/<post_id>')
 def delete_post(post_id):
     post = mongo.db.posts.find_one({"_id": post_id})
+    gallery
     print(post)
     return redirect(url_for('home', page=1))
 
@@ -255,7 +252,6 @@ def logout():
 
 @app.route('/user')
 def user():
-    # import pdb;pdb.set_trace()
     if "username" in session:
         username = session["username"]
         user = mongo.db.users.find_one({"username": username})
@@ -289,6 +285,24 @@ def register():
         else:
             flash('Username or email already exists')
     return render_template("register.html")
+
+
+@app.errorhandler(404)
+def page_not_found(error):
+    return render_template('errors/404.html'), 404
+
+
+@app.errorhandler(403)
+def page_forbiden(error):
+    return render_template('errors/403.html', error=error), 403
+
+
+@app.errorhandler(500)
+def internal_server_error(error):
+    if isinstance(e, HTTPException):
+        return e
+    error_message = 'Internal Server Error'
+    return render_template('errors/500.html', e=error_message, error=error_message), 500
 
 
 if __name__ == "__main__":

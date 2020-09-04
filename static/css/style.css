@@ -11,7 +11,7 @@ font-family: 'Pacifico', cursive;
 }
 
 body {
-    background: url("../img/assetss/background-01.jpg");
+    background: url("../img/assets/background-01.jpg");
     font-family: 'Roboto', sans-serif;
     color: black;
 }
@@ -53,8 +53,10 @@ footer{
 }
 
 
-
-
+.response-message{
+    margin: auto;
+    background-color: azure;
+}
 
 /****** Home ********************************/
 .review-container{
@@ -105,31 +107,14 @@ footer{
 }
 
 
-/***** Reviews *******************************/
+/***** Game -Reviews- *******************************/
 .title{
     font-size: 3rem;
-}
-.author-container{
-    padding-top: 1.5rem;
 }
 
 .author-post{
     display: inline-block;
     margin-right: auto;
-}
-
-.social-networks {
-    height: 85px;
-    display: inline-block;
-    margin-right: auto;
-    float: right;
-}
-
-.social-networks i{
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    text-align: center;
 }
 
 .game-cover{
@@ -169,6 +154,21 @@ footer{
 .game-details{
     padding: 1rem;
     height: 100%;
+
+}
+
+.fa-gamepad,
+.fa-calendar-plus,
+.fa-th-large{
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+}
+
+.rev-platform,
+.game_rel_rev,
+.rev_players{
+    padding-left: 30px;
 }
 
 .points-container{
@@ -188,16 +188,23 @@ footer{
     height: 100px;
 }
 
+.rate-container{
+    padding-left: 5px;
+    max-width: 100%;
+    margin: 20px auto;
+}
+
 .pegi-description,
 .pegi-rate,
 .pegi-container .square-img,
 .gallery .square-img{
     min-height: 100px;
-    max-height: 130px;
+    max-height: 140px;
     min-width: 100px;
-    max-width: 130px;
+    max-width: 140px;
 
-    margin: 5px;
+    margin: 20px auto;
+    
     display: inline-block;
 
     background-repeat: no-repeat;
@@ -206,47 +213,47 @@ footer{
 }
 
 .pegi3{
-    background-image: url("https://pegi.info/sites/default/files/styles/medium/public/2017-03/2000px-PEGI_3.svg_.png?itok=v29cXS0R");
+    background-image: url("../img/pegi/pegi3.png");
 }
 
 .pegi7{
-    background-image: url("https://pegi.info/sites/default/files/styles/medium/public/2017-03/pegi7.png?itok=eI0Gk8v4");
+    background-image: url("../img/pegi/pegi7.png");
 }
 
 .pegi12{
-    background-image: url("https://pegi.info/sites/default/files/styles/medium/public/2017-03/PEGI_12.png?itok=YbTznZS9")
+    background-image: url("../img/pegi/pegi12.png")
 }
 
 .pegi16{
-    background-image: url("https://pegi.info/sites/default/files/styles/medium/public/2017-03/pegi16.png?itok=GyBvYeoU")
+    background-image: url("../img/pegi/pegi16.png")
 }
 .pegi18{
-    background-image: url("https://pegi.info/sites/default/files/styles/medium/public/2017-03/pegi18.png?itok=2iF_eHO6")
+    background-image: url("../img/pegi/pegi18.png")
 }
 
-.pegi-container .square-img{
+.square-img{
     height: 100px;
     width: 100px;
 }
 
 .pegi-violence{
-    background-image: url("https://pegi.info/sites/default/files/inline-images/violence-black-EN.jpg");
+    background-image: url("../img/pegi_description/violence.jpg");
 }
 
 .pegi-language{
-    background-image: url("https://pegi.info/sites/default/files/inline-images/bad-language-black-EN.jpg");
+    background-image: url("../img/pegi_description/bad_language.jpg");
 }
 
 .pegi-fear{
-    background-image: url("https://pegi.info/sites/default/files/inline-images/fear-black-EN.jpg");
+    background-image: url("../img/pegi_description/fear.jpg");
 }
 
 .pegi-gambling{
-    background-image: url("https://pegi.info/sites/default/files/inline-images/gambling-black-EN.jpg")
+    background-image: url("../img/pegi_description/gambling.jpg")
 }
 
 .pegi-sex{
-    background-image: url("https://pegi.info/sites/default/files/inline-images/sexual-content-black-EN.jpg");
+    background-image: url("../img/pegi_description/sexual_content.jpg");
 }
 
 .pegi-drugs{
@@ -460,6 +467,17 @@ textarea{
     text-align: center;
 }
 
+/***************** Errors ******************/
+.oops{
+    font-size: 6rem;
+    margin: 0 2rem;
+}
+
+.error-message{
+    font-size: 3rem;
+    margin: 0 auto;
+}
+
 /* ************************************
 **  Queries  **
 ***************************************
@@ -507,13 +525,6 @@ textarea{
     }
 }
 
-@media (min-width: 750px) and (max-width: 780px){
-    /*Media Query exclusive for iPad*/
-    .game-details{
-        width: 350px;;
-    }
-}
-
 @media (min-width: 768px){
     .cards{
         width: 580px;
@@ -538,11 +549,13 @@ textarea{
         padding-right: 10px;
     }
 
-    .sep-bar{
-        display: nonne;
-    }
-
 }
+
+@media (min-width: 768px){
+
+
+
+
 
 @media (min-width: 575px) and (max-width: 768px){
     .navbar-brand{
@@ -613,7 +626,7 @@ textarea{
 
 /************* Game Review **************************/
 .game-review{
-    padding: 2%;
+    padding: 20px 8px;
 }
 
 .pros-cons-row{
@@ -621,22 +634,9 @@ textarea{
     padding-right: .5rem;
 }
 
-.game-details{
-   width: 100%; 
-}
-
 .progress-circle{
-    margin-left: 5px !important;
-    margin-right: 5px !important;
-}
-
-.sep-bar{
-    width: auto;
-    height: 2px;
-}
-
-.game-details{
-    width: 100%;
+    margin-left: 8px !important;
+    margin-right: 8px !important;
 }
 
 /*********************************************/
@@ -703,6 +703,7 @@ textarea{
     margin-bottom: 10px;
     width: 80%;
 }
+
 
 @media (min-width: 280px) and (max-width: 320px){
     .navbar-expand-sm{
