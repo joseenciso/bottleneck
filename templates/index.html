@@ -39,38 +39,33 @@
         </div>
     {% endfor %}
     
+    <div class="paginatior d-flex justify-content-between">
+        {#{ prev_url }#}
+        {% if prev_url == 0 %}
+            <a href="{{ url_for('index' ) }}?page={{ prev_url }}" class="prev btn text-white" style="display: none;">
+        {% else %}
+            <a href="{{ url_for('index' ) }}?page={{ prev_url }}" class="prev btn text-white">
+        {% endif %}
+            <i class="fas fa-arrow-circle-left"></i>
+            <span class="prev-text">&nbsp;Prev</span>
+        </a>
 
-    <div class="row page-row">
-        <div class="col-sm-10 col-12 page-col">
-            <div class="paginatior d-flex justify-content-around">
-                {#{ prev_url }#}
-                {% if prev_url == 0 %}
-                    <a href="{{ url_for('index' ) }}?page={{ prev_url }}" class="prev btn text-white">
-                {% else %}
-                    <a href="{{ url_for('index' ) }}?page={{ prev_url }}" class="prev btn text-white" sityle="display: none;">
-                {% endif %}
-                    <i class="fas fa-arrow-circle-left"></i>
-                    <span class="prev-text">&nbsp;Prev</span>
-                </a>
+        {% for page in range(pages) %}
+        <a href="{{ url_for('index' ) }}?page={{page+1}}" class="btn text-white">
+            {{page + 1}}
+        </a>
+        {% endfor %}
 
-                {% for page in range(pages) %}
-                <a href="{{ url_for('index' ) }}?page={{page+1}}" class="btn text-white">
-                    {{page + 1}}
-                </a>
-                {% endfor %}
-
-                {% if next_url >= pages %}
-                    <a href="{{ url_for('index') }}?page={{ next_url }}" class="next btn text-white" disabled>
-                {% else %}
-                <a href="{{ url_for('index') }}?page={{ next_url }}" class="next btn text-white">
-                {% endif %}
-                    <span class="next-text">Next&nbsp;</span>
-                    <i class="fas fa-arrow-circle-right"></i>
-                </a>
-                {#{ next_url }#}
-            </div>
-        </div>
-    </div>    
+        {% if next_url >= pages %}
+            <a href="{{ url_for('index') }}?page={{ next_url }}" class="next btn text-white" disabled>
+        {% else %}
+            <a href="{{ url_for('index') }}?page={{ next_url }}" class="next btn text-white">
+        {% endif %}
+            <span class="next-text">Next&nbsp;</span>
+            <i class="fas fa-arrow-circle-right"></i>
+        </a>
+        {#{ next_url }#}
+    </div>   
     
 </div>
 {% endblock %}
