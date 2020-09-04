@@ -52,6 +52,10 @@ footer{
     font-size: 2rem;
 }
 
+
+
+
+
 /****** Home ********************************/
 .review-container{
     color: white;
@@ -295,11 +299,6 @@ footer{
     margin-left: auto; 
 }
 
-.edit-post,
-.delete-post{
-    margin-right: auto;
-    margin-left: auto;
-}
 
 /*****Edit Post ***********************/
 .gallery-label{
@@ -497,6 +496,17 @@ textarea{
 
 }
 
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .nav-item a{
+        font-size: 1.2rem;
+    }
+
+    .form-edit{
+        padding-right: 24px;
+        padding-left: 24px;
+    }
+}
+
 @media (min-width: 750px) and (max-width: 780px){
     /*Media Query exclusive for iPad*/
     .game-details{
@@ -526,6 +536,10 @@ textarea{
     .pros{
         padding-left: 10px;
         padding-right: 10px;
+    }
+
+    .sep-bar{
+        display: nonne;
     }
 
 }
@@ -614,6 +628,15 @@ textarea{
 .progress-circle{
     margin-left: 5px !important;
     margin-right: 5px !important;
+}
+
+.sep-bar{
+    width: auto;
+    height: 2px;
+}
+
+.game-details{
+    width: 100%;
 }
 
 /*********************************************/
