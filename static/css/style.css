@@ -154,7 +154,7 @@ footer{
 .game-details{
     padding: 1rem;
     height: 100%;
-
+    width: 100%;
 }
 
 .fa-gamepad,
@@ -257,15 +257,15 @@ footer{
 }
 
 .pegi-drugs{
-    background-image: url("https://pegi.info/sites/default/files/inline-images/drugs-black-EN.jpg");
+    background-image: url("../img/pegi_description/drugs.jpg");
 }
 
 .pegi-discrimination{
-    background-image: url("https://pegi.info/sites/default/files/inline-images/discrimination-black-EN.jpg");
+    background-image: url("../img/pegi_description/discrimination.jpg");
 }
 
 .pegi-purchase{
-    background-image: url("https://pegi.info/sites/default/files/inline-images/discrimination-black-EN.jpg");
+    background-image: url("../img/pegi_description/in_game.jpg");
 }
 
 .gallery .square-img{
@@ -335,12 +335,14 @@ footer{
 
 .icon-file i{
     vertical-align: text-bottom;
+    width: 30px;
+    height: 30px;
 }
 
 .prev-img{
     height: 30px;
     min-width: 100px;
-    width: 80%;
+    width: 220px;
     background-color: rgb(255,255,255);
 
     padding-left: 5px;
@@ -348,7 +350,9 @@ footer{
 
     margin-right: 10px;
 
-    vertical-align: sub
+    vertical-align: sub;
+    line-height: 30px;
+    overflow: hidden;
 }
 
 .file-input{
@@ -357,21 +361,18 @@ footer{
     margin-left: 10px;
 }
 
-.icon-file,
-.prev-img,
-.file-input{
-    display: inline-block;
+
+.file-item-container{
+    display: flex;
+    justify-content: space-evenly;
 }
 
-.icon-file,
-.file-input{
-    position: relative;
-    top: 0;
-}
 
 .custome-input-file{
-
+    display: flex;
     height: 40px;
+
+    width: 100%;
 
     background-color: rgb(233,236,239);
     border: 1px solid rgb(206,212,218);
@@ -549,6 +550,14 @@ textarea{
         padding-right: 10px;
     }
 
+    .prev-img{
+        width: 290px;
+    }
+    
+    .file-input{
+        width: 350px;
+    }
+
 }
 
 @media (min-width: 768px){
@@ -613,31 +622,31 @@ textarea{
     }
 
 /****************** Index *******************************/
-.cards{
-    padding: 0;
-    min-width: 250px;
-    max-width: 450px;
-}
+    .cards{
+        padding: 0;
+        min-width: 250px;
+        max-width: 450px;
+    }
 
-.prev-text,
-.next-text{
-    display: none;
-}
+    .prev-text,
+    .next-text{
+        display: none;
+    }
 
 /************* Game Review **************************/
-.game-review{
-    padding: 20px 8px;
-}
+    .game-review{
+        padding: 20px 8px;
+    }
 
-.pros-cons-row{
-    padding-left: .5rem;
-    padding-right: .5rem;
-}
+    .pros-cons-row{
+        padding-left: .5rem;
+        padding-right: .5rem;
+    }
 
-.progress-circle{
-    margin-left: 8px !important;
-    margin-right: 8px !important;
-}
+    .progress-circle{
+        margin-left: 8px !important;
+        margin-right: 8px !important;
+    }
 
 /*********************************************/
 /*********************************************/
@@ -666,13 +675,13 @@ textarea{
     }
 
 /***** Login **********************************/
-.form-login{
-    margin-left: 10px;
-    margin-right: 10px;
+    .form-login{
+        margin-left: 10px;
+        margin-right: 10px;
 
-    padding-left: 5px;
-    padding-right: 5px;
-}
+        padding-left: 5px;
+        padding-right: 5px;
+    }
 
 
 /******* Edit Review ************************************/
@@ -687,21 +696,35 @@ textarea{
     }
 
     .custom-file input{
-        max-width: 240px;
-        overflow: hidden;
+        max-width: 100%;
+        height: 50px;
+
+        display: flex;
+        flex-wrap: wrap;
     }
 
-}
+    .file-item-container{
+        display: flex;
+        flex-direction: row;
+    }
+
+    .icon-file{
+        height: 50px;
+    }
+
 
 /******* Register ************************************/
-.form-register {
-    padding-left: 5px;
-    padding-right: 5px;
-}
-.form-register button{
-    margin-top: 10px ;
-    margin-bottom: 10px;
-    width: 80%;
+    .form-register {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+    .form-register button{
+        margin-top: 10px ;
+        margin-bottom: 10px;
+        width: 80%;
+    }
+
+
 }
 
 

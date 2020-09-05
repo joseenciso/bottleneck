@@ -220,19 +220,15 @@ def update_post(post_id):
     return redirect(url_for('index', page=1))
 
 
-@app.route('/delete_post/<post_id>')
+@app.route('/delete_post/<post_id>', methods=['GET', 'DELETE'])
 def delete_post(post_id):
-    post = mongo.db.posts.find_one({"_id": post_id})
-    gallery
-    print(post)
-
-    
-    return redirect(url_for('home', page=1))
+    mongo.db.posts.find_one_and_delete({"_id": ObjectId(post_id)}) 
+    # mongo.db.posts.delete_one({"_id":  ObjectId(post)})
+    return redirect(url_for('index', page=1))
 
 
 @app.route('/login', methods=["GET", "POST"])
 def login():
-    # import pdb;pdb.set_trace()
     if request.method == 'POST':
         user = mongo.db.users.find_one(
             {"username": request.form["username"].lower()}
