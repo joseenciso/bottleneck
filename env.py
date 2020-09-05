@@ -1,5 +1,7 @@
-# MONGO_URI = 'mongodb+srv://rootAccess:sP9eU2GAtnYugO53@posting-vndhj.mongodb.net/bottleneck?retryWrites=true&w=majority'
+import os
 
+os.environ["MONGO_URI"] = 'mongodb+srv://rootAccess:sP9eU2GAtnYugO53@posting-vndhj.mongodb.net/bottleneckdb?retryWrites=true&w=majority'
+os.environ["MONGO_DBNAME"] = 'bottleneckdb'
 
 # """
 # client = pymongo.MongoClient("mongodb+srv://bottleneckAdmin:<password>@posting-vndhj.mongodb.net/<dbname>?retryWrites=true&w=majority")

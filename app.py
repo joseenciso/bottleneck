@@ -12,8 +12,11 @@ from datetime import datetime
 from flask_pymongo import PyMongo
 from werkzeug.exceptions import HTTPException
 
+from os import path
+if path.exists("env.py"):
+  import env 
 
-username = os.getenv('C9_USER')
+# username = os.getenv('C9_USER')
 
 # MONGO_URI = os.getenv('MONGO_URI')
 
@@ -21,8 +24,10 @@ username = os.getenv('C9_USER')
 app = Flask(__name__)
 app.secret_key = "SECRET_KEY"
 
-app.config["MONGO_URI"] = 'mongodb+srv://rootAccess:sP9eU2GAtnYugO53@posting-vndhj.mongodb.net/bottleneckdb?retryWrites=true&w=majority'
-app.config["MONGO_DBNAME"] = 'bottleneckdb'  # Optional setting
+# app.config["MONGO_URI"] = 'mongodb+srv://rootAccess:sP9eU2GAtnYugO53@posting-vndhj.mongodb.net/bottleneckdb?retryWrites=true&w=majority'
+app.config["MONGO_URI"] = os.environ.get('MONGO_URI')
+# app.config["MONGO_DBNAME"] = 'bottleneckdb'  # Optional setting
+app.config["MONGO_DBNAME"] = os.environ.get('MONGO_DBNAME')
 
 # Creating a new instance of PyMongo
 mongo = PyMongo(app)
