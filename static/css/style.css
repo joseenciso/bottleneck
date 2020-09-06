@@ -292,6 +292,13 @@ legend .fas{
     font-weight: 600;
 }
 
+/******************* New Post **************/
+label .far,
+label .fas,
+p .fas{
+    width: 20px;
+    margin-right: 5px;
+}
 
 /*****Edit Post ***********************/
 .gallery-label{
@@ -303,7 +310,7 @@ legend .fas{
 }
 
 .fa-exclamation-triangle{
-    color: red;
+    color: rgb(214, 165, 28);
 }
 
 .icon-file{

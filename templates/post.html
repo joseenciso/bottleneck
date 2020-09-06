@@ -7,16 +7,16 @@
             <div class="row">
                 <div class="col-12">
                     <h2 class="post-heading">
-                        <i class="far fa-newspaper"></i>&nbsp;New Review
+                        <i class="far fa-newspaper"></i>New Review
                     </h2>
                     <legend class="post-legend">
-                        <i class="fas fa-gamepad"></i>&nbsp;Game Section
+                        <i class="fas fa-gamepad"></i>Game Section
                     </legend>
                 </div>
                 <div class="input-group mb-3 col-12">
                     <div class="input-group-prepend">
                         <label for="post-title" class="input-group-text">
-                            <i class="fas fa-gamepad"></i>&nbsp;Title
+                            <i class="fas fa-gamepad"></i>Title
                         </label>
                     </div>
                     <input type="text" class="form-control" name="post-title" id="post-title" placeholder="Game title" required>
@@ -25,7 +25,7 @@
                 <div class="input-group mb-3 col-12">
                     <div class="input-group-prepend">
                         <label for="post-title" class="input-group-text">
-                            <i class="fas fa-gamepad"></i>&nbsp;Subtitle
+                            <i class="fas fa-gamepad"></i>Subtitle
                         </label>
                     </div>
                     <input type="text" class="form-control" name="post-subtitle" id="post-subtitle" placeholder="Game Subtitle">
@@ -36,7 +36,7 @@
                 <div class="input-group mb-3 col-md-6 col-lg-5">                           
                     <div class="input-group-prepend">
                         <label for="release-date" class="input-group-text" id="inputGroupFileAddon01">
-                            <i class="far fa-calendar-plus"></i>&nbsp;Release: 
+                            <i class="far fa-calendar-plus"></i>Release: 
                         </label>
                     </div>
                     <div class="custom-file">
@@ -46,7 +46,7 @@
                 
                 <div class="input-group mb-3 col-md-6 col-lg-4">
                     <label for="no_players" class="input-group-text"style="margin: 0;">
-                        <i class="fas fa-gamepad"></i>&nbsp;Players</label>
+                        <i class="fas fa-gamepad"></i>Players</label>
                     <input type="number" class="form-control" name="no_players"
                     id="no-players" min="1" max="16" placeholder="1 - 16" required>
                 </div>
@@ -54,7 +54,7 @@
                 <div class="input-group mb-3 col-md-6 col-lg-3">
                     <div class="input-group-prepend">
                         <label for="score" class="input-group-text">
-                            <i class="fas fa-star-half-alt"></i>&nbsp;Score
+                            <i class="fas fa-star-half-alt"></i>Score
                         </label>
                     </div>
                     <input type="number" class="form-control" name="game_score"
@@ -67,7 +67,7 @@
             <div class="row">
                 <div class="col-lg-4 col-md-4">
                     <legend for="plattform" class="form-check-label">
-                        <i class="fas fa-th-large"></i>&nbsp;Platforms</legend>
+                        <i class="fas fa-th-large"></i>Platforms</legend>
                     <div class="platforms-container form-group">
                         {% for platform in platforms %}
                             <input type="checkbox" class="form-check-input" name="platform" value="{{platform}}" id="{{platform}}">
@@ -79,7 +79,7 @@
 
                 <div class="col-lg-4 col-md-4">
                     <legend>
-                        <i class="fas fa-list"></i>&nbsp;Pegi Description
+                        <i class="fas fa-list"></i>Pegi Description
                     </legend>
                     <div class="description-container form-group">
                         {% for pegi in pegi_desc %}
@@ -91,7 +91,7 @@
                 </div>
 
                 <div class="col-lg-4 col-md-4">
-                    <legend><i class="fas fa-percent"></i>&nbsp;Pegi Rate</legend>
+                    <legend><i class="fas fa-percent"></i>Pegi Rate</legend>
                     <div class="description-container form-group">
                         {% for pegi_r in pegi_rate %}
                             <input type="radio" class="form-check-input" name="pegi-rate" value="{{pegi_r}}" id="{{pegi_r}}">
@@ -106,17 +106,20 @@
 
             <div class="row">
                 <div class="form-group col-lg-12">
-                    
                     <legend class="post-legend">
-                        <i class="fas fa-photo-video"></i>&nbsp;Gallery section
+                        <i class="fas fa-photo-video"></i>Gallery section
                     </legend>
                     <p>Select one image for your cover and 5 more that will be shown on the gallery.</p>
-                    <p><i class="fas fa-exclamation-triangle"></i>&nbsp;
-                        Warning! Due to the nature of mongoDB when saving images, it can confused the images already stored and 
+                    <p><i class="fas fa-exclamation-triangle"></i>Attentio!</p>
+                        <ul class="post-list">
+                            <li>
+                                 Due to the nature of mongoDB when saving images, it can confused the images already stored and 
                         still to be stored because of the name given on each image, causing that some of posts displaying wrong images.
-                        <br>
-                        Make sure each image are named according to the game title and subtitle, and not just a simple numbre, like -<u>01.jpg</u>- as example.
-                    </p>
+                            </li>
+                            <li>
+                                Make sure each image are named according to the game title and subtitle, and not just a simple numbre, like -<u>01.jpg</u>- as example.
+                            </li>
+                        </ul>                 
                 </div>
 
                 <div class="input-group mb-3 col-md-6 col-lg-6">
@@ -191,27 +194,28 @@
             <div class="row">
                 <div class="col-12 form-group">
                     <legend>
-                        <i class="fas fa-file-word"></i>&nbsp;Review Section
+                        <i class="fas fa-file-word"></i>Review Section
                     </legend>
-                    <p>
-                        <i class="fas fa-file-code"></i>&nbsp;Html friendly: Give a go to your Html skills and add your owen spice to your post.
-                    </p>
                 </div>
                 <div class="col-lg-6 mb-3">
                     <label for="pros" class="post-pros input-group-text">
-                        <i class="fas fa-thumbs-up"></i>&nbsp;Pros
+                        <i class="fas fa-thumbs-up"></i>Pros
                     </label>
                     <textarea name="post-pros" class="form-control" id="pros" class="pros" placeholder="What has been so good when playing this game?" required></textarea>                    
                 </div>
                 <div class="col-lg-6 mb-3">
                     <label for="cons" class="post-cons input-group-text">
-                        <i class="fas fa-thumbs-down"></i>&nbsp;Cons
+                        <i class="fas fa-thumbs-down"></i>Cons
                     </label>
                     <textarea name="post-cons" class="form-control" id="cons" class="cons" placeholder="What has been the bad when playing this game?" required></textarea>                    
                 </div>
+
                 <div class="col-12 mb-3">
+                    <p>
+                        <i class="fas fa-file-code"></i>Html friendly: Give a go to your Html skills and add your owen spice to your post.
+                    </p>
                     <label for="post-review" class="post-review input-group-text">
-                        <i class="far fa-file-alt"></i>&nbsp;Review
+                        <i class="far fa-file-alt"></i>Review
                     </label>
                     <textarea name="post-review" class="form-control" id="post-review" class="post-review" 
                     placeholder="Write here your review about the game you want to talk about, dont forget you can add your own spice with your web development skills." required></textarea>
