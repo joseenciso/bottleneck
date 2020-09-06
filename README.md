@@ -139,6 +139,8 @@ The testing was carried out with the chrome devtools, with the next built-in dev
 
 - When creating a new user will be added an avatar selector, and will be added an option to change/select the avatar in the users site.
 
+## Disclaimer
+    There was not reason to use JavaScript in project. Everything was handled by bootstrap.
 
 ## Special Thanks
 - My mentor Guido Cecilio
