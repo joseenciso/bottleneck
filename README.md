@@ -129,13 +129,16 @@ The testing was carried out with the chrome devtools, with the next built-in dev
 ## Deployment
 
 ### Future Features
-Bootstrap 4 offers a bunch of components to help to have an app/site up and running, but some of them cuase a lot of problems on small screens, due to this reason, the project will be rebuilt with pure **CSS** to have full control of each component and how it will behaive on each screen size.
+- Bootstrap 4 offers a bunch of components to help to have an app/site up and running, but some of them cuase a lot of problems on small screens, due to this reason, the project will be rebuilt with pure **CSS** to have full control of each component and how it will behaive on each screen size.
 
-For the register will be added a function to find an existing user to let know the user through **flash** in flask.
+- For the register will be added a function to find an existing user to let know the user through **flash** in flask.
 
-for the Login will be added a funciton to let know the user when either username or password are incorrect.
+- For the Login will be added a funciton to let know the user when either username or password are incorrect.
 
-In new post will be added a function to detect a repeated post either through the post title or subtitle.
+- In new post will be added a function to detect a repeated post either through the post title or subtitle.
+
+- When creating a new user will be added an avatar selector, and will be added an option to change/select the avatar in the users site.
+
 
 ## Special Thanks
 - My mentor Guido Cecilio

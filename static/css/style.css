@@ -47,6 +47,15 @@ footer{
     
 }
 
+.bottleneck a{
+    text-decoration: none;
+    color: white;
+}
+
+.heroku{
+    vertical-align: baseline;
+}
+
 .je{
     font-family: 'Pacifico', cursive;
     font-size: 2rem;
@@ -557,12 +566,6 @@ textarea{
     }
 
 }
-
-@media (min-width: 768px){}
-
-
-
-
 
 @media (min-width: 575px) and (max-width: 768px){
     .navbar-brand{
