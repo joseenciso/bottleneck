@@ -126,7 +126,49 @@ The testing was carried out with the chrome devtools, with the next built-in dev
 - Full HD laptop Screen
 - Full HD 27" display
 
+Outside of PC chrome enviroment, the app was tested on mobile chrome version on a Galaxy note 10 and Galaxy note 8.
+
 ## Deployment
+### Hosting in Heroku
+In order to host the app in __Heroku__ is needed to follow the next steps:
+- Create an account or access to it if alredy exist.
+- Clik on the botton __new__ and then on __Create new app__.
+- In the next section t is important to choose an __unique__ name for the app and in this case the region will be __Europe__.
+
+After creating the app its important to install the __Heroku CLI__ for __vscode__, which in this case __ubuntu 20.04__ as the main OS and __Heroku CLI__ will be installed with the next command in the bash terminal:
+
+    $ sudo snap install --classic heroku
+
+Tlo login in heroku introduce the next command and follow the instrucions
+
+    $ heroku login
+
+The next command to track the prject into __heroku__
+
+    $ heroku git:remote -a "bottleneck github's prject name"
+
+
+In the settings section, clicking on the <u>Reveal Config Vars</u> bottons, the variables can be configured with the next key values.
+
+| key | value|
+|-----|------|
+| IP  | 0.0.0.0|
+| PORT | 8080 |
+| MONGO_URI | <mongodb_collections_links> |
+| MONGO_DBNAME | <db_name> |
+
+In the terminal will introduce the next commando to create the __Procfile__ required for <u>Heroku</u>.
+
+    echo web: python run.py > Procfile
+
+Another requirement from <u>Heroku</u> is the __requirements.txt__ file that will be created with the following command and will create a list of the software that will be installed in __heroku__ and are required to run the project.
+
+    pip3 freeze --local > requirements.txt
+
+- __Pip3__ is required as I am working with <u>Python3</u>
+
+
+
 
 ### Future Features
 - Bootstrap 4 offers a bunch of components to help to have an app/site up and running, but some of them cuase a lot of problems on small screens, due to this reason, the project will be rebuilt with pure **CSS** to have full control of each component and how it will behaive on each screen size.
