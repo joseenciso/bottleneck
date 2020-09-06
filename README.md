@@ -1,39 +1,144 @@
-<img src="https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png" style="margin: 0;">
+# Welcome to [Bottleneck](https://bottleneck-gaming.herokuapp.com/?page=1)
 
-Welcome Jose Enciso,
+![Bottleneck Responsive](static/img/ReadME/responsive.jpg)
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. You can safely delete this README.md file, or change it for your own project.
 
-## Gitpod Reminders
+## Introduction
+[Bottleneck](https://bottleneck-gaming.herokuapp.com/) is a open videogame based website, where you can just signup and you are ready to write your posts, also if you just want to read what the community is posting, you are not required to login.
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
+This proyect is a little reflects a part of mine, the side that likes the videogames despite the lack of time to enjoy this hobby nowadays.
 
-`python3 -m http.server`
+___
 
-A blue button should appear to click: *Make Public*,
 
-Another blue button should appear to click: *Open Browser*.
+## Table of Contents
+2. [Project's Purpose](#projects-purpose)
+3. [UX](#ux)
+4. [Wireframes](#wariframes)
+5. [Features](#features)
+    - [Existing Features](#existing-features)
+    - [Future Features](#future-features)
+6. [Data Integration](#date-integration)
+7. [Technologies used on the project](#technologies-used-on-the-project)
+    - [Front-End](#front-end)
+        - [HTML](#html)
+        - [CSS](#css)
+        - [Bootstrap](#bootstrap)
+    - [Back-end](#back-end)
+        - [Python](#python)
+        - [Flask](#flask)
+        - [Jinja2](#jinja2)
+        - [PyMongo](#pymongo)
+8. [Testing](#testing)
+9. [Deployment](#deployment)
+10. [Credits](#credits)
+11. [](#)
+12. [](#)
+13. [](#)
+14. [](#)
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+___
 
-A blue button should appear to click: *Make Public*,
+## Project's Purpose
+The project pretend to show all the learned during the module. Showign the hability to use [Jinja2](https://jinja.palletsprojects.com/en/2.11.x/) to connect with the back-end and display the data required or edit it.
 
-Another blue button should appear to click: *Open Browser*.
 
-In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the backend lessons.
+____
 
-## Updates Since The Instructional Video
+## UX
 
-We continually tweak and adjust this template to help give you the best experience. Here are the updates since the original video was made:
+## Wireframes
 
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
+## Features
+### Existing Features
+<u>**Landing Page**</u></br>
+- Navbar
+- Posts
+- Pagination
+- Footer
 
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
+<u>Navbar</u></br>
+Thanks to <i>bootstrap</i> the <i>navbar</i> is responsive, fully functional and developed quickly.
+For some screen sizes __CSS__ was required with help of the __media queries__.
 
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
+<u>Pots</u></br>
+The post are being displayed through a jinja for loop, depending on the offset and the limit prestablished in the backend program, this data only will four posts per pagination page, which each pagination page will be displayed at the end of the four post.
 
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
+<u>Pagination</u></br>
+in order to develop the pagination section, some research was needed to understand how it works and what id does. Lots or reading and some hlep from the man behind [Pretty Printed's](https://www.youtube.com/channel/UC-QDfvrRIDB6F0bIO4I4HkQ) [YouTube](https://www.youtube.com/) channel, despite all the tools and techniques, this was the only way I could undertand the best to then inplement it to Flask to pass it to Jinja.
 
---------
+The pagination section has prev as previous page, next to go to the next page and the numbers which depending on the number of posts stored in the database where every four posts will count as a paginated page.
 
-Happy coding!
+<u>Footer</u></br>
+The footer displays **bottleneck's** links to <i>github</i> and to <i>heroku's</i> app under **"MileStone Project 3"** section and under **"Made by"** section only displays my name, <i>Jose Enciso</i>.
+
+<u>**New Post**</u></br>
+The new post site will guide the user trough to at the end publish the post. In here the user will find a review section where the user will be able to use <i>HTML</i> tags to add more visuals. This <i>HTML</i> feature is not supported on pros and cons section.
+
+Each game has a date release and a pegi rate, as what audience is the game for as what kind of content the game has and what platforms it will be released.
+
+The user will be asked to choose six images, one will be used as a cover and the other five as part of the carousel. Due to the nature of the way bootstrap manage the input files it doesn't display what file has been updated.
+
+<u>**Edit post**</u></br>
+The edit post is basically the same as the new post site. The difference is that it shows the previuos stored information in the database and can be changed depeding the needs.
+
+this edit post site, shows who made the post and when. The images section is different from the new post site,  The images section visually is different, with the purpose of making easy the display the previous images and file to be changed.
+
+<u>**Register & Login**</u></br>
+The register and login are tow simple forms where to resgister and login in case there is a user who would like to edit or create a new post.
+
+<u>**User**</u></br>
+The user site will display the a table with the post created by the user, displaying title, sub-title and date posted.
+
+
+## Data Integration
+PyMongo is the driver used to stored data into the collections in MongoDB, the collections are posts and users. In posts collections will be stored each post created and in the users collections will store each new user created.
+
+The images will be stored in three different collections, in the first one is the posts, creating the relationship with the name, fs.files will store the images details and the fs.chuncks will sotred the image in doded in string.
+
+## Technologies used on the project
+* **Front-End**
+    - HTML
+    - Bootstrap
+    - CSS
+    ___
+    As we all know Html was used to <u>structure</u> the website while ***bootstrap*** helped a lot to get some things done faster, such as the **navbar**, **gallery** which was achieved with the ***carousel***, and other just to style, in certain ocasions ***CSS*** was needed to complete what was out of bootstrap scopes or to fix some of the issues that ***cols*** and ***rows*** where happening due to their nature. Also some components needed to be discarded to used pure __CSS__ due to the needs of the some parts of the project.
+    ___
+* **Back-End**
+    * Python
+    * Flask
+    * Jinja2
+    * PyMongo
+    ___
+    This project was a challange, as it required a lot os researching, finding multiple solutions but to find the right one, the one that suited the problem in that moment was a time consuming.
+    ___
+
+## Testing
+The testing was carried out with the chrome devtools, with the next built-in devices.
+- MotoG4
+- Galaxy S5
+- Pixel 2
+- Pixel 2XL
+- iPhone 6/7/8
+- iPad
+- iPad Pro
+- Galaxy Fold
+- Full HD laptop Screen
+- Full HD 27" display
+
+## Deployment
+
+### Future Features
+Bootstrap 4 offers a bunch of components to help to have an app/site up and running, but some of them cuase a lot of problems on small screens, due to this reason, the project will be rebuilt with pure **CSS** to have full control of each component and how it will behaive on each screen size.
+
+For the register will be added a function to find an existing user to let know the user through **flash** in flask.
+
+for the Login will be added a funciton to let know the user when either username or password are incorrect.
+
+In new post will be added a function to detect a repeated post either through the post title or subtitle.
+
+## Special Thanks
+- My mentor Guido Cecilio
+- Code Institute Tutors Team
+- [Pretty Printed](https://www.youtube.com/channel/UC-QDfvrRIDB6F0bIO4I4HkQ)
+- [Stackoverflow](https://stackoverflow.com/)

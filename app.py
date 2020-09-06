@@ -16,17 +16,9 @@ from os import path
 if path.exists("env.py"):
   import env 
 
-# username = os.getenv('C9_USER')
-
-# MONGO_URI = os.getenv('MONGO_URI')
-
-
 app = Flask(__name__)
 app.secret_key = "SECRET_KEY"
-
-# app.config["MONGO_URI"] = 'mongodb+srv://rootAccess:sP9eU2GAtnYugO53@posting-vndhj.mongodb.net/bottleneckdb?retryWrites=true&w=majority'
 app.config["MONGO_URI"] = os.environ.get('MONGO_URI')
-# app.config["MONGO_DBNAME"] = 'bottleneckdb'  # Optional setting
 app.config["MONGO_DBNAME"] = os.environ.get('MONGO_DBNAME')
 
 # Creating a new instance of PyMongo
@@ -35,14 +27,14 @@ mongo = PyMongo(app)
 DBS_NAME = "bottleneckdb"
 COLECCTION_NAME = "posts"
 
-
+# Defining game platforms
 platforms = [
         'Switch','Wii', 'Wii U', '3DS',
         'XBOX 360', 'XBOX ONE', 'PS2', 'PS3', 'PS4',
         'Linux', 'Mac', 'Windows', 'iOS'
         ]
 
-
+# Defining pegi descriptions
 pegi_description = {
         'pegi-language': 'Bad Language',
         'pegi-discrimination': 'Discrimination',
@@ -54,6 +46,7 @@ pegi_description = {
         'pegi-violence': 'Violence'
 }
 
+# deginingn pegi rating
 pegi_rate = ['pegi3', 'pegi7', 'pegi12', 'pegi16', 'pegi18']
 
 
@@ -66,19 +59,21 @@ def mongo_connect(url):
         print("Couldnt connect to MongoDB: %s") % e
 
 
+# Password and encripter and decoder
 encrypt = bcrypt.gensalt()
 
-
+# Redirecting to home
 @app.route('/')
 @app.route('/index')
 def home():
     return redirect(url_for('index', page=1))
 
 
+# Rendering landing page
+# Pagination built in
 @app.route('/home')
 def index():
     post = mongo.db.posts
-    
     page = int(request.args['page'])
     
     offset = 0
@@ -89,54 +84,49 @@ def index():
 
     prev_url = page-1
     next_url = page+1
-    
+
     if page >= pages:
         next_url = pages
     elif page <= 1:
         prev_url = 1
         page = 1
-
     if page <= 1:
         offset = 0
         page=1
     elif page == 2:
         offset = 4
     elif page == 3:
-        #page = pages
         offset = prev_url*4
     
     all_posts = post.find().sort('_id', -1)
     offset_post = post.find().sort('_id', -1).skip(offset).limit(limit)
-    
     all_titles = []
     titles = []
-    #import pdb;pdb.set_trace()
     posts = post.find().sort('_id', -1)
     for i in all_posts:
         all_titles.append(i['post_title'])
-    
     for i in posts:
         titles.append(i['post_title'])
-
-    # import pdb;pdb.set_trace()
     return render_template('index.html', posts=offset_post, page=page, pages=pages, prev_url=prev_url, next_url=next_url)
 
 
+# Function that uploads the images
 @app.route("/uploads/<filename>", methods=['GET'])
 def upload(filename):
     return mongo.send_file(filename)
 
 
+# Open the review Selected
 @app.route('/review/<review_id>', methods=['GET'])
 def game_review(review_id):
     post = mongo.db.posts.find_one({'_id': ObjectId(review_id)})
     return render_template('reviews.html', post=post)
 
 
+# Creating a new Post
 @app.route('/post', methods=['GET', 'POST'])
 def post_review():
     if request.method == 'POST':
-        # import pdb;pdb.set_trace()
         if request.files:
             post_cover = request.files["post_cover"]
             gallery_1 = request.files["gallery_1"]
@@ -177,6 +167,7 @@ def post_review():
     return render_template("post.html", platforms=platforms, pegi_desc=pegi_description, pegi_rate=pegi_rate)
 
 
+# Redirect from Post Review to Edit Post
 @app.route('/edit_post/<post_id>', methods=['GET', 'POST'])
 def edit_post(post_id):
     if "username" in session:
@@ -192,18 +183,15 @@ def edit_post(post_id):
         return redirect(url_for('login'))
 
 
+# Update Post
 @app.route('/update_post/<post_id>', methods=['GET', 'POST'])
 def update_post(post_id):
-    # import pdb;pdb.set_trace()
     gallery = {}
     for key, value in request.files.items():
         if value.filename != "":
             gallery.update({key: value.filename})
             mongo.save_file(value.filename, value)
-    # import pdb;pdb.set_trace()
     release_date = datetime.strptime(request.form["release_date"], "%Y-%m-%d")
-    # print(request.form["release_date"])
-
     date_posted = datetime.strptime(request.form["date_posted"], "%Y-%m-%d")
     gallery.update({
                 "post_title": request.form["post-title"],
@@ -226,6 +214,7 @@ def update_post(post_id):
     return redirect(url_for('index', page=1))
 
 
+# Delete Post
 @app.route('/delete_post/<post_id>', methods=['GET', 'DELETE'])
 def delete_post(post_id):
     mongo.db.posts.find_one_and_delete({"_id": ObjectId(post_id)}) 
@@ -233,6 +222,7 @@ def delete_post(post_id):
     return redirect(url_for('index', page=1))
 
 
+# Login User
 @app.route('/login', methods=["GET", "POST"])
 def login():
     if request.method == 'POST':
@@ -247,6 +237,7 @@ def login():
     return render_template("login.html")
 
 
+# Loging out user
 @app.route('/logout')
 def logout():
     session.pop("_id", None)
@@ -254,6 +245,7 @@ def logout():
     return redirect(url_for("login"))
 
 
+# User Function
 @app.route('/user')
 def user():
     if "username" in session:
@@ -265,6 +257,7 @@ def user():
         return redirect(url_for('login'))
 
 
+# Register - Creating a User
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
@@ -291,16 +284,19 @@ def register():
     return render_template("register.html")
 
 
+# Error Handeling 404
 @app.errorhandler(404)
 def page_not_found(error):
     return render_template('errors/404.html'), 404
 
 
+# Error Handeling 403
 @app.errorhandler(403)
 def page_forbiden(error):
     return render_template('errors/403.html', error=error), 403
 
 
+# Error Handeling 500
 @app.errorhandler(Exception)
 def handle_exception(e):
     # pass through HTTP errors
@@ -314,4 +310,4 @@ def handle_exception(e):
 if __name__ == "__main__":
     app.run(host=os.getenv('IP', "0.0.0.0"),
             port=int(os.getenv('PORT', "8080")),
-            debug=False)
+            debug=True)

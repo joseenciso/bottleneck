@@ -3,16 +3,18 @@
 {% block content %}
 <div class="container">
     <form class="form form-edit" method="POST" action="{{url_for('update_post', post_id=post._id)}}" enctype="multipart/form-data">
-        <h2 class="post-heading"><i class="fas fa-edit"></i>&nbsp;Edit Post</h2>
+        <h2 class="post-heading"><i class="fas fa-edit"></i>Edit Post</h2>
         <fieldset class="fieldset">
             
             <div class="row author-container">
-                <legend><i class="fas fa-id-card"></i>&nbsp;User Section</legend>
+                <div class="col-12">
+                    <legend><i class="fas fa-id-card"></i>User Section</legend>
+                </div>
                 
                 <div class="col-sm-12 col-md-6 col-lg-6 input-group mb-3">
                     <div class="input-group-prepend">
                         <label for="post-title" class="input-group-text">
-                            <i class="fas fa-user-circle"></i>&nbsp;Posted By
+                            <i class="fas fa-user-circle"></i>Posted By
                         </label>
                     </div>
                     <input type="text" class="form-control" name="posted_by" id="post-subtitle" value="{{ post.posted_by }}">    
@@ -21,7 +23,7 @@
                 <div class="input-group mb-3 col-sm-12 col-md-6 col-lg-6">                           
                     <div class="input-group-prepend">
                         <label for="release-date" class="input-group-text">
-                            <i class="far fa-calendar-plus"></i>&nbsp;Posted
+                            <i class="far fa-calendar-plus"></i>Posted
                         </label>
                     </div>
                     <input type="date" class="form-control" name="date_posted" value="{{ post.date_posted.strftime('%Y-%m-%d') }}">
@@ -30,12 +32,12 @@
             
             <div class="row edit-container">
                 <legend class="post-legend">
-                    &nbsp;<i class="fas fa-gamepad"></i>&nbsp;Game Section
+                    <i class="fas fa-gamepad fa-gamepad-section"></i>Game Section
                 </legend>
                 <div class="col-sm-12 input-group mb-3">
                     <div class="input-group-prepend">
                         <label for="post-title" class="input-group-text">
-                            <i class="fas fa-gamepad"></i>&nbsp;Title
+                            <i class="fas fa-gamepad"></i>Title
                         </label>
                     </div>
                     <input type="text" class="form-control" name="post-title" id="post-title" value="{{ post.post_title }}">
@@ -44,7 +46,7 @@
                 <div class="col-sm-12 input-group mb-3">
                     <div class="input-group-prepend">
                         <label for="post-title" class="input-group-text">
-                            <i class="fas fa-gamepad"></i>&nbsp;Subtitle
+                            <i class="fas fa-gamepad"></i>Subtitle
                         </label>
                     </div>
                     <input type="text" class="form-control" name="post-subtitle" id="post-subtitle" value="{{ post.post_subtitle }}">    
@@ -53,7 +55,7 @@
                 <div class="input-group mb-3 col-sm-12 col-md-6 col-lg-4">                           
                     <div class="input-group-prepend">
                         <label for="release-date" class="input-group-text" id="inputGroupFileAddon01">
-                            <i class="far fa-calendar-plus"></i>&nbsp;Release 
+                            <i class="far fa-calendar-plus"></i>Release 
                         </label>
                     </div>
                     <div class="custom-file">
@@ -63,7 +65,7 @@
 
                 <div class="input-group mb-3 col-md-6 col-lg-4">
                     <label for="no_players" class="input-group-text"style="margin: 0;">
-                        <i class="fas fa-gamepad"></i>&nbsp;Playes
+                        <i class="fas fa-gamepad"></i>Playes
                     </label>
                     <input type="number" class="form-control" name="no_players" id="no-players" min="1" max="16" value="{{ post.no_players }}">
                 </div>
@@ -71,7 +73,7 @@
                 <div class="input-group mb-3 col-md-6 col-lg-4">
                     <div class="input-group-prepend">
                         <label for="score" class="input-group-text">
-                            <i class="fas fa-star-half-alt"></i>&nbsp;Score
+                            <i class="fas fa-star-half-alt"></i>Score
                         </label>
                     </div>
                     <input type="number" class="form-control" name="game_score" id="game-score" min="0" max="100" value="{{ post.game_score }}">
@@ -82,7 +84,7 @@
             
             <div class="options-container row">
                 <div class="col-xs-12 col-sm-12 col-lg-4 col-md-4">
-                    <legend for="plattforms" class="form-check-label">&nbsp;<i class="fas fa-th-large"></i>&nbsp;Platfforms:</legend>
+                    <legend for="plattforms" class="form-check-label"><i class="fas fa-th-large"></i>Platfforms:</legend>
                     <div class="platforms-container">
                         {% for platform in platforms %}
                             {% if platform in post.game_platform %}
@@ -97,7 +99,7 @@
                 </div>
         
                 <div class="col-md-4 col-lg-4">
-                    <legend>&nbsp;<i class="fas fa-list"></i>&nbsp;Pegi Description</legend>
+                    <legend><i class="fas fa-list"></i>Pegi Description</legend>
                     <div class="description-container">
                         {% for pegi in pegi_description %}
                             {% if pegi in post.pegi_desc %}
@@ -111,7 +113,7 @@
                 </div>
         
                 <div class="col-lg-4 col-md-4">
-                    <legend>&nbsp;<i class="fas fa-percent"></i>&nbsp;Pegi Rate</legend>
+                    <legend><i class="fas fa-percent"></i>Pegi Rate</legend>
                     <div class="description-container">
                         {% for pegi in pegi_rate %}
                             {% if pegi in post.pegi_rate %}
@@ -130,7 +132,7 @@
             
             <div class="gallery-container row">
                 <div class="gallery-header col-12">
-                    <legend class="post-legend">&nbsp;<i class="fas fa-images"></i>&nbsp;Gallery Section</legend>
+                    <legend class="post-legend"><i class="fas fa-images"></i>Gallery Section</legend>
                     <p>Select one image for your cover and 5 more that will be shown on the gallery.</p>
                 </div>
                 
@@ -143,7 +145,7 @@
                             <div class="custom-item prev-img">
                                 <span class="prev-img" style="overflow: hidden;">{{ post.post_cover }}</span>
                             </div>
-                            <div class="custom-item">
+                            <div class="custom-item new-image">
                                 <input type="file" clas="file-input" name="post_cover" id="gallery-1" value="{{ post.post_cover }}" accept="image/png, image/jpeg">
                             </div>
                         </div>
@@ -157,9 +159,9 @@
                         </div>
                         <div class="file-item-container">
                             <div class="custom-item prev-img">
-                                <span class="prev-img" style="overflow: hidden;" for="gallery-1">{{ post.gallery_1 }}</span>
+                                <span class="" style="overflow: hidden;" for="gallery-1">{{ post.gallery_1 }}</span>
                             </div>
-                            <div class="custom-item">
+                            <div class="custom-item new-image">
                                 <input type="file" clas="file-input" name="gallery_1" id="gallery-1" value="{{ post.gallery_1 }}" accept="image/png, image/jpeg">
                             </div>
                         </div>
@@ -173,9 +175,9 @@
                         </div>
                         <div class="file-item-container">
                             <div class="custom-item prev-img">
-                                <span class="prev-img" style="overflow: hidden;" for="gallery-1">{{ post.gallery_1 }}</span>
+                                <span class="" style="overflow: hidden;" for="gallery-1">{{ post.gallery_1 }}</span>
                             </div>
-                            <div class="custom-item">
+                            <div class="custom-item new-image">
                                 <input type="file" clas="file-input" name="gallery_1" id="gallery-1" value="{{ post.gallery_1 }}" accept="image/png, image/jpeg">
                             </div>
                         </div>
@@ -189,9 +191,9 @@
                         </div>
                         <div class="file-item-container">
                             <div class="custom-item prev-img">
-                                <span class="prev-img" style="overflow: hidden;" for="gallery-2">{{ post.gallery_2 }}</span>
+                                <span class="" style="overflow: hidden;" for="gallery-2">{{ post.gallery_2 }}</span>
                             </div>
-                            <div class="custom-item">
+                            <div class="custom-item new-image">
                                 <input type="file" clas="file-input" name="gallery_2" id="gallery-2" value="{{ post.gallery_2 }}" accept="image/png, image/jpeg">
                             </div>
                         </div>
@@ -205,9 +207,9 @@
                         </div>
                         <div class="file-item-container">
                             <div class="custom-item prev-img">
-                                <span class="prev-img" style="overflow: hidden;" for="gallery-3">{{ post.gallery_3 }}</span>
+                                <span class="" style="overflow: hidden;" for="gallery-3">{{ post.gallery_3 }}</span>
                             </div>
-                            <div class="custom-item">
+                            <div class="custom-item new-image">
                                 <input type="file" clas="file-input" name="gallery_3" id="gallery-3" value="{{ post.gallery_3 }}" accept="image/png, image/jpeg">
                             </div>
                         </div>
@@ -221,9 +223,9 @@
                         </div>
                         <div class="file-item-container">
                             <div class="custom-item prev-img">
-                                <span class="prev-img" style="overflow: hidden;" for="gallery-4">{{ post.gallery_4 }}</span>
+                                <span class="" style="overflow: hidden;" for="gallery-4">{{ post.gallery_4 }}</span>
                             </div>
-                            <div class="custom-item">
+                            <div class="custom-item new-image">
                                 <input type="file" clas="file-input" name="gallery_4" id="gallery-4" value="{{ post.gallery_4 }}" accept="image/png, image/jpeg">
                             </div>
                         </div>
@@ -237,14 +239,15 @@
                         </div>
                         <div class="file-item-container">
                             <div class="custom-item prev-img">
-                                <span class="prev-img" style="overflow: hidden;" for="gallery-4">{{ post.gallery_5 }}</span>
+                                <span style="overflow: hidden;" for="gallery-4">{{ post.gallery_5 }}</span>
                             </div>
-                            <div class="custom-item">
+                            <div class="custom-item new-image">
                                 <input type="file" clas="file-input" name="gallery_5" id="gallery-5" value="{{ post.gallery_5 }}" accept="image/png, image/jpeg">
                             </div>
                         </div>
                     </div>
                 </div>
+
             </div>
             
             <hr>
@@ -252,25 +255,25 @@
             <div class="row">
                 <div class="col-12">
                     <legend>
-                        <i class="fas fa-file-word"></i>&nbsp;Review Section
+                        <i class="fas fa-file-word"></i>Review Section
                     </legend>
                 </div>
                 
                 <div class="col-lg-6 mb-3">
                     <label for="pros" class="post-pros input-group-text">
-                        <i class="fas fa-thumbs-up"></i>&nbsp;Pros
+                        <i class="fas fa-thumbs-up"></i>Pros
                     </label>
                     <textarea name="post-pros" id="pros" class="pros form-control">{{ post.pros_content }}</textarea>
                 </div>
                 <div class="col-lg-6 mb-3">
                     <label for="cons" class="post-cons input-group-text">
-                        <i class="fas fa-thumbs-down"></i>&nbsp;Cons
+                        <i class="fas fa-thumbs-down"></i>Cons
                     </label>
                     <textarea name="post-cons" id="cons" class="cons form-control">{{ post.cons_content }}</textarea>
                 </div> 
                 <div class="col-12 mb-3">
                     <label for="post-review" class="post-review input-group-text">
-                        <i class="far fa-file-alt"></i>&nbsp;Review
+                        <i class="far fa-file-alt"></i>Review
                     </label>
                     <textarea name="post-review" id="post-review" class="post-review form-control">{{ post.post_review }}</textarea>
                 </div>

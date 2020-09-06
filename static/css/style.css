@@ -142,7 +142,7 @@ footer{
 
 .game-info{
     position: relative;
-    bottom: 10;
+    bottom: 10px;
 
     min-height: 140px;
     width: 100%;
@@ -157,12 +157,13 @@ footer{
     width: 100%;
 }
 
-.fa-gamepad,
-.fa-calendar-plus,
-.fa-th-large{
-    width: 20px;
-    height: 20px;
+legend .fas{
     margin-right: 5px;
+    margin-left: 5px;
+}
+
+.fa-gamepad{
+    width: 30px;
 }
 
 .rev-platform,
@@ -173,11 +174,6 @@ footer{
 
 .points-container{
     float: right;
-}
-
-.social-media{
-    padding-left: auto;
-    padding-right: auto;
 }
 
 .score{
@@ -411,7 +407,7 @@ footer{
     height: 150px;
 }
 
-/********** Forms Post **/***********************/
+/********** Forms Post *************************/
 .form-post{
     width: 625px;
     
@@ -555,7 +551,7 @@ textarea{
 
 }
 
-@media (min-width: 768px){
+@media (min-width: 768px){}
 
 
 
@@ -684,6 +680,10 @@ textarea{
         line-height: 1.6;
     }
 
+    .custome-input-file{
+        height: 100%;
+    }
+
 
     .edit-container{
         width: 100%;
@@ -700,13 +700,33 @@ textarea{
 
     .file-item-container{
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
+        width: 100%;
+        margin: 2px 5px;
+    }
+
+    .custome-item{
+        width: 100%;
+    }
+
+    input[type="file"]{
+        width: 100%;
     }
 
     .icon-file{
-        height: 50px;
+        height: 100%;
+
+        padding-top: 15px;
+        padding-bottom: 12px;
     }
 
+    .prev-img{
+        width: 100%;
+    }
+
+    .new-image{
+        margin-top: 5px;
+    }
 
 /******* Register ************************************/
     .form-register {
