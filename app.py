@@ -219,8 +219,7 @@ def update_post(post_id):
 # Delete Post
 @app.route('/delete_post/<post_id>', methods=['GET', 'DELETE'])
 def delete_post(post_id):
-    mongo.db.posts.find_one_and_delete({"_id": ObjectId(post_id)}) 
-    # mongo.db.posts.delete_one({"_id":  ObjectId(post)})
+    mongo.db.posts.find_one_and_delete({"_id": ObjectId(post_id)})
     return redirect(url_for('index', page=1))
 
 
