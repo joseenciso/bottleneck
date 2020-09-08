@@ -32,10 +32,6 @@ ___
 8. [Testing](#testing)
 9. [Deployment](#deployment)
 10. [Credits](#credits)
-11. [](#)
-12. [](#)
-13. [](#)
-14. [](#)
 
 ___
 
