@@ -52,18 +52,18 @@
                     <input type="text" class="form-control" name="post-subtitle" id="post-subtitle" value="{{ post.post_subtitle }}">    
                 </div>
 
-                <div class="input-group mb-3 col-sm-12 col-md-6 col-lg-4">                           
+                <div class="input-group mb-3 col-sm-12 col-md-6 col-lg-5">                           
                     <div class="input-group-prepend">
                         <label for="release-date" class="input-group-text" id="inputGroupFileAddon01">
                             <i class="far fa-calendar-plus"></i>Release 
                         </label>
                     </div>
                     <div class="custom-file">
-                        <input type="date" class="form-control" name="release_date" value="{{ post.release_date.strftime('%Y-%m-%d') }}">
+                        <input type="date" class="form-control release-on-post" name="release_date" value="{{ post.release_date.strftime('%Y-%m-%d') }}">
                     </div>
                 </div>
 
-                <div class="input-group mb-3 col-md-6 col-lg-4">
+                <div class="input-group mb-3 col-md-6 col-lg-3">
                     <label for="no_players" class="input-group-text"style="margin: 0;">
                         <i class="fas fa-gamepad"></i>Playes
                     </label>

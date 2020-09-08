@@ -40,25 +40,25 @@
                         </label>
                     </div>
                     <div class="custom-file">
-                        <input type="date" class="form-control" name="release-date" required>
+                        <input type="date" class="form-control release-on-post" name="release-date" required>
                     </div>
                 </div>
                 
-                <div class="input-group mb-3 col-md-6 col-lg-4">
+                <div class="input-group mb-3 col-md-6 col-lg-3">
                     <label for="no_players" class="input-group-text"style="margin: 0;">
                         <i class="fas fa-gamepad"></i>Players</label>
                     <input type="number" class="form-control" name="no_players"
-                    id="no-players" min="1" max="16" placeholder="1 - 16" required>
+                    id="no-players" min="1" max="16" placeholder=" 1 - 16" required>
                 </div>
 
-                <div class="input-group mb-3 col-md-6 col-lg-3">
+                <div class="input-group score-container mb-3 col-md-6 col-lg-4">
                     <div class="input-group-prepend">
                         <label for="score" class="input-group-text">
                             <i class="fas fa-star-half-alt"></i>Score
                         </label>
                     </div>
                     <input type="number" class="form-control" name="game_score"
-                    id="game-score" min="0" max="100" placeholder="0 - 100" required>
+                    id="game-score" min="0" max="100" placeholder="0-100" required>
                 </div>
             </div>
 
@@ -122,11 +122,11 @@
                         </ul>                 
                 </div>
 
-                <div class="input-group mb-3 col-md-6 col-lg-6">
+                <div class="input-group mb-3 col-lg-6">
                     <div class="input-group-prepend">
-                        <label class="input-group-text" for="post-cover">
+                        <span class="input-group-text" for="post-cover">
                             <i class="fas fa-file-image"></i>
-                        </label>
+                        </span>
                     </div>
                     <div class="custom-file">
                         <input type="file" class="custom-file-input" name="post_cover"  id="post-cover"

@@ -51,7 +51,7 @@ ____
 
 ## Features
 ### Existing Features
-<u>**Landing Page**</u></br>
+<u>**Landing Page - Home Page**</u></br>
 - Navbar
 - Posts
 - Pagination
@@ -71,6 +71,11 @@ The pagination section has prev as previous page, next to go to the next page an
 
 <u>Footer</u></br>
 The footer displays **bottleneck's** links to <i>github</i> and to <i>heroku's</i> app under **"MileStone Project 3"** section and under **"Made by"** section only displays my name, <i>Jose Enciso</i>.
+
+<u>**Reviews**</u></br>
+Each video has a score, which valuate how good is the game, to representate this punctiation and external __CSS__ code is being used. [css-circular-prog-bar.css](https://www.cssscript.com/circular-progress-bar-plain-html-css/), from __cssscript.com__.
+
+The five images added stored in the DB for each post will be shown on a <i>carousel</i> made with <u>bootstrap 4</i>, which at the moment it is required to add five images for the gallery/carousel and one for as a cover.
 
 <u>**New Post**</u></br>
 The new post site will guide the user trough to at the end publish the post. In here the user will find a review section where the user will be able to use <i>HTML</i> tags to add more visuals. This <i>HTML</i> feature is not supported on pros and cons section.

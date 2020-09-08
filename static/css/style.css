@@ -294,7 +294,6 @@ legend .fas{
     width: 100%;
 }
 
-/******* Reviews ******************************/
 .game-players,
 .game-release,
 .game-platform{
@@ -419,7 +418,8 @@ p .fas{
     margin: 2rem auto;
 }
 
-.spacer{
+.spacer-top,
+.spacer-bottom{
     height: 150px;
 }
 
@@ -471,6 +471,7 @@ textarea{
     margin-bottom: 50px;
 }
 
+.date-posted-user,
 .theader{
     text-align: center;
 }
@@ -489,21 +490,6 @@ textarea{
 /* ************************************
 **  Queries  **
 ***************************************
-    ? Extra small devices (portrait phones, less than 576px)
-    ! @media (max-width: 575.98px) { ... }
-
-    ? Small devices (landscape phones, 576px and up)
-    ! @media (min-width: 576px) and (max-width: 767.98px) { ... }
-
-    ? Medium devices (tablets, 768px and up)
-    ! @media (min-width: 768px) and (max-width: 991.98px) { ... }
-
-    ? Large devices (desktops, 992px and up)
-    ! @media (min-width: 992px) and (max-width: 1199.98px) { ... }
-
-    ? Extra large devices (large desktops, 1200px and up)
-    !@media (min-width: 1200px) { ... }
-***************************************
 ***************************************/
 @media (min-width: 992px){
     .main{
@@ -519,7 +505,6 @@ textarea{
     .login-input{
         margin-left: 16px;
     }
-
 }
 
 @media (min-width: 768px) and (max-width: 991.98px) {
@@ -622,6 +607,20 @@ textarea{
         width: 100%;
     }
 
+/*************** Base ***************************/
+
+    .madeby{
+        margin-top: 2rem;
+    }
+
+    .spacer-top{
+        height: 50px;
+    }
+
+    footer{
+        margin-top: 25px;
+    }
+
 /****************** Index *******************************/
     .cards{
         padding: 0;
@@ -649,8 +648,7 @@ textarea{
         margin-right: 8px !important;
     }
 
-/*********************************************/
-/*********************************************/
+/************** New Post ******************************/
     fieldset p{
         padding-left: 10px;
     }
@@ -665,14 +663,9 @@ textarea{
         width: 334px;
     }
 
-    .form-register{
-    margin-left: 10px;
-    margin-right: 10px;
-    }
-
-    .form-register .input-group-text{
-        width: 103px;
-        font-weight: 600;
+    /** Fixing height unwanted ****/
+    .release-on-post{
+        height: 38px !important;
     }
 
 /***** Login **********************************/
@@ -693,7 +686,6 @@ textarea{
     .custome-input-file{
         height: 100%;
     }
-
 
     .edit-container{
         width: 100%;
@@ -743,15 +735,23 @@ textarea{
         padding-left: 5px;
         padding-right: 5px;
     }
+
     .form-register button{
         margin-top: 10px ;
         margin-bottom: 10px;
         width: 80%;
     }
 
-
+    .form-register{
+        margin-left: 10px;
+        margin-right: 10px;
+        }
+    
+        .form-register .input-group-text{
+            width: 103px;
+            font-weight: 600;
+        }
 }
-
 
 @media (min-width: 280px) and (max-width: 320px){
     .navbar-expand-sm{

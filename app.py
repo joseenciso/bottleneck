@@ -17,12 +17,15 @@ if path.exists("env.py"):
   import env 
 
 app = Flask(__name__)
+
 app.secret_key = "SECRET_KEY"
 app.config["MONGO_URI"] = os.environ.get('MONGO_URI')
 app.config["MONGO_DBNAME"] = os.environ.get('MONGO_DBNAME')
 
+
 # Creating a new instance of PyMongo
 mongo = PyMongo(app)
+
 
 DBS_NAME = "bottleneckdb"
 COLECCTION_NAME = "posts"
@@ -283,7 +286,8 @@ def register():
             flash('Username or email already exists')
     return render_template("register.html")
 
-
+# Erro handling
+# https://flask.palletsprojects.com/en/1.1.x/errorhandling/
 # Error Handeling 404
 @app.errorhandler(404)
 def page_not_found(error):
@@ -310,4 +314,4 @@ def handle_exception(e):
 if __name__ == "__main__":
     app.run(host=os.getenv('IP', "0.0.0.0"),
             port=int(os.getenv('PORT', "8080")),
-            debug=True)
+            debug=False)
