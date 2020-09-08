@@ -14,7 +14,7 @@ ___
 ## Table of Contents
 2. [Project's Purpose](#projects-purpose)
 3. [UX](#ux)
-4. [Wireframes](#wariframes)
+4. [Wireframes](#wireframes)
 5. [Features](#features)
     - [Existing Features](#existing-features)
     - [Future Features](#future-features)
@@ -48,6 +48,10 @@ ____
 ## UX
 
 ## Wireframes
+- [Home - Landing Page](static/img/ReadME/home.png)
+- [Post/Edit](static/img/ReadME/post-edit.png)
+- [User - Login - Signup](static/img/ReadME/user-login-register.png)
+
 
 ## Features
 ### Existing Features

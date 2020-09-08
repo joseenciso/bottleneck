@@ -22,13 +22,12 @@ app.secret_key = "SECRET_KEY"
 app.config["MONGO_URI"] = os.environ.get('MONGO_URI')
 app.config["MONGO_DBNAME"] = os.environ.get('MONGO_DBNAME')
 
-
 # Creating a new instance of PyMongo
 mongo = PyMongo(app)
 
-
 DBS_NAME = "bottleneckdb"
 COLECCTION_NAME = "posts"
+
 
 # Defining game platforms
 platforms = [
