@@ -28,7 +28,15 @@
         </div>
         <input type="password" name="password" id="password" class="form-control">
     </div>
-    <br>
+    <div class="col-12">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
     <button type="submit" value="Submit" class="btn btn-success">Submit</button>
 </form>
 

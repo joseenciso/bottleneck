@@ -224,41 +224,6 @@ def delete_post(post_id):
     return redirect(url_for('index', page=1))
 
 
-# Login User
-@app.route('/login', methods=["GET", "POST"])
-def login():
-    if request.method == 'POST':
-        user = mongo.db.users.find_one(
-            {"username": request.form["username"].lower()}
-        )
-        if user:
-            if bcrypt.hashpw(request.form["password"].encode("utf-8"),
-                             user["password"]) == user["password"]:
-                session["username"] = request.form["username"]
-                return redirect(url_for("index", page=1))
-    return render_template("login.html")
-
-
-# Loging out user
-@app.route('/logout')
-def logout():
-    session.pop("_id", None)
-    session.clear()
-    return redirect(url_for("login"))
-
-
-# User Function
-@app.route('/user')
-def user():
-    if "username" in session:
-        username = session["username"]
-        user = mongo.db.users.find_one({"username": username})
-        posts = mongo.db.posts.find()
-        return render_template('user.html', username=username, user=user, posts=posts)
-    else:
-        return redirect(url_for('login'))
-
-
 # Register - Creating a User
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -284,6 +249,44 @@ def register():
         else:
             flash('Username or email already exists')
     return render_template("register.html")
+
+
+# Login User
+@app.route('/login', methods=["GET", "POST"])
+def login():
+    if request.method == 'POST':
+        user = mongo.db.users.find_one(
+            {"username": request.form["username"].lower()}
+        )
+        if user is None:
+            flash('Username or password are incorrect!')
+        elif bcrypt.hashpw(request.form["password"].encode("utf-8"),
+                            user["password"]) == user["password"]:
+            session["username"] = request.form["username"]
+            return redirect(url_for("index", page=1))
+            
+    return render_template("login.html")
+
+
+# Loging out user
+@app.route('/logout')
+def logout():
+    session.pop("_id", None)
+    session.clear()
+    return redirect(url_for("login"))
+
+
+# User Function
+@app.route('/user')
+def user():
+    if "username" in session:
+        username = session["username"]
+        user = mongo.db.users.find_one({"username": username})
+        posts = mongo.db.posts.find()
+        return render_template('user.html', username=username, user=user, posts=posts)
+    else:
+        return redirect(url_for('login'))
+
 
 # Erro handling
 # https://flask.palletsprojects.com/en/1.1.x/errorhandling/
@@ -313,4 +316,4 @@ def handle_exception(e):
 if __name__ == "__main__":
     app.run(host=os.getenv('IP', "0.0.0.0"),
             port=int(os.getenv('PORT', "8080")),
-            debug=False)
+            debug=True)
