@@ -293,12 +293,6 @@ def user():
 # Error Handeling 404
 @app.errorhandler(404)
 def page_not_found(error):
-    return render_template('errors/400.html'), 400
-
-
-# Error Handeling 404
-@app.errorhandler(404)
-def page_not_found(error):
     return render_template('errors/404.html'), 404
 
 
