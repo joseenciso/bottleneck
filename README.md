@@ -1,4 +1,4 @@
-# Welcome to [Bottleneck](https://bottleneck-gaming.herokuapp.com/?page=1)
+# Welcome to Bottleneck
 
 ![Bottleneck Responsive](static/img/ReadME/responsive.jpg)
 
@@ -6,7 +6,7 @@
 ## Introduction
 [Bottleneck](https://bottleneck-gaming.herokuapp.com/) is a open videogame based website, where you can just signup and you are ready to write your posts, also if you just want to read what the community is posting, you are not required to login.
 
-This proyect is a little reflects a part of mine, the side that likes the videogames despite the lack of time to enjoy this hobby nowadays.
+This proyect reflects a little part of my hobbies and interest, the side that likes the videogames despite the lack of time to enjoy this hobby nowadays.
 
 ___
 
@@ -185,6 +185,8 @@ Another requirement from <u>Heroku</u> is the __requirements.txt__ file that wil
 - In new post will be added a function to detect a repeated post either through the post title or subtitle.
 
 - When creating a new user will be added an avatar selector, and will be added an option to change/select the avatar in the users site.
+
+- Deleting the mandatory five images when creating a new post and allowing the user to add from one to five images depending on the user needs. the way to achieve this noncoming feature will be by adding JavaScript functionalities, a plus ( + ) or minus ( - ) buttons indicating the posibility to add or delete instantly, this means that the backend code will need some adaptation to macth the new features.
 
 ## Disclaimer
     There was not reason to use JavaScript in project. Everything was handled by bootstrap.

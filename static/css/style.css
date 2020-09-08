@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Grandstander:ital,wght@1,200&display=swap');
 /************************************
 font-family: 'Roboto', sans-serif;
 font-family: 'Pacifico', cursive;
@@ -24,8 +25,16 @@ header{
     background-color: rgb(57,57,57);
 }
 
-/******* Base ********************************/
+.pacifico{
+    font-family: 'Pacifico', cursive;
+}
 
+.gradnstander-curve{
+    font-family: 'Grandstander', cursive;
+}
+
+
+/******* Base ********************************/
 .navbar-brand{
     font-size: 2.5rem;
 }
@@ -423,10 +432,8 @@ p .fas{
     height: 150px;
 }
 
-/********** Forms Post *************************/
 .form-post{
     width: 625px;
-    
 }
 
 .post-heading{
@@ -443,6 +450,10 @@ textarea{
     width: 100%;
 }
 
+.reg-info{
+    border-radius: 5px;
+}
+
 /********* Forms Login ***********************/
 
 .submit{
@@ -456,7 +467,6 @@ textarea{
     margin: 0 auto;
 }
 
-/****** Forms Login ***********************/
 .singup,
 .login{
     text-align: center;
