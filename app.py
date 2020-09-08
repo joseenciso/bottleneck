@@ -212,8 +212,8 @@ def update_post(post_id):
                 "cons_content": request.form["post-cons"],
                 "post_review": request.form["post-review"],
                 })
-    mongo.db.posts.update({"_id": ObjectId(post_id)}, {'$set': gallery })
-    return redirect(url_for('index', page=1))
+    mongo.db.posts.update({"_id": ObjectId(post_id)}, {'$set': gallery})
+    return redirect(url_for('game_review', review_id=post_id))
 
 
 # Delete Post
@@ -290,6 +290,12 @@ def user():
 
 # Erro handling
 # https://flask.palletsprojects.com/en/1.1.x/errorhandling/
+# Error Handeling 404
+@app.errorhandler(404)
+def page_not_found(error):
+    return render_template('errors/400.html'), 400
+
+
 # Error Handeling 404
 @app.errorhandler(404)
 def page_not_found(error):
