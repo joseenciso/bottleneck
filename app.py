@@ -17,15 +17,9 @@ if path.exists("env.py"):
     import env 
 
 app = Flask(__name__)
-
-# cluster = MongoClient("mongodb+srv://rootAccess:FE5GO6UGAxwhaIAG@posting.vndhj.mongodb.net/bottleneckdb?retryWrites=true&w=majority")
-# db = cluster[]
-
 app.secret_key = "SECRET_KEY"
 app.config["MONGO_URI"] = os.environ.get('MONGO_URI')
 # app.config["MONGO_DBNAME"] = os.environ.get('MONGO_DBNAME')
-
-# posting-vndhj.mongodb.net/bottleneckdb?retryWrites=true&w=majority
 
 # Creating a new instance of PyMongo
 mongo = PyMongo(app)
