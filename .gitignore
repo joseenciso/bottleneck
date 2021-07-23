@@ -2,6 +2,10 @@
 __pycache__/
 *.py[cod]
 *$py.class
+.vscode
+.theia
+.theia
+.gitignore
 
 # C extensions
 *.so
